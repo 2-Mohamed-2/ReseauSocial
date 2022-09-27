@@ -15,6 +15,13 @@ class CreateInterpellantsTable extends Migration
     {
         Schema::create('interpellants', function (Blueprint $table) {
             $table->id();
+            $table->string("nomcomplet");
+            $table->string("nompere");
+            $table->string("nommere");
+            $table->string("adresse");
+            $table->string("telephone");
+            $table->string("n_ci");
+            $table->string("photo");
             $table->timestamps();
         });
     }
