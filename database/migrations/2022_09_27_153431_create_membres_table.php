@@ -27,9 +27,6 @@ class CreateMembresTable extends Migration
             $table->date('datearrive');
             $table->string('photo');
             $table->date('datedepart');
-
-            $table->foreignId('grades_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }
