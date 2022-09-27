@@ -168,7 +168,7 @@
                                                                 @csrf
                                                                 <div class="form-body">
                                                                     <p>
-                                                                        Êtes-vous sur de vouloir supprimé le commissariaat : {{$com->libelle}} ?
+                                                                        Êtes-vous sur de vouloir supprimé le commissariat : {{$com->libelle}} ?
                                                                     </p>
                                                                 </div>
 
