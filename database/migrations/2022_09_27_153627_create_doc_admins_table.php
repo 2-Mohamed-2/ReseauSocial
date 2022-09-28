@@ -15,6 +15,7 @@ class CreateDocAdminsTable extends Migration
     {
         Schema::create('doc_admins', function (Blueprint $table) {
             $table->id();
+            $table->string("nature");
             $table->timestamps();
         });
     }
