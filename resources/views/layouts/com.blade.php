@@ -168,7 +168,7 @@ Administrateurs
                                         @csrf
                                         <div class="form-body">
                                             <p>
-                                                Êtes-vous sur de vouloir supprimé le commissariat : {{$com->libelle}} ?
+                                                Êtes-vous sur de vouloir supprimé le commissariat du : {{$com->libelle}} ?
                                             </p>
                                         </div>
                                         
