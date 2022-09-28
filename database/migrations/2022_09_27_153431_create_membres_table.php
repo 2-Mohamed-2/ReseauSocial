@@ -18,6 +18,7 @@ class CreateMembresTable extends Migration
             $table->id();
 
             $table->foreignId('section_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('grade_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('matricule')->unique();
             $table->string('numeroci')->unique();

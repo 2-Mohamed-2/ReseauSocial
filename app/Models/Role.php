@@ -10,6 +10,9 @@ class Role extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function 
+    public function membres()
+    {
+        return $this->belongsToMany(Membre::class, 'membre_roles');
+    }
 
 }
