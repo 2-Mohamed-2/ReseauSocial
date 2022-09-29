@@ -109,7 +109,7 @@ Administrateurs
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" autocomplete="off" name="section"
+                                                            <input type="text" autocomplete="off" name="section_id"
                                                             class="form-control" value="{{$mem->section_id}}" placeholder="....">
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-pencil"></i>
@@ -320,7 +320,7 @@ x
     <div class="col-md-6">
         <div class="form-group has-icon-left">
             <div class="position-relative">
-                <select class="form-group has-icon-left" name="section">
+                <select class="form-group has-icon-left" name="section_id">
                   <option  value="">Section</option>
                   @foreach ($mems as $mem )
                   <option value="{{ $section->id}}">{{ $section->libelle }}</option>  
