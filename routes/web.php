@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ComController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ComController;
+use App\Http\Controllers\SectController;
+use App\Http\Controllers\MembreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,12 @@ Route::get('/', function () {
 
 // Routes pour le crud du commissariat  
 Route::resource('/Commissariat', ComController::class);
+
+// Routes pour le crud des Membres
+Route::resource('/Membre', MembreController::class);
+
+// Routes pour le crud des sections
+Route::resource('/Section', SectController::class);
 
 
 Auth::routes();
