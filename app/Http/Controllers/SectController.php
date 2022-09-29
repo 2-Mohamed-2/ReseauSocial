@@ -16,8 +16,9 @@ class SectController extends Controller
     public function index()
     {
        $sects = Section::latest()->get();
+       $commissariats = Commissariat::latest()->get();
 
-       return view('layouts.sect', compact('sects'));
+       return view('layouts.sect', compact('sects', 'commissariats'));
     }
 
     /**
@@ -40,21 +41,21 @@ class SectController extends Controller
     {
 
         $this->validate($request,[
+            'commissariat_id' => 'required',
             'libelle' => 'required|max:255',
             'sigle' => 'required|max:255',
-            'fonction' => 'required|max:255',
-            'commisariat_id' => 'max:20',
+            'fonction' => 'required|max:255',            
         ]);
 
         $sect = Section::create([
+            'commissariat_id' => $request->commissariat_id,
             'libelle' => $request->libelle,
             'sigle' => $request->sigle,
             'fonction' => $request->fonction,
-            'commisariat_id' => $request->commisariat_id,
         ]);
 
-        $commissariats = Commissariat::all();
-        return view('layouts.sect', compact('commissariats'));
+        // $commissariats = Commissariat::all();
+        // return view('layouts.sect', compact('commissariats'));
 
         return redirect()->back();
     }
@@ -91,10 +92,10 @@ class SectController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $this->validate($request,[
+            'commissariat_id' => 'required',
             'libelle' => 'required|max:255',
             'sigle' => 'required|max:255',
             'fonction' => 'required|max:255',
-            'commisariat_id' => 'max:20',
         ]);
 
         $sect = Section::whereId($id)->update($validateData);
