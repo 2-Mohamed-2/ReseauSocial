@@ -49,6 +49,7 @@ Administrateurs
             <thead>
                 <tr>
                     <th>Section</th>
+                    <th>Grade</th>
                     <th>Matricule</th>
                     <th>Numeroci</th>
                     <th>NomComplet</th>
@@ -64,6 +65,7 @@ Administrateurs
                 @forelse ($mems as $mem)
                 <tr>
                     <td class="text-bold-500">{{$mem->section_id}}</td>
+                    <td class="text-bold-500">{{$mem->grade_id}}</td>
                     <td class="text-bold-500">{{$mem->matricule}}</td>
                     <td class="text-bold-500">{{$mem->numeroci}}</td>
                     <td class="text-bold-500">{{$mem->nomcomplet}}</td>
@@ -109,8 +111,30 @@ Administrateurs
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" autocomplete="off" name="section_id"
-                                                            class="form-control" value="{{$mem->section_id}}" placeholder="....">
+                                                            <select class="form-group" name="section_id">
+                                                                <option  value="">Section</option>
+                                                                @foreach ($sects as $sect )
+                                                                <option value="{{ $section->id 
+                                                              }}">{{ $section->libelle }}</option>  
+                                                                @endforeach
+                                                              </select>
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-pencil"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="position-relative">
+                                                            <select class="form-group has-icon-left" name="grade_id">
+                                                                <option  value="">Section</option>
+                                                                @foreach ($grades as $grade)
+                                                                <option value="{{ $grade->id
+                                                              }}">{{ $grade->libelle }}</option>  
+                                                                @endforeach
+                                                              </select>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-pencil"></i>
                                                             </div>
@@ -254,7 +278,7 @@ Administrateurs
                                         @csrf
                                         <div class="form-body">
                                             <p>
-                                                Êtes-vous sur de vouloir supprimé le commissariat du : {{$mem->nomcomplet}} ?
+                                                Êtes-vous sur de vouloir supprimé Mr : {{$mem->nomcomplet}} ?
                                             </p>
                                         </div>
                                         
@@ -317,13 +341,14 @@ x
 <div class="form-body">
 <div class="row">
     
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group has-icon-left">
             <div class="position-relative">
-                <select class="form-group has-icon-left" name="section_id">
-                  <option  value="">Section</option>
-                  @foreach ($mems as $mem )
-                  <option value="{{ $section->id}}">{{ $section->libelle }}</option>  
+                <select class="form-group" name="section_id">
+                  <option  value="">-- Selection une Section --</option>
+                  @foreach ($sects as $sect )
+                  <option value="{{ $section->id 
+                }}">{{ $section->libelle }}</option>  
                   @endforeach
                 </select>
                 <div class="form-control-icon">
@@ -333,7 +358,23 @@ x
         </div>
     </div>
     <br>
-    <div class="col-md-6">
+    <div class="col-md-12">
+        <div class="form-group has-icon-left">
+            <div class="position-relative">
+                <select class="form-group" name="grade_id">
+                  <option  value="">-- Selection un Grade --</option>
+                  @foreach ($grades as $grade )
+                  <option value="{{ $grade->id 
+                }}">{{ $grade->libelle }}</option>  
+                  @endforeach
+                </select>
+                <div class="form-control-icon">
+                   <!-- <i class="bi bi-pencil"></i> -->
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div class="col-md-12">
         <div class="form-group has-icon-left">
             <div class="position-relative">
                 <input type="text" autocomplete="off" name="matricule"

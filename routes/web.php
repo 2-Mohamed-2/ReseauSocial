@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectController;
 use App\Http\Controllers\MembreController;
 
@@ -33,6 +34,9 @@ Route::resource('/Membre', MembreController::class);
 
 // Routes pour le crud des sections
 Route::resource('/Section', SectController::class);
+
+//Routes pour le crud des grades
+Route::resource('/Grade', GradeController::class);
 
 
 Auth::routes();

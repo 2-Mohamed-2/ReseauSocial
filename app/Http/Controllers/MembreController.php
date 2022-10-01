@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
 use App\Models\Membre;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class MembreController extends Controller
@@ -15,8 +17,10 @@ class MembreController extends Controller
     public function index()
     {
         $mems = Membre::latest()->get();
+        $sects = Section::latest()->get();
+        $grades = Grade::latest()->get();
         
-        return view('layouts.mem', compact('mems'));
+        return view('layouts.mem', compact('mems', 'sects', 'grades'));
     }
 
     /**
