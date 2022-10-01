@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('layouts.index'); 
 })->name('index');
 
+// Pour l'authentification
+
+//Route::get('/Accueil', LoginController::class);
+
 // Routes pour le crud du commissariat  
 Route::resource('/Commissariat', ComController::class);
 
