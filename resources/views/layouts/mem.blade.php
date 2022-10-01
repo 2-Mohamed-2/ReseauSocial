@@ -114,8 +114,8 @@ Administrateurs
                                                             <select class="form-group" name="section_id">
                                                                 <option  value="">Section</option>
                                                                 @foreach ($sects as $sect )
-                                                                <option value="{{ $section->id 
-                                                              }}">{{ $section->libelle }}</option>  
+                                                                <option value="{{ $sect->id 
+                                                              }}">{{ $sect->libelle }}</option>  
                                                                 @endforeach
                                                               </select>
                                                             <div class="form-control-icon">
@@ -344,11 +344,11 @@ x
     <div class="col-md-12">
         <div class="form-group has-icon-left">
             <div class="position-relative">
-                <select class="form-group" name="section_id">
+                <select class="form-group has-icon-left" name="section_id">
                   <option  value="">-- Selection une Section --</option>
                   @foreach ($sects as $sect )
-                  <option value="{{ $section->id 
-                }}">{{ $section->libelle }}</option>  
+                  <option value="{{ $sect->id 
+                }}">{{ $sect->libelle }}</option>  
                   @endforeach
                 </select>
                 <div class="form-control-icon">
