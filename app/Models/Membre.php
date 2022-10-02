@@ -15,7 +15,7 @@ class Membre extends Model
 
     public function section()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsToToMany(Section::class);
     }
 
     public function grade()

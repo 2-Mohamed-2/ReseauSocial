@@ -41,21 +41,28 @@ class MembreController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request, [
-        'section' => 'max:20',
+      $med = $this->validate($request, [
+        'grade_id'=> 'required',
         'matricule' => 'required|max:255',
         'numeroci' => 'required|max:255',
         'nomcomplet' => 'required|max:255',
         'adresse' => 'required|max:255',
         'telephone' => 'required|max:255',
         'datearrive' => 'required',
-        'photo' => 'max:255',
+        'photo' => 'required|image|mimes:jpg,png,jpeg,png',
         'datedepart' => 'required',
 
        ]);
 
+        $photo = $request->file('photo');
+        $destination = 'image/';
+        $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+        $photo->move($destination, $profilImage);
+
+        $request->photo = $profilImage;
+
        $mem = Membre::create([
-        'section' => $request->section,
+        'grade_id'=> $request->grade_id,
         'matricule' => $request->matricule,
         'numeroci' => $request->numeroci,
         'nomcomplet' => $request->nomcomplet,

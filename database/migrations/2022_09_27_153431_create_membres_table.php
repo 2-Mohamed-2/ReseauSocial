@@ -17,7 +17,7 @@ class CreateMembresTable extends Migration
         Schema::create('membres', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('section_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreignId('section_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('grade_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('matricule')->unique();
