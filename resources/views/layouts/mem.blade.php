@@ -57,8 +57,8 @@ Administrateurs
                                             @forelse ($mems as $mem)
                                             <tr>
                                                 @php
-                                                    $ok = $mem->id;
-                                                    $us = App\Models\Membre::find($ok)->grade;
+                                                    $k = $mem->id;
+                                                    $us = App\Models\Membre::find($k)->grade;
                                                 @endphp     
 
                                                 <td class="text-bold-500">{{$mem->matricule}}</td>
