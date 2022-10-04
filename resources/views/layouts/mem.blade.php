@@ -171,25 +171,6 @@ Administrateurs
                                                         @csrf
                                                         <div class="form-body">
                                                             <div class="row">
-                                                                
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group has-icon-left">
-                                                                        <div class="position-relative">
-                                                                            <select class="form-group"
-                                                                            name="section_id">
-                                                                            <option value="">Section
-                                                                            </option>
-                                                                            @foreach ($sects as $sect )
-                                                                            <option value="{{ $sect->id 
-                                                                            }}">{{ $sect->libelle }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        <div class="form-control-icon">
-                                                                            <i class="bi bi-pencil"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             
                                                             <div class="col-md-6">
                                                                 <div class="form-group">

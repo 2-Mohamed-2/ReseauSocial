@@ -17,10 +17,10 @@ class MembreController extends Controller
     public function index()
     {
         $mems = Membre::latest()->get();
-        $sects = Section::latest()->get();
+       // $sects = Section::latest()->get();
         $grades = Grade::latest()->get();
         
-        return view('layouts.mem', compact('mems', 'sects', 'grades'));
+        return view('layouts.mem', compact('mems', 'grades'));
     }
 
     /**
@@ -50,6 +50,7 @@ class MembreController extends Controller
         'telephone' => 'required|max:255',
         'datearrive' => 'required',
         'photo' => 'required|image|mimes:jpg,png,jpeg,png',
+        'genre' => 'required|max:225',
         'datedepart' => 'required',
 
        ]);
@@ -70,6 +71,7 @@ class MembreController extends Controller
         'telephone' => $request->telephone,
         'datearrive' => $request->datearrive,
         'photo' => $request->photo,
+        'genre' => 'required|max:225',
         'datedepart' => $request->datedepart,
 
        ]);
