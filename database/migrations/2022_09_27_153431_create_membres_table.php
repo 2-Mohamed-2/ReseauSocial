@@ -26,7 +26,8 @@ class CreateMembresTable extends Migration
             $table->string('adresse');
             $table->string('telephone');
             $table->date('datearrive');
-            $table->string('photo');
+            $table->string('photo'); 
+            $table->string('genre'); 
             $table->date('datedepart');
             $table->timestamps();
         });
