@@ -70,7 +70,7 @@ class MembreController extends Controller
         'telephone' => $request->telephone,
         'datearrive' => $request->datearrive,
         'photo' => $request->photo,
-        'genre' => 'required|max:225',
+        'genre' => $request->genre,
         'datedepart' => $request->datedepart,
 
        ]);
@@ -111,27 +111,33 @@ class MembreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $this->validate($request, [
+
+                
+        if ($request->has('photo')) {
+
+            $photo = $request->file('photo');
+            $destination = 'image/';
+            $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+            $photo->move($destination, $profilImage);
+
+            $request->photo = $profilImage;
+    
+            $validateData['photo'] = $request->photo;
+        }
+        $validateData = $request->validate ([
             'matricule' => 'required|max:255',
             'numeroci' => 'required|max:255',
             'nomcomplet' => 'required|max:255',
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:255',
             'datearrive' => 'required',
-            //'photo' => 'required|image|mimes:jpg,png,jpeg,png',
+            'photo' => 'image|mimes:jpg,png,jpeg,png',
             'genre' => 'required|max:1',
             'datedepart' => 'required',
         ]);
-
-        $photo = $request->file('photo');
-        $destination = 'image/';
-        $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
-        $photo->move($destination, $profilImage);
-
-        $request->photo = $profilImage;
-
-
-        $mem = Membre::whereId($id)->update($validateData);
+        //dd($request->genre);
+      
+        Membre::whereId($id)->update($validateData);
         return redirect()->back();
     }
 

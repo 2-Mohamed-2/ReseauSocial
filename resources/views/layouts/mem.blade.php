@@ -108,7 +108,16 @@ Administrateurs
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <ul>
-                                                                        <li><i class="bi bi-chevron-right"></i> <strong>Matricule:</strong> <span>{{ $mem->matricule }}</span></li>
+                                                                        <li><i class="bi bi-chevron-right"></i> <strong>Matricule:</strong> 
+                                                                            <span>
+                                                                                {{ $mem->matricule }}
+                                                                            </span>
+                                                                        </li>
+                                                                        <li><i class="bi bi-chevron-right"></i> <strong>Genre:</strong>
+                                                                            <span>
+                                                                                {{ $mem->genre }}
+                                                                            </span>
+                                                                        </li>
                                                                         <li><i class="bi bi-chevron-right"></i> <strong>Numero C.I:</strong>
                                                                             <span>
                                                                                 {{ $mem->numeroci }}
@@ -165,8 +174,7 @@ Administrateurs
                                             
                                             <div class="modal-body">
                                                 <p class="text-wrap">
-                                                    <form action="{{route('Membre.update', $mem->id)}}"
-                                                        method="POST">
+                                                    <form method="POST" action="{{route('Membre.update', $mem->id)}}" enctype="multipart/form-data">
                                                         @method('PUT')
                                                         @csrf
                                                         <div class="form-body">
@@ -174,13 +182,14 @@ Administrateurs
                                                             
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
-                                                                <div class="position-relative">
+                                                                <small class="text-muted"><i>Matricule</i></small>
+                                                                <div class="position-relative">                                                                    
                                                                     <input type="text"
                                                                     autocomplete="off"
                                                                     name="matricule"
                                                                     class="form-control"
                                                                     value="{{$mem->matricule}}"
-                                                                    placeholder="....">
+                                                                    placeholder="....">                                                                    
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </div>
@@ -190,8 +199,9 @@ Administrateurs
                                                         
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Numero d'identité</i></small>
                                                                 <div class="position-relative">
-                                                                    <input type="number"
+                                                                    <input type="text"
                                                                     autocomplete="off"
                                                                     name="numeroci"
                                                                     class="form-control"
@@ -206,6 +216,7 @@ Administrateurs
                                                         
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Nom Complet</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="text"
                                                                     autocomplete="off"
@@ -222,6 +233,7 @@ Administrateurs
                                                         
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Adresse</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="text"
                                                                     autocomplete="off"
@@ -238,6 +250,7 @@ Administrateurs
                                                         
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Telephone</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="text"
                                                                     autocomplete="off"
@@ -254,6 +267,7 @@ Administrateurs
                                                         
                                                         <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Date d'arrivée</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="date"
                                                                     autocomplete="off"
@@ -270,13 +284,13 @@ Administrateurs
                                                         
                                                         <div class="col-md-12">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>La modification de la photo est facultative</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="file"
                                                                     autocomplete="off" name="photo"
                                                                     class="form-control"
                                                                     value="{{$mem->photo}}"
                                                                     placeholder="....">
-                                                                    <img src="/public.image">
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </div>
@@ -286,13 +300,14 @@ Administrateurs
 
                                                         <div class="col-md-12">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Sexe</i></small>
                                                                 <div class="position-relative">
-                                                                    <input type="date"
-                                                                    autocomplete="off"
-                                                                    name="genre"
-                                                                    class="form-control"
-                                                                    value="{{$mem->genre}}"
-                                                                    placeholder="....">
+                                                                    <select class="form-control" name="genre">
+                                                                        <option value="{{$mem->genre}}">{{$mem->genre}} </option>
+
+                                                                        <option value="Homme">Homme</option>
+                                                                        <option value="Femme">Femme</option>
+                                                                    </select>
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </div>
@@ -302,6 +317,7 @@ Administrateurs
                                                         
                                                         <div class="col-md-12">
                                                             <div class="form-group has-icon-left">
+                                                                <small class="text-muted"><i>Date de départ</i></small>
                                                                 <div class="position-relative">
                                                                     <input type="date"
                                                                     autocomplete="off"
@@ -322,7 +338,7 @@ Administrateurs
                                         </div>
                                         
                                         <div class="modal-footer">
-                                            <div class="col-12 d-flex justify-content-end mt-4 ">
+                                            <div class="col-12 d-flex justify-content-end mt-1 ">
                                                 <div class="col-5 d-flex justify-content-center">
                                                     <button type="submit"
                                                     class="btn btn-success me-1 mb-1">Sauvegarder</button>
@@ -351,28 +367,25 @@ Administrateurs
                                         </button>
                                     </div>
                                     
-                                    <div class="modal-body">
+                                   <div class="modal-body">
                                         <p class="text-wrap">
-                                            <form action="{{route('Membre.destroy', $mem->id)}}"
-                                                method="POST">
-                                                @method("DELETE")
-                                                @csrf
-                                                <div class="form-body">
-                                                    <p>
-                                                        Êtes-vous sur de vouloir supprimé :
-                                                        {{$mem->nomcomplet}} ?
-                                                    </p>
-                                                </div>
-                                                
+                                        <form action="{{route('Membre.destroy', $mem->id)}}" method="POST">
+                                            @method("DELETE")
+                                            @csrf
+                                            <div class="form-body">
+                                                <p>
+                                                    Êtes-vous sur de vouloir supprimé :
+                                                    {{$mem->nomcomplet}} ?
+                                                </p>
+                                            </div>
+                                    
                                             </p>
-                                        </div>
-                                        
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal"> Non </button>
-                                            <button type="submit" name="okmodalvote"
-                                            class="btn btn-primary"> Oui </button>
-                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Non </button>
+                                        <button type="submit" name="okmodalvote" class="btn btn-primary"> Oui </button>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
