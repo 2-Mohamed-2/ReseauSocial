@@ -526,13 +526,13 @@ role="dialog" tabindex="-1">
                             </div>
                             <br><br>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <select class="form-control" name="genre">
                                             <option value="">-- Le Genre--</option>
-                                            <option value="Homme">Homme</option>
-                                            <option value="Femme">Femme</option>
+                                            <option value="H">Homme</option>
+                                            <option value="F">Femme</option>
                                         </select>
                                         <div class="form-control-icon">
                                             <i class="bi bi-pencil"></i> 
