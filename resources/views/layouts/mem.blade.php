@@ -359,7 +359,7 @@ Administrateurs
                                                 @csrf
                                                 <div class="form-body">
                                                     <p>
-                                                        Êtes-vous sur de vouloir supprimé Mr :
+                                                        Êtes-vous sur de vouloir supprimé :
                                                         {{$mem->nomcomplet}} ?
                                                     </p>
                                                 </div>
