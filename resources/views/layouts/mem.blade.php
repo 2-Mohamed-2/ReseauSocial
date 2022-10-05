@@ -149,7 +149,7 @@ Administrateurs
                                 <!-- End boite modale -->
                                 
                                 
-                                <!-- Boite modale pour la modification du site-->
+                                <!-- Boite modale pour la modification des membres-->
                                 <div class="modal fade admin-query" id="memUpdate{{$mem->id}}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
                                     role="dialog" tabindex="-1">
@@ -172,26 +172,7 @@ Administrateurs
                                                         <div class="form-body">
                                                             <div class="row">
                                                             
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <div class="position-relative">
-                                                                        <select
-                                                                        class="form-group has-icon-left"
-                                                                        name="grade_id">
-                                                                        <option value="">Section
-                                                                        </option>
-                                                                        @foreach ($grades as $grade)
-                                                                        <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <div class="form-control-icon">
-                                                                        <i class="bi bi-pencil"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="text"
@@ -294,6 +275,23 @@ Administrateurs
                                                                     autocomplete="off" name="photo"
                                                                     class="form-control"
                                                                     value="{{$mem->photo}}"
+                                                                    placeholder="....">
+                                                                    <img src="/public.image">
+                                                                    <div class="form-control-icon">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="form-group has-icon-left">
+                                                                <div class="position-relative">
+                                                                    <input type="date"
+                                                                    autocomplete="off"
+                                                                    name="genre"
+                                                                    class="form-control"
+                                                                    value="{{$mem->genre}}"
                                                                     placeholder="....">
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-pencil"></i>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use App\Models\Membre;
-use App\Models\Section;
 use Illuminate\Http\Request;
 
 class MembreController extends Controller
@@ -113,16 +112,24 @@ class MembreController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $this->validate($request, [
-            'section' => 'max:255',
             'matricule' => 'required|max:255',
             'numeroci' => 'required|max:255',
             'nomcomplet' => 'required|max:255',
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:255',
             'datearrive' => 'required',
-            'photo' => 'max:255',
+            //'photo' => 'required|image|mimes:jpg,png,jpeg,png',
+            'genre' => 'required|max:1',
             'datedepart' => 'required',
         ]);
+
+        $photo = $request->file('photo');
+        $destination = 'image/';
+        $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+        $photo->move($destination, $profilImage);
+
+        $request->photo = $profilImage;
+
 
         $mem = Membre::whereId($id)->update($validateData);
         return redirect()->back();
