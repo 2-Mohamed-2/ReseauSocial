@@ -131,8 +131,8 @@ class MembreController extends Controller
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:255',
             'datearrive' => 'required',
-            'photo' => 'image|mimes:jpg,png,jpeg,png',
-            'genre' => 'required|max:1',
+            'photo' => 'image|mimes:jpg,png,jpeg,svg',
+            'genre' => 'required|max:225',
             'datedepart' => 'required',
         ]);
         //dd($request->genre);
