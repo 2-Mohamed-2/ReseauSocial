@@ -172,7 +172,7 @@ Administrateurs
                                                         <div class="form-body">
                                                             <div class="row">
                                                             
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="text"
@@ -188,7 +188,7 @@ Administrateurs
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="number"
@@ -204,7 +204,7 @@ Administrateurs
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="text"
@@ -220,7 +220,7 @@ Administrateurs
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="text"
@@ -236,7 +236,7 @@ Administrateurs
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="text"
@@ -252,7 +252,7 @@ Administrateurs
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
                                                             <div class="form-group has-icon-left">
                                                                 <div class="position-relative">
                                                                     <input type="date"
