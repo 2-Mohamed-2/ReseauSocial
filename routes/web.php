@@ -38,6 +38,9 @@ Route::resource('/Section', SectController::class);
 //Routes pour le crud des grades
 Route::resource('/Grade', GradeController::class);
 
+//Routes pour le crud des grades
+Route::resource('/Role', RoleController::class);
+
 
 Auth::routes();
 
