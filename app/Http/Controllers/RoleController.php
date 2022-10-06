@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class RoleController extends Controller
 {
@@ -13,7 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $rols = Role::latest()->get();
+
+        return view('layouts.rol', compact('rols'));
     }
 
     /**
@@ -34,7 +38,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           'libelle' => 'required|max:255',
+        ]);
+
+        $rol = Role::create([
+           'libelle' => $request->libelle,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -68,7 +80,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $this->validate($request, [
+            'libelle' => 'required|max:255',
+        ]);
+
+        $rol = Role::whereId($id)->update($validateData);
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +96,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rol = Role::findOrFail($id);
+        $rol->delete();
+
+        return redirect()->back();
     }
 }
