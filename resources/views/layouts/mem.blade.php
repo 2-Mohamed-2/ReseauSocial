@@ -565,6 +565,18 @@ role="dialog" tabindex="-1">
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
+                                        name="datedepart" value="" placeholder="Date de depart !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <br>
                             

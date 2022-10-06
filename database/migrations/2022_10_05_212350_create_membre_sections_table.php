@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembreRolesTable extends Migration
+class CreateMembreSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMembreRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('membre__roles', function (Blueprint $table) {
-
+        Schema::create('membre_sections', function (Blueprint $table) {
+            
             $table->foreignId('membre_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('role_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('section_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateMembreRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membre__roles');
+        Schema::dropIfExists('membre_sections');
     }
 }

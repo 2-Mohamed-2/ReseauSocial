@@ -112,7 +112,18 @@ class MembreController extends Controller
     public function update(Request $request, $id)
     {
 
-                
+        $validateData = $request->validate ([
+            'matricule' => 'required|max:255',
+            'numeroci' => 'required|max:255',
+            'nomcomplet' => 'required|max:255',
+            'adresse' => 'required|max:255',
+            'telephone' => 'required|max:255',
+            'datearrive' => 'required',
+            'photo' => 'image|mimes:jpg,png,jpeg,png',
+            'genre' => 'required|max:10',
+            'datedepart' => 'required',
+        ]);
+                 
         if ($request->has('photo')) {
 
             $photo = $request->file('photo');
@@ -124,18 +135,6 @@ class MembreController extends Controller
     
             $validateData['photo'] = $request->photo;
         }
-        $validateData = $request->validate ([
-            'matricule' => 'required|max:255',
-            'numeroci' => 'required|max:255',
-            'nomcomplet' => 'required|max:255',
-            'adresse' => 'required|max:255',
-            'telephone' => 'required|max:255',
-            'datearrive' => 'required',
-            'photo' => 'image|mimes:jpg,png,jpeg,png',
-            'genre' => 'required|max:1',
-            'datedepart' => 'required',
-        ]);
-        //dd($request->genre);
       
         Membre::whereId($id)->update($validateData);
         return redirect()->back();
