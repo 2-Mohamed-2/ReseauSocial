@@ -43,7 +43,7 @@ Administrateurs
 <div class="card-content">
 <div class="card-body">
 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
-data-bs-target="#memAdd">insérer une nouvelle ligne</a></p>
+data-bs-target="#memAdd"><h3>insérer une nouvelle ligne</h3></a></p>
 <!-- Table with outer spacing -->
 <div class="table-responsive">
     <table class="table table-lg">

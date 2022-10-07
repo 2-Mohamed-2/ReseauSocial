@@ -42,7 +42,7 @@ Administrateurs
 </div>
 <div class="card-content">
 <div class="card-body">
-    <p class="card-text">Pour <a href="" data-bs-toggle="modal" data-bs-target="#comAdd">insérer une nouvelle ligne</a></p>
+    <p class="card-text">Pour <a href="" data-bs-toggle="modal" data-bs-target="#comAdd"><h3>insérer une nouvelle ligne</h3></a></p>
     <!-- Table with outer spacing -->
     <div class="table-responsive">
         <table class="table table-lg">
