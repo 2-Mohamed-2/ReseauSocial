@@ -577,6 +577,25 @@ role="dialog" tabindex="-1">
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select name="ingredients[]" id="ingredients" multiple="multiple">
+                                            <option value="cheese">Cheese</option>
+                                            <option value="tomatoes">Tomatoes</option>
+                                            <option value="mozarella">Mozzarella</option>
+                                            <option value="mushrooms">Mushrooms</option>
+                                            <option value="pepperoni">Pepperoni</option>
+                                            <option value="onions">Onions</option>
+                                        </select>
+                                        
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <br>
                             
@@ -603,5 +622,10 @@ role="dialog" tabindex="-1">
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="assets/js/pages/simple-datatables.js"></script>
 
+<script>
+    $(document).ready(function() {
+    $('#ingredients').multiselect();
+    });
+</script>
 
 @endsection
