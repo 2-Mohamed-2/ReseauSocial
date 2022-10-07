@@ -171,6 +171,8 @@ class MembreController extends Controller
     public function destroy($id)
     {
         $mem = Membre::findOrFail($id);
+        
+        Storage::delete($mem->photo);
         $mem->delete();
         return redirect()->back();
     }
