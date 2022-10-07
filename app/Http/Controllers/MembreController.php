@@ -43,6 +43,7 @@ class MembreController extends Controller
      */
     public function store(Request $request)
     {
+        
       $med = $this->validate($request, [
         'grade_id'=> 'required',
         'matricule' => 'required|max:255',
@@ -57,25 +58,8 @@ class MembreController extends Controller
 
        ]);
 
-        // $photo = $request->file('photo');
-        // $profilImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
-
-
         $image = $request->photo->store("image");
 
-    
-      //  if($request->hasFile('photo')){
-           // $destinationPath ='image/'.$profilImage;
-           // if(File::exists($destinationPath)){
-               // File::delete($destinationPath);
-           // }
-           // $file = $request->file('photo');
-           // $extention = $file->getClientOriginalExtension();
-           // $filename = time() . "." . $extention;
-           // $file->move($destinationPath, $filename);
-
-           // $file->photo = $filename;
-      //  }
 
        $mem = Membre::create([
         'grade_id'=> $request->grade_id,
@@ -90,6 +74,14 @@ class MembreController extends Controller
         'datedepart' => $request->datedepart,
 
        ]);
+
+       $moh = $mem->id;
+       $membre = Membre:: find($moh);
+
+       $rolesId = $request->roles;
+
+       $membre->roles()->attach($rolesId);
+
 
        return redirect()->back();
 

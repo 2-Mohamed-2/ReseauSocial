@@ -135,6 +135,15 @@ Administrateurs
                                                                             <span>
                                                                                 {{ $mem->datedepart }}
                                                                             </span>
+                                                                        </li> <br>
+
+                                                                        <li><i class="bi bi-chevron-right"></i> <strong>roles :</strong> 
+                                                                            @forelse ($mem->roles as $role)
+                                                                                <span class="text-info">{{ $role->libelle }} </span> |
+                                                                            @empty
+                                                                                
+                                                                            @endforelse
+                                                                            
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -595,10 +604,10 @@ role="dialog" tabindex="-1">
                                 <div class="form-group has-icon-left">
                                     <small class="text-muted"><i>Selection de rôles</i></small>
                                     <div class="position-relative">
-                                        <select class="choices form-select" multiple="multiple">
+                                        <select class="choices form-select" name="roles[]" multiple="multiple">
                                                 <option disabled> Selectionnez ses rôles</option>
                                                 @forelse ($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ $role->libelle }}</option>
+                                                    <option name="roles[]" value="{{ $role->id }}">{{ $role->libelle }}</option>
                                                 @empty
                                                     <p>Pas d'insertion pour le moment !</p>
                                                 @endforelse
