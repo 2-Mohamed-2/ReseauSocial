@@ -596,7 +596,7 @@ role="dialog" tabindex="-1">
                                     <small class="text-muted"><i>Selection de rôles</i></small>
                                     <div class="position-relative">
                                         <select class="choices form-select" multiple="multiple">
-                                                <option disabled>Selectionnez ses rôles</option>
+                                                <option disabled> Selectionnez ses rôles</option>
                                                 @forelse ($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->libelle }}</option>
                                                 @empty
