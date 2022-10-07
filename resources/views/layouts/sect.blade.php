@@ -74,7 +74,7 @@ Administrateurs
                                                 </td>
                                             </tr>
 
-                                            <!-- Boite modale pour la modification du site-->
+                                            <!-- Boite modale pour la modification d'une section-->
                                             <div class="modal fade admin-query" id="sectUpdate{{$sect->id}}"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
                                                 role="dialog" tabindex="-1">

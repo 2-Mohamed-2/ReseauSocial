@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Membre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MembreController extends Controller
 {
@@ -54,12 +55,12 @@ class MembreController extends Controller
 
        ]);
 
-        $photo = $request->file('photo');
-        $destinationPath = 'image/';
-        $profilImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
-        $photo->move($destinationPath, $profilImage);
+        // $photo = $request->file('photo');
+        // $profilImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
 
-        $request->photo = $profilImage;
+
+        $image = $request->photo->store("image");
+
     
       //  if($request->hasFile('photo')){
            // $destinationPath ='image/';
@@ -82,7 +83,7 @@ class MembreController extends Controller
         'adresse' => $request->adresse,
         'telephone' => $request->telephone,
         'datearrive' => $request->datearrive,
-        'photo' => $request->photo,
+        'photo' => $image,
         'genre' => $request->genre,
         'datedepart' => $request->datedepart,
 
@@ -127,6 +128,7 @@ class MembreController extends Controller
 
         $validateData = $request->validate ([
             'matricule' => 'required|max:255',
+            'grade_id'=> 'required',
             'numeroci' => 'required|max:255',
             'nomcomplet' => 'required|max:255',
             'adresse' => 'required|max:255',
@@ -139,14 +141,21 @@ class MembreController extends Controller
                  
         if ($request->has('photo')) {
 
-            $photo = $request->file('photo');
-            $destination = 'image/';
-            $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
-            $photo->move($destination, $profilImage);
+            $membre = Membre::findOrFail($id);
 
-            $request->photo = $profilImage;
+            Storage::delete($membre->photo);
+
+            // $photo = $request->file('photo');
+            // $destination = 'image/';
+            // $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+            // $photo->move($destination, $profilImage);
+
+            // $request->photo = $profilImage;
     
-            $validateData['photo'] = $request->photo;
+            // $validateData['photo'] = $request->photo;
+
+            $image = $request->photo->store("image");
+            $validateData['photo'] = $image;
         }
       
         Membre::whereId($id)->update($validateData);
