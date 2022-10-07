@@ -7,6 +7,7 @@ Administrateurs
 @section('liens')
 <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
 <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
+<link rel="stylesheet" href="assets/extensions/choices.js/public/assets/styles/choices.css">
 @endsection
 
 
@@ -468,7 +469,7 @@ role="dialog" tabindex="-1">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <select class="form-control" name="grade_id">
-                                            <option value="">-- Le grade --</option>
+                                            <option selected disabled>-- Le grade --</option>
                                             @foreach ($grades as $grade )
                                             <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
                                             @endforeach
@@ -567,7 +568,7 @@ role="dialog" tabindex="-1">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <select class="form-control" name="genre">
-                                            <option value="">-- Le Genre--</option>
+                                            <option selected disabled>-- Le Genre--</option>
                                             <option value="Homme">Homme</option>
                                             <option value="Femme">Femme</option>
                                         </select>
@@ -588,6 +589,26 @@ role="dialog" tabindex="-1">
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <small class="text-muted"><i>Selection de rôles</i></small>
+                                    <div class="position-relative">
+                                        <select class="choices form-select" multiple="multiple">
+                                                <option disabled>Selectionnez ses rôles</option>
+                                                @forelse ($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->libelle }}</option>
+                                                @empty
+                                                    <p>Pas d'insertion pour le moment !</p>
+                                                @endforelse
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                
                             </div>
 
                             <br>
@@ -615,6 +636,9 @@ role="dialog" tabindex="-1">
 
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="assets/js/pages/simple-datatables.js"></script>
+
+<script src="assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
+<script src="assets/js/pages/form-element-select.js"></script>
 
 
 @endsection
