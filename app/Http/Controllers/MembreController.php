@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Membre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MembreController extends Controller
 {
@@ -62,7 +63,7 @@ class MembreController extends Controller
         $request->photo = $profilImage;
     
       //  if($request->hasFile('photo')){
-           // $destinationPath ='image/';
+           // $destinationPath ='image/'.$profilImage;
            // if(File::exists($destinationPath)){
                // File::delete($destinationPath);
            // }
@@ -140,9 +141,13 @@ class MembreController extends Controller
         if ($request->has('photo')) {
 
             $photo = $request->file('photo');
-            $destination = 'image/';
+            $destinationPath = 'image/';
+
+           if(File::exists($destinationPath)){
+                File::delete($destinationPath);
+           }
             $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
-            $photo->move($destination, $profilImage);
+            $photo->move($destinationPath, $profilImage);
 
             $request->photo = $profilImage;
     

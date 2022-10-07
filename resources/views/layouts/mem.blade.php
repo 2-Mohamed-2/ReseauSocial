@@ -282,7 +282,7 @@ placeholder="....">
 </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <small class="text-muted"><i>La modification de la photo est facultative</i></small>
 <div class="position-relative">
@@ -468,7 +468,7 @@ value="" placeholder="Matricule !...">
 </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <input type="text" autocomplete="off" name="nomcomplet" class="form-control"
@@ -479,7 +479,7 @@ value="" placeholder="Nom et Prenom !...">
 </div>
 </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <input type="text" autocomplete="off" name="adresse" class="form-control"
@@ -515,7 +515,7 @@ value="" placeholder="Numero CI !...">
 </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <input autocomplete="off" name="datearrive" class="form-control" type="text" 
@@ -539,7 +539,7 @@ onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
 </div>
 <br><br>
 
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <select class="form-control" name="genre">
@@ -554,7 +554,7 @@ onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
 </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
@@ -565,20 +565,7 @@ name="datedepart" value="" placeholder="Date de depart !...">
 </div>
 </div>
 </div>
-
-<div class="col-md-12">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
-name="datedepart" value="" placeholder="Date de depart !...">
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i>
-</div>
-</div>
-</div>
-</div>
-
-<br>
+ <br>
 
 </div>
 </div>
