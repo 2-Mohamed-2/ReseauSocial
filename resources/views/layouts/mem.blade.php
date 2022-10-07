@@ -7,6 +7,7 @@ Administrateurs
 @section('liens')
 <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
 <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
+<link rel="stylesheet" href="assets/extensions/choices.js/public/assets/styles/choices.css">
 @endsection
 
 
@@ -438,118 +439,118 @@ Pas d'insertion pour le moment !!!
 <div class="modal fade admin-query" id="memAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
-<div class="modal-content">
-
-<div class="modal-header">
-<h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau membre</h5>
-<button type="button" class="close" data-bs-dismiss="modal">
-x
-</button>
-</div>
-
-<div class="modal-body">
-@if ($errors->any())
-<div class="alert alert-danger">
-<ul>
-@foreach ($errors->all() as $error)
-<li>{{$error}}</li>
-@endforeach
-</ul>
-</div>
-@endif
-<p class="text-wrap">
-
-<form action="{{route('Membre.store')}}" method="POST" enctype="multipart/form-data">
-@csrf
-<div class="form-body">
-<div class="row">
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <select class="form-control" name="grade_id">
-        <option value="">-- Le grade --</option>
-        @foreach ($grades as $grade )
-        <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
-        @endforeach
-    </select>
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i> 
-    </div>
-</div>
-</div>
-</div><br>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input type="text" autocomplete="off" name="matricule" class="form-control"
-    value="" placeholder="Matricule !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input type="text" autocomplete="off" name="nomcomplet" class="form-control"
-    value="" placeholder="Nom et Prenom !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-<div class="col-md-12">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input type="text" autocomplete="off" name="adresse" class="form-control"
-    value="" placeholder="Adresse!...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input type="text" autocomplete="off" name="telephone" class="form-control"
-    value="" placeholder="Numero de telephone !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input type="text" autocomplete="off" name="numeroci" class="form-control"
-    value="" placeholder="Numero CI !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input autocomplete="off" name="datearrive" class="form-control" type="text" 
-    onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau membre</h5>
+            <button type="button" class="close" data-bs-dismiss="modal">
+                x
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <p class="text-wrap">
+                
+                <form action="{{route('Membre.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-body">
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select class="form-control" name="grade_id">
+                                            <option value="">-- Le grade --</option>
+                                            @foreach ($grades as $grade )
+                                            <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="matricule" class="form-control"
+                                        value="" placeholder="Matricule !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="nomcomplet" class="form-control"
+                                        value="" placeholder="Nom et Prenom !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="adresse" class="form-control"
+                                        value="" placeholder="Adresse!...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="telephone" class="form-control"
+                                        value="" placeholder="Numero de telephone !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="numeroci" class="form-control"
+                                        value="" placeholder="Numero CI !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input autocomplete="off" name="datearrive" class="form-control" type="text" 
+                                        onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 <div class="col-md-12">        
 <fieldset>
@@ -563,51 +564,51 @@ x
 </div>
 <br><br>
 
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <select class="form-control" name="genre">
-        <option value="">-- Le Genre--</option>
-        <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-    </select>
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i> 
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <select class="form-control"  selected disabled name="genre">
+                                            <option value="">-- Le Genre--</option>
+                                            <option value="Homme">Homme</option>
+                                            <option value="Femme">Femme</option>
+                                        </select>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
+                                        name="datedepart" value="" placeholder="Date de depart !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            
+                        </div>
+                    </div>
+                </p>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="col-12 d-flex justify-content-end mt-3 ">
+                    <div class="col-5 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success me-1 mb-1">Enregistrer</button>
+                        <button type="reset" data-bs-dismiss="modal"
+                        class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-    <input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
-    name="datedepart" value="" placeholder="Date de depart !...">
-    <div class="form-control-icon">
-        <i class="bi bi-pencil"></i>
-    </div>
-</div>
-</div>
-</div>
-
-<br>
-
-</div>
-</div>
-</p>
-</div>
-
-<div class="modal-footer">
-<div class="col-12 d-flex justify-content-end mt-3 ">
-<div class="col-5 d-flex justify-content-center">
-<button type="submit" class="btn btn-success me-1 mb-1">Enregistrer</button>
-<button type="reset" data-bs-dismiss="modal"
-class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
-</div>
-</div>
-</form>
-</div>
-</div>
 </div>
 </div>
 <!-- End boite modale -->
@@ -615,6 +616,9 @@ class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
 
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="assets/js/pages/simple-datatables.js"></script>
+
+<script src="assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
+<script src="assets/js/pages/form-element-select.js"></script>
 
 
 @endsection

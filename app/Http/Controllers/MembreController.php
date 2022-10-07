@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use App\Models\Membre;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +20,9 @@ class MembreController extends Controller
         $mems = Membre::latest()->get();
        // $sects = Section::latest()->get();
         $grades = Grade::latest()->get();
+        $roles = Role::latest()->get();
         
-        return view('layouts.mem', compact('mems', 'grades'));
+        return view('layouts.mem', compact('mems', 'grades', 'roles'));
     }
 
     /**
