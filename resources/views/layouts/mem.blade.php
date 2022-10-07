@@ -139,7 +139,7 @@ Administrateurs
 
                                                                         <li><i class="bi bi-chevron-right"></i> <strong>roles :</strong> 
                                                                             @forelse ($mem->roles as $role)
-                                                                                <span class="text-info">{{ $role->libelle }} </span> |
+                                                                                <span class="text-info">{{ $role->libelle }} |</span>
                                                                             @empty
                                                                                 
                                                                             @endforelse
