@@ -615,11 +615,6 @@ role="dialog" tabindex="-1">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                
-                            </div>
-
                             <br>
                             
                         </div>
