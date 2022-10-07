@@ -56,14 +56,11 @@ class MembreController extends Controller
 
         $photo = $request->file('photo');
         $destinationPath = 'image/';
-            if(file::exists($destinationPath)){
-                file::delete($destinationPath);
-            }
         $profilImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
         $photo->move($destinationPath, $profilImage);
 
         $request->photo = $profilImage;
-
+    
       //  if($request->hasFile('photo')){
            // $destinationPath ='image/';
            // if(File::exists($destinationPath)){
