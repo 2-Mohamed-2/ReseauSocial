@@ -192,6 +192,7 @@ Administrateurs
                                                                         @endphp
                                                                         <option value="{{ $us->id }}"> {{ $us->libelle }} (Par défaut) </option>
 
+<<<<<<< HEAD
                                                                         <option value="">-- Liste des grades --</option>
                                                                         @foreach ($grades as $grade )
                                                                             <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
@@ -199,6 +200,182 @@ Administrateurs
                                                                     </select>
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-pencil"></i> 
+=======
+                                                        <div class="modal-body">
+                                                            <p class="text-wrap">
+                                                            <form method="POST"
+                                                                action="{{route('Membre.update', $mem->id)}}"
+                                                                enctype="multipart/form-data">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <div class="form-body">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small
+                                                                                    class="text-muted"><i>Matricule</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="text"
+                                                                                        autocomplete="off"
+                                                                                        name="matricule"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->matricule}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small class="text-muted"><i>Numero
+                                                                                        d'identité</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="text"
+                                                                                        autocomplete="off"
+                                                                                        name="numeroci"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->numeroci}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small class="text-muted"><i>Nom
+                                                                                        Complet</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="text"
+                                                                                        autocomplete="off"
+                                                                                        name="nomcomplet"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->nomcomplet}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small
+                                                                                    class="text-muted"><i>Adresse</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="text"
+                                                                                        autocomplete="off"
+                                                                                        name="adresse"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->adresse}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small
+                                                                                    class="text-muted"><i>Telephone</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="text"
+                                                                                        autocomplete="off"
+                                                                                        name="telephone"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->telephone}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small class="text-muted"><i>Date
+                                                                                        d'arrivée</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="date"
+                                                                                        autocomplete="off"
+                                                                                        name="datearrive"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->datearrive}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<small class="text-muted"><i>La modification de la photo est facultative</i></small>
+<div class="position-relative">
+<input type="file"
+autocomplete="off" name="photo"
+class="form-control"
+placeholder="....">
+<img src="/image/{{ $mem->photo }}" width="100px">
+<div class="form-control-icon">
+    <i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small
+                                                                                    class="text-muted"><i>Sexe</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <select class="form-control"
+                                                                                        name="genre">
+                                                                                        <option value="{{$mem->genre}}">
+                                                                                            {{$mem->genre}} </option>
+
+                                                                                        <option value="Homme">Homme
+                                                                                        </option>
+                                                                                        <option value="Femme">Femme
+                                                                                        </option>
+                                                                                    </select>
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group has-icon-left">
+                                                                                <small class="text-muted"><i>Date de
+                                                                                        départ</i></small>
+                                                                                <div class="position-relative">
+                                                                                    <input type="date"
+                                                                                        autocomplete="off"
+                                                                                        name="datedepart"
+                                                                                        class="form-control"
+                                                                                        value="{{$mem->datedepart}}"
+                                                                                        placeholder="....">
+                                                                                    <div class="form-control-icon">
+                                                                                        <i class="bi bi-pencil"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+>>>>>>> 478b861da1b44a9da03ac050d12371315e8429bd
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -608,6 +785,185 @@ role="dialog" tabindex="-1">
             </form>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+    </p>
+</div>
+
+<div class="modal-footer">
+    <div class="col-12 d-flex justify-content-end mt-3 ">
+        <div class="col-5 d-flex justify-content-center">
+            <button type="submit" class="btn btn-success me-1 mb-1">Enregistrer</button>
+            <button type="reset" data-bs-dismiss="modal"
+                class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+=======
+<form action="{{route('Membre.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-body">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group has-icon-left">
+                    <div class="position-relative">
+                        <select class="form-control" name="grade_id">
+                            <option value="">-- Le grade --</option>
+                            @foreach ($grades as $grade )
+                            <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-control-icon">
+                            <i class="bi bi-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="col-md-6">
+                <div class="form-group has-icon-left">
+                    <div class="position-relative">
+                        <input type="text" autocomplete="off" name="matricule" class="form-control" value=""
+                            placeholder="Matricule !...">
+                        <div class="form-control-icon">
+                            <i class="bi bi-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<input type="text" autocomplete="off" name="nomcomplet" class="form-control"
+value="" placeholder="Nom et Prenom !...">
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<input type="text" autocomplete="off" name="adresse" class="form-control"
+value="" placeholder="Adresse!...">
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+
+            <div class="col-md-6">
+                <div class="form-group has-icon-left">
+                    <div class="position-relative">
+                        <input type="text" autocomplete="off" name="telephone" class="form-control" value=""
+                            placeholder="Numero de telephone !...">
+                        <div class="form-control-icon">
+                            <i class="bi bi-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group has-icon-left">
+                    <div class="position-relative">
+                        <input type="text" autocomplete="off" name="numeroci" class="form-control" value=""
+                            placeholder="Numero CI !...">
+                        <div class="form-control-icon">
+                            <i class="bi bi-pencil"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<input autocomplete="off" name="datearrive" class="form-control" type="text" 
+onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+
+            <div class="col-md-12">
+                <fieldset>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Photo !...</span>
+                        </div>
+                        <input type="file" autocomplete="off" name="photo" class="form-control" value="">
+                    </div>
+                </fieldset>
+            </div>
+            <br><br>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<select class="form-control" name="genre">
+<option value="">-- Le Genre--</option>
+<option value="H">Homme</option>
+<option value="F">Femme</option>
+</select>
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i> 
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
+name="datedepart" value="" placeholder="Date de depart !...">
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group has-icon-left">
+<div class="position-relative">
+<input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
+name="datedepart" value="" placeholder="Date de depart !...">
+<div class="form-control-icon">
+<i class="bi bi-pencil"></i>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+
+        </div>
+    </div>
+    </p>
+    </div>
+
+    <div class="modal-footer">
+        <div class="col-12 d-flex justify-content-end mt-3 ">
+            <div class="col-5 d-flex justify-content-center">
+                <button type="submit" class="btn btn-success me-1 mb-1">Enregistrer</button>
+                <button type="reset" data-bs-dismiss="modal"
+                    class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
+            </div>
+        </div>
+</form>
+</div>
+</div>
+>>>>>>> 478b861da1b44a9da03ac050d12371315e8429bd
 </div>
 </div>
 <!-- End boite modale -->
