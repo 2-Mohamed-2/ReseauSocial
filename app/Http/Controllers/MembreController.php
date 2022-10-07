@@ -55,9 +55,9 @@ class MembreController extends Controller
        ]);
 
         $photo = $request->file('photo');
-        $destination = 'image/';
-        $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
-        $photo->move($destination, $profilImage);
+        $destinationPath = 'image/';
+        $profilImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
+        $photo->move($destinationPath, $profilImage);
 
         $request->photo = $profilImage;
 
