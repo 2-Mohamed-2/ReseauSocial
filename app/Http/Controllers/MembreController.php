@@ -56,7 +56,7 @@ class MembreController extends Controller
         'photo' => 'required|image|mimes:jpg,png,jpeg,png',
         'genre' => 'required|max:225',
         'datedepart' => 'required',
-        'pwd' => 'required|max:100',
+        'pwd' => 'max:255',
 
        ]);
 
@@ -134,7 +134,7 @@ class MembreController extends Controller
             'photo' => 'image|mimes:jpg,png,jpeg,png',
             'genre' => 'required|max:10',
             'datedepart' => 'required',
-            'pwd' => 'required|max:100',
+            'pwd' => 'max:255',
         ]);
                  
         if ($request->has('photo')) {

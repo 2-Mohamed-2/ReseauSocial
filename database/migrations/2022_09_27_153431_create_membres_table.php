@@ -29,7 +29,7 @@ class CreateMembresTable extends Migration
             $table->string('photo'); 
             $table->string('genre'); 
             $table->date('datedepart');
-            $table->string('pwd');
+            $table->string('pwd')->default(123);
             $table->timestamps();
         });
     }
