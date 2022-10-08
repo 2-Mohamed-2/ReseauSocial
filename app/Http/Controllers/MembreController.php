@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Membre;
-use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class MembreController extends Controller
@@ -55,6 +56,7 @@ class MembreController extends Controller
         'photo' => 'required|image|mimes:jpg,png,jpeg,png',
         'genre' => 'required|max:225',
         'datedepart' => 'required',
+        'pwd' => 'required|max:100',
 
        ]);
 
@@ -72,6 +74,7 @@ class MembreController extends Controller
         'photo' => $image,
         'genre' => $request->genre,
         'datedepart' => $request->datedepart,
+        'pwd' => Hash::make($request['password']),
 
        ]);
 
@@ -131,6 +134,7 @@ class MembreController extends Controller
             'photo' => 'image|mimes:jpg,png,jpeg,png',
             'genre' => 'required|max:10',
             'datedepart' => 'required',
+            'pwd' => 'required|max:100',
         ]);
                  
         if ($request->has('photo')) {

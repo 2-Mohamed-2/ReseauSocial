@@ -38,53 +38,43 @@ Administrateurs
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h4 class="card-title">Membre enregistrés</h4>
+<h4 class="card-title">Inconnu enregistrés</h4>
 </div>
 <div class="card-content">
 <div class="card-body">
 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
-data-bs-target="#memAdd">insérer une nouvelle ligne</a></p>
+data-bs-target="#incoAdd">insérer une nouvelle ligne</a></p>
 <!-- Table with outer spacing -->
 <div class="table-responsive">
 <table class="table table-lg">
 <thead>
 <tr>
-    <th>Matricule</th>
-    <th>NomComplet</th>
+    <th>nomcomplet</th>
+    <th>adresse</th>
+    <th>telephone</th>
+    <th>genre</th>
+    <th>motif</th>
     <th colspan="3" style="text-align: center">Actions</th>
 </tr>
 </thead>
 <tbody>
-@forelse ($mems as $mem)
+@forelse ($incos as $inco)
 <tr>
-    @php
-    $k = $mem->id;
-    $us = App\Models\Membre::find($k)->grade;
-    @endphp     
-    
-    <td class="text-bold-500">{{$mem->matricule}}</td>
-    <td class="text-bold-500">{{$mem->nomcomplet}}</td>
-    <td>
-        <a class="btn btn-info" data-bs-toggle="modal"
-        data-bs-target="#memShow{{$mem->id}}" href="#">
-        Voir +
-    </a>
-</td>
 <td>
     <a class="btn btn-primary" data-bs-toggle="modal"
-    data-bs-target="#memUpdate{{$mem->id}}" href="#">
+    data-bs-target="#incoUpdate{{$inco->id}}" href="#">
     Modifier
 </a>
 </td>
 <td>
 <a class="btn btn-danger" data-bs-toggle="modal"
-data-bs-target="#memDestroy{{$mem->id}}" href="#">
+data-bs-target="#incoDestroy{{$inco->id}}" href="#">
 Supprimer
 </a>
 </td>  
 </tr>
-<!-- Boite modale pour la visualisation d'un membre-->
-<div class="modal fade admin-query" id="memShow{{$mem->id}}"
+<!-- Boite modale pour la visualisation d'un !!!-->
+<div class="modal fade admin-query" id="incoShow{{$inco->id}}"
 data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
@@ -99,52 +89,36 @@ role="dialog" tabindex="-1">
 
 <div class="modal-body">
     <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-            <img src="{{ asset('storage/'.$mem->photo) }}" class="img-fluid" alt="Image">
-        </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            
-            <h3>{{ $us->libelle }} {{ $mem->nomcomplet }} en poste depuis {{ $mem->datearrive }} </h3>
             
             <div class="row">
                 <div class="col-lg-12">
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Matricule:</strong> 
+                        <li><i class="bi bi-chevron-right"></i> <strong>Nom Complet:</strong> 
                             <span>
-                                {{ $mem->matricule }}
+                                {{ $inco->nomcomplet }}
                             </span>
                         </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Genre:</strong>
+                        <li><i class="bi bi-chevron-right"></i> <strong>Adresse:</strong>
                             <span>
-                                {{ $mem->genre }}
+                                {{ $inco->adresse }}
                             </span>
                         </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Numero C.I:</strong>
+                        <li><i class="bi bi-chevron-right"></i> <strong>Telephone:</strong>
                             <span>
-                                {{ $mem->numeroci }}
+                                {{ $inco->telephone }}
                             </span>
                         </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Tel:</strong> <span>{{ $mem->telephone }}</span>
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Adresse:</strong> 
+                        <li><i class="bi bi-chevron-right"></i> <strong>Genre:</strong> 
                             <span>
-                                {{ $mem->adresse }}
+                                {{ $inco->genre }}
                             </span>
                         </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Départ:</strong> 
+                        <li><i class="bi bi-chevron-right"></i> <strong>Motif:</strong> 
                             <span>
-                                {{ $mem->datedepart }}
+                                {{ $inco->motif }}
                             </span>
-                        </li> <br>
-
-                        <li><i class="bi bi-chevron-right"></i> <strong>roles :</strong> 
-                            @forelse ($mem->roles as $role)
-                                <span class="text-info">{{ $role->libelle }} |</span>
-                            @empty
-                                
-                            @endforelse
-                            
-                        </li>
+                        </li> 
                     </ul>
                 </div>
             </div> <br>
@@ -168,8 +142,8 @@ role="dialog" tabindex="-1">
 <!-- End boite modale -->
 
 
-<!-- Boite modale pour la modification des membres-->
-<div class="modal fade admin-query" id="memUpdate{{$mem->id}}"
+<!-- Boite modale pour la modification des !!!-->
+<div class="modal fade admin-query" id="incoUpdate{{$inco->id}}"
 data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
@@ -184,63 +158,22 @@ role="dialog" tabindex="-1">
 
 <div class="modal-body">
 <p class="text-wrap">
-    <form method="POST" action="{{route('Membre.update', $mem->id)}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('Inconnu.update', $inco->id)}}">
         @method('PUT')
         @csrf
         <div class="form-body">
             <div class="row">
-            
-        
-        <div class="col-md-6">
-            <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Grade</i></small>
-                <div class="position-relative">
-                    <select class="form-control" name="grade_id">
-                        @php
-                            $daou = $mem->grade_id;
-                            $us = App\Models\Grade::find($daou);
-                        @endphp
-                        <option value="{{ $us->id }}"> {{ $us->libelle }} (Par défaut) </option>
-
-                        <option value="">-- Liste des grades --</option>
-                        @foreach ($grades as $grade )
-                            <option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
-                        @endforeach
-                    </select>
-                    <div class="form-control-icon">
-                        <i class="bi bi-pencil"></i> 
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="col-md-6">
-            <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Matricule</i></small>
-                <div class="position-relative">                                                                    
-                    <input type="text"
-                    autocomplete="off"
-                    name="matricule"
-                    class="form-control"
-                    value="{{$mem->matricule}}"
-                    placeholder="....">                                                                    
-                    <div class="form-control-icon">
-                        <i class="bi bi-pencil"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-12">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Nom Complet</i></small>
-                <div class="position-relative">
+                <div class="position-relative">                                                                    
                     <input type="text"
                     autocomplete="off"
                     name="nomcomplet"
                     class="form-control"
-                    value="{{$mem->nomcomplet}}"
-                    placeholder="....">
+                    value="{{$inco->nomcomplet}}"
+                    placeholder="....">                                                                    
                     <div class="form-control-icon">
                         <i class="bi bi-pencil"></i>
                     </div>
@@ -256,7 +189,7 @@ role="dialog" tabindex="-1">
                     autocomplete="off"
                     name="adresse"
                     class="form-control"
-                    value="{{$mem->adresse}}"
+                    value="{{$inco->adresse}}"
                     placeholder="....">
                     <div class="form-control-icon">
                         <i class="bi bi-pencil"></i>
@@ -265,7 +198,7 @@ role="dialog" tabindex="-1">
             </div>
         </div>
         
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Telephone</i></small>
                 <div class="position-relative">
@@ -273,7 +206,7 @@ role="dialog" tabindex="-1">
                     autocomplete="off"
                     name="telephone"
                     class="form-control"
-                    value="{{$mem->telephone}}"
+                    value="{{$inco->telephone}}"
                     placeholder="....">
                     <div class="form-control-icon">
                         <i class="bi bi-pencil"></i>
@@ -282,62 +215,13 @@ role="dialog" tabindex="-1">
             </div>
         </div>
         
-        <div class="col-md-6">
-            <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Numero d'identité</i></small>
-                <div class="position-relative">
-                    <input type="text"
-                    autocomplete="off"
-                    name="numeroci"
-                    class="form-control"
-                    value="{{$mem->numeroci}}"
-                    placeholder="....">
-                    <div class="form-control-icon">
-                        <i class="bi bi-pencil"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-12">
-            <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Date d'arrivée</i></small>
-                <div class="position-relative">
-                    <input type="date"
-                    autocomplete="off"
-                    name="datearrive"
-                    class="form-control"
-                    value="{{$mem->datearrive}}"
-                    placeholder="....">
-                    <div class="form-control-icon">
-                        <i class="bi bi-pencil"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-12">
-            <div class="form-group has-icon-left">
-                <small class="text-muted"><i>La modification de la photo est facultative</i></small>
-                <div class="position-relative">
-                    <input type="file"
-                    autocomplete="off" name="photo"
-                    class="form-control"
-                    value="{{$mem->photo}}"
-                    placeholder="....">
-                    <div class="form-control-icon">
-                        <i class="bi bi-pencil"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="col-md-12">
             <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Sexe</i></small>
+                <small class="text-muted"><i>Genre</i></small>
                 <div class="position-relative">
                     <select class="form-control" name="genre">
-                        <option value="{{$mem->genre}}">{{$mem->genre}} </option>
+                        <option value="{{$inco->genre}}">{{$inco->genre}} </option>
 
                         <option value="Homme">Homme</option>
                         <option value="Femme">Femme</option>
@@ -351,13 +235,13 @@ role="dialog" tabindex="-1">
         
         <div class="col-md-12">
             <div class="form-group has-icon-left">
-                <small class="text-muted"><i>Date de départ</i></small>
+                <small class="text-muted"><i>Motif</i></small>
                 <div class="position-relative">
                     <input type="date"
                     autocomplete="off"
-                    name="datedepart"
+                    name="motif"
                     class="form-control"
-                    value="{{$mem->datedepart}}"
+                    value="{{$inco->motif}}"
                     placeholder="....">
                     <div class="form-control-icon">
                         <i class="bi bi-pencil"></i>
@@ -387,8 +271,8 @@ role="dialog" tabindex="-1">
 </div>
 <!-- End boite modale -->
 
-<!-- Boite modale pour la confirmation de suppression d'un site-->
-<div class="modal fade admin-query" id="memDestroy{{$mem->id}}"
+<!-- Boite modale pour la confirmation de suppression d'un -->
+<div class="modal fade admin-query" id="incoDestroy{{$inco->id}}"
 data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
@@ -403,13 +287,13 @@ x
 
 <div class="modal-body">
 <p class="text-wrap">
-<form action="{{route('Membre.destroy', $mem->id)}}" method="POST">
+<form action="{{route('Inconnu.destroy', $inco->id)}}" method="POST">
 @method("DELETE")
 @csrf
 <div class="form-body">
 <p>
     Êtes-vous sur de vouloir supprimé :
-    {{$mem->nomcomplet}} ?
+    {{$inco->nomcomplet}} ?
 </p>
 </div>
 
@@ -444,14 +328,14 @@ Pas d'insertion pour le moment !!!
 
 
 
-<!-- Boite modale pour l'ajout d'un membre-->
+<!-- Boite modale pour l'ajout d'un !!!-->
 <div class="modal fade admin-query" id="memAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 
 <div class="modal-header">
-<h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau membre</h5>
+<h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau !!!!?</h5>
 <button type="button" class="close" data-bs-dismiss="modal">
 x
 </button>
@@ -469,38 +353,10 @@ x
 @endif
 <p class="text-wrap">
 
-<form action="{{route('Membre.store')}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('Inconnu.store')}}" method="POST">
 @csrf
 <div class="form-body">
 <div class="row">
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<select class="form-control" name="grade_id">
-<option selected disabled>-- Le grade --</option>
-@foreach ($grades as $grade )
-<option value="{{ $grade->id }}">{{ $grade->libelle }}</option>
-@endforeach
-</select>
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i> 
-</div>
-</div>
-</div>
-</div><br>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<input type="text" autocomplete="off" name="matricule" class="form-control"
-value="" placeholder="Matricule !...">
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i>
-</div>
-</div>
-</div>
-</div>
 
 <div class="col-md-6">
 <div class="form-group has-icon-left">
@@ -513,6 +369,7 @@ value="" placeholder="Nom et Prenom !...">
 </div>
 </div>
 </div>
+
 <div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
@@ -537,47 +394,12 @@ value="" placeholder="Numero de telephone !...">
 </div>
 </div>
 
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<input type="text" autocomplete="off" name="numeroci" class="form-control"
-value="" placeholder="Numero CI !...">
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i>
-</div>
-</div>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<input autocomplete="off" name="datearrive" class="form-control" type="text" 
-onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i>
-</div>
-</div>
-</div>
-</div>
-
-<div class="col-md-12">        
-<fieldset>
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text">Photo !...</span>
-</div>
-<input type="file" autocomplete="off" name="photo" class="form-control" value="">
-</div>
-</fieldset>
-</div>
-<br><br>
 
 <div class="col-md-6">
 <div class="form-group has-icon-left">
 <div class="position-relative">
 <select class="form-control" name="genre">
-<option selected disabled>-- Le Genre--</option>
+<option selected disabled>-- Le Genre --</option>
 <option value="Homme">Homme</option>
 <option value="Femme">Femme</option>
 </select>
@@ -588,46 +410,18 @@ onfocus="(this.type='date')" value="" placeholder="Date d'arrivée !...">
 </div>
 </div>
 
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<div class="position-relative">
-<input autocomplete="off" class="form-control" type="text" onfocus="(this.type='date')" 
-name="datedepart" value="" placeholder="Date de depart !...">
-<div class="form-control-icon">
-<i class="bi bi-pencil"></i>
-</div>
-</div>
-</div>
-</div>
 
 <div class="col-md-6">
     <div class="form-group has-icon-left">
     <div class="position-relative">
-    <input type="password" autocomplete="off" name="pwd" class="form-control"
-    value="" placeholder="Mot de passe !...">
+    <input type="password" autocomplete="off" name="motif" class="form-control"
+    value="" placeholder="Motif !...">
     <div class="form-control-icon">
     <i class="bi bi-pencil"></i>
     </div>
     </div>
     </div>
     </div>
-
-<div class="col-md-6">
-<div class="form-group has-icon-left">
-<small class="text-muted"><i>Selection de rôles</i></small>
-<div class="position-relative">
-<select class="choices form-select" name="roles[]" multiple="multiple">
-<option disabled> Selectionnez ses rôles</option>
-@forelse ($roles as $role)
-    <option name="roles[]" value="{{ $role->id }}">{{ $role->libelle }}</option>
-@empty
-    <p>Pas d'insertion pour le moment !</p>
-@endforelse
-</select>
-</div>
-</div>
-</div>
-<br>
 
 </div>
 </div>

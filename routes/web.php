@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
+use App\Http\Controllers\InconnuController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -43,6 +44,9 @@ Route::resource('/Grade', GradeController::class);
 
 //Routes pour le crud des Roles
 Route::resource('/Role', RoleController::class);
+
+//Routes pour le crud !!!
+Route::resource('/Inconnu', InconnuController::class);
 
 
 Auth::routes();
