@@ -14,7 +14,7 @@ class InconnuController extends Controller
      */
     public function index()
     {
-       $incos = Inconnu::latest()->get();
+        $incos = Inconnu::latest()->get();
         
        return view('layouts.inco', compact('incos'));
     }
@@ -60,10 +60,10 @@ class InconnuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inconnu  $inconnu
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Inconnu $inconnu)
+    public function show($id)
     {
         //
     }
@@ -71,10 +71,10 @@ class InconnuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inconnu  $inconnu
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inconnu $inconnu)
+    public function edit($id)
     {
         //
     }
@@ -83,10 +83,10 @@ class InconnuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inconnu  $inconnu
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inconnu $inconnu)
+    public function update(Request $request, $id)
     {
         $validateData = $request->validate ([
             'nomcomplet' => 'required|max:255',
@@ -96,19 +96,19 @@ class InconnuController extends Controller
             'motif' => 'required|max:255',
         ]);
 
-        Inconnu::whereId($inconnu)->update($validateData);
+        Inconnu::whereId($id)->update($validateData);
         return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inconnu  $inconnu
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inconnu $inconnu)
+    public function destroy($id)
     {
-        $inco = Inconnu::findOrFail($inconnu);
+        $inco = Inconnu::findOrFail($id);
         $inco->delete();
         return redirect()->back();
     }

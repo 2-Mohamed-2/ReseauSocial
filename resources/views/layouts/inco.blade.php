@@ -49,17 +49,30 @@ data-bs-target="#incoAdd">insérer une nouvelle ligne</a></p>
 <table class="table table-lg">
 <thead>
 <tr>
-    <th>nomcomplet</th>
-    <th>adresse</th>
-    <th>telephone</th>
-    <th>genre</th>
-    <th>motif</th>
+    <th>NomComplet</th>
+    <th>Adresse</th>
+    <th>Telephone</th>
+    <th>Genre</th>
+    <th>Motif</th>
     <th colspan="3" style="text-align: center">Actions</th>
 </tr>
 </thead>
 <tbody>
 @forelse ($incos as $inco)
 <tr>
+
+    <td class="text-bold-500">{{$inco->nomcomplet}}</td>
+    <td class="text-bold-500">{{$inco->adresse}}</td>
+    <td class="text-bold-500">{{$inco->telephone}}</td>
+    <td class="text-bold-500">{{$inco->genre}}</td>
+    <td class="text-bold-500">{{$inco->motif}}</td>
+    <td>
+        <a class="btn btn-info" data-bs-toggle="modal"
+        data-bs-target="#incoShow{{$inco->id}}" href="#">
+        Voir +
+    </a>
+</td>
+
 <td>
     <a class="btn btn-primary" data-bs-toggle="modal"
     data-bs-target="#incoUpdate{{$inco->id}}" href="#">
@@ -181,7 +194,7 @@ role="dialog" tabindex="-1">
             </div>
         </div>
         
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Adresse</i></small>
                 <div class="position-relative">
@@ -198,7 +211,7 @@ role="dialog" tabindex="-1">
             </div>
         </div>
         
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Telephone</i></small>
                 <div class="position-relative">
@@ -216,7 +229,7 @@ role="dialog" tabindex="-1">
         </div>
         
 
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Genre</i></small>
                 <div class="position-relative">
@@ -233,11 +246,11 @@ role="dialog" tabindex="-1">
             </div>
         </div>
         
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group has-icon-left">
                 <small class="text-muted"><i>Motif</i></small>
                 <div class="position-relative">
-                    <input type="date"
+                    <input type="text"
                     autocomplete="off"
                     name="motif"
                     class="form-control"
@@ -329,7 +342,7 @@ Pas d'insertion pour le moment !!!
 
 
 <!-- Boite modale pour l'ajout d'un !!!-->
-<div class="modal fade admin-query" id="memAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+<div class="modal fade admin-query" id="incoAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
@@ -414,7 +427,7 @@ value="" placeholder="Numero de telephone !...">
 <div class="col-md-6">
     <div class="form-group has-icon-left">
     <div class="position-relative">
-    <input type="password" autocomplete="off" name="motif" class="form-control"
+    <input type="text" autocomplete="off" name="motif" class="form-control"
     value="" placeholder="Motif !...">
     <div class="form-control-icon">
     <i class="bi bi-pencil"></i>
