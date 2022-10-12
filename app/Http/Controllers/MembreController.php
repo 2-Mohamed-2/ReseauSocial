@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Membre;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,7 @@ class MembreController extends Controller
      */
     public function index()
     {
-        $mems = Membre::latest()->get();
+        $mems = User::latest()->get();
        // $sects = Section::latest()->get();
         $grades = Grade::latest()->get();
         $roles = Role::latest()->get();
@@ -139,7 +140,7 @@ class MembreController extends Controller
                  
         if ($request->has('photo')) {
 
-            $membre = Membre::findOrFail($id);
+            $membre = User::findOrFail($id);
 
             Storage::delete($membre->photo);
 
@@ -156,7 +157,7 @@ class MembreController extends Controller
             $validateData['photo'] = $image;
         }
       
-        Membre::whereId($id)->update($validateData);
+        User::whereId($id)->update($validateData);
         return redirect()->back();
     }
 
@@ -168,7 +169,7 @@ class MembreController extends Controller
      */
     public function destroy($id)
     {
-        $mem = Membre::findOrFail($id);
+        $mem = User::findOrFail($id);
         
         Storage::delete($mem->photo);
         $mem->delete();

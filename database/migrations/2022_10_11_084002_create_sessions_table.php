@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInconnuTable extends Migration
+class CreateSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateInconnuTable extends Migration
      */
     public function up()
     {
-        Schema::create('inconnus', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+        Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('nomcomplet');
-            $table->string('adresse');
-            $table->string('telephone');
-            $table->string('genre');
-            $table->string('motif');
-            $table->timestamps();
+
+            $table->foreignId('membre_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+
+            $table->dateTime('debut');
+            $table->dateTime('fin');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateInconnuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inconnu');
+        Schema::dropIfExists('sessions');
     }
 }

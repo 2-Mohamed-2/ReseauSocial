@@ -13,14 +13,27 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+
+            $table->foreignId('grade_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('matricule')->unique();
+            $table->string('numeroci')->unique();
+            $table->string('email')->unique()->nullable();
+            $table->string('nomcomplet');
+            $table->string('adresse');
+            $table->string('telephone');
+            $table->date('datearrive');
+            $table->string('photo'); 
+            $table->string('genre'); 
+            $table->date('datedepart');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
         });
     }
 

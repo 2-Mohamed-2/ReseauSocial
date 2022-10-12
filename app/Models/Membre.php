@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Section;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Membre extends Model
 {
     use HasFactory;
+    
     protected $guarded=[];
 
     public function section()
@@ -23,8 +24,13 @@ class Membre extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function roles()
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class, 'membre_roles')->withTimestamps();
+    // }
+
+    public function sessions()
     {
-        return $this->belongsToMany(Role::class, 'membre_roles')->withTimestamps();
+        return $this->hasMany(Session::class);        
     }
 }

@@ -22,6 +22,7 @@ class CreateMembresTable extends Migration
 
             $table->string('matricule')->unique();
             $table->string('numeroci')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('nomcomplet');
             $table->string('adresse');
             $table->string('telephone');
@@ -29,7 +30,8 @@ class CreateMembresTable extends Migration
             $table->string('photo'); 
             $table->string('genre'); 
             $table->date('datedepart');
-            $table->string('pwd')->default(123);
+            $table->string('pwd')->default(123456);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

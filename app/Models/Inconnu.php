@@ -10,5 +10,7 @@ class Inconnu extends Model
     use HasFactory;
 
     protected $guarded=[];
-    protected $table= 'inconnu';
+    
+    //protected $table= 'inconnu';
+
 }

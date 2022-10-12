@@ -10,6 +10,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\InconnuController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ use App\Http\Controllers\Auth\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('layouts.index'); 

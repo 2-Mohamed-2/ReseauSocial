@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Membre;
+use App\Models\User;
 use App\Models\Commissariat;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,8 +17,8 @@ class Section extends Model
         return $this->belongsTo(Commissariat::class);
     }
 
-    public function membres()
+    public function users()
     {
-        return $this->hasMany(Membre::class);
+        return $this->hasMany(User::class);
     }
 }
