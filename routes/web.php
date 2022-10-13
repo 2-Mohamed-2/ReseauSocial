@@ -1,17 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ComController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\InconnuController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\MainController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,15 +19,19 @@ use App\Http\Controllers\MainController;
 |
 */
 
-
-
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/Accueil', function () {
     return view('layouts.index'); 
 })->name('index');
-
-// Pour l'authentification
-
-//Route::get('/Accueil', LoginController::class);
 
 // Routes pour le crud du commissariat  
 Route::resource('/Commissariat', ComController::class);
@@ -50,8 +50,3 @@ Route::resource('/Role', RoleController::class);
 
 //Routes pour le crud !!!
 Route::resource('/Inconnu', InconnuController::class);
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
