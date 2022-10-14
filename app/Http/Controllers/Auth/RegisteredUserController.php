@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Grade;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
@@ -22,11 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        $mems = User::latest()->get();
-        $grades = Grade::latest()->get();
-        $roles = Role::latest()->get();
-        
-        return view('auth.register', compact('mems', 'grades', 'roles'));
+        return view('auth.register');
     }
 
     /**
@@ -40,48 +34,21 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'grade_id' => 'required',
-            'matricule' => ['required', 'string', 'max:50', 'unique:users'],
-            'email' => ['email', 'unique:users'],
-            'numeroci' => ['required', 'string', 'max:15'],
-            'nomcomplet' => ['required', 'string', 'max:255'],
-            'adresse' => ['required', 'string', 'max:255'],
-            'telephone' => ['required', 'string', 'max:15'],
-            'datearrive' => ['required', 'date'],
-            'datedepart' => ['required', 'date'],
-            'genre' => ['required', 'string', 'max:20'],
-            'photo' => 'required|image|mimes:jpg,png,jpeg,png',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        $image = $request->photo->store("image");
 
         $user = User::create([
-            'grade_id'=> $request->grade_id,
-            'matricule' => $request->matricule,
-            'numeroci' => $request->numeroci,
-            'nomcomplet' => $request->nomcomplet,
-            'adresse' => $request->adresse,
-            'telephone' => $request->telephone,
-            'datearrive' => $request->datearrive,
-            'photo' => $image,
-            'genre' => $request->genre,
+            'name' => $request->name,
             'email' => $request->email,
-            'datedepart' => $request->datedepart,
-            'password' => Hash::make(123456),
+            'password' => Hash::make($request->password),
         ]);
 
-        $moh = $user->id;
-        $med = User:: find($moh);
+        event(new Registered($user));
 
-        $rolesId = $request->roles;
+        Auth::login($user);
 
-        $med->roles()->attach($rolesId);
-
-        // event(new Registered($user));
-
-        // Auth::login($user);
-
-        // return redirect(RouteServiceProvider::HOME);
-        return redirect()->back();
+        return redirect(RouteServiceProvider::HOME);
     }
 }
