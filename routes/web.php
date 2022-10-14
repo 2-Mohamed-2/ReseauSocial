@@ -1,13 +1,7 @@
- <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ComController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SectController;
-use App\Http\Controllers\GradeController;
-use App\Http\Controllers\MembreController;
-use App\Http\Controllers\InconnuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
