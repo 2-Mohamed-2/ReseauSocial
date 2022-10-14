@@ -1,4 +1,6 @@
 @extends('master')
+@auth()
+    
 
 @section('title')
 Administrateurs
@@ -813,3 +815,5 @@ Administrateurs
 
 
 @endsection
+
+@endauth

@@ -19,34 +19,41 @@ use App\Http\Controllers\InconnuController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
 
-Route::get('/Accueil', function () {
+Route::get('/', function () {
     return view('layouts.index'); 
-})->name('index');
+})->middleware(['auth'])->name('index');
 
-// Routes pour le crud du commissariat  
-Route::resource('/Commissariat', ComController::class);
+Route::middleware(['auth'])->group(function() {
+    // Routes pour le crud du commissariat  
+    Route::resource('/Commissariat', ComController::class);
 
-// Routes pour le crud des Membres
-Route::resource('/Membre', MembreController::class);
+    // Routes pour le crud des Membres
+    Route::resource('/Membre', MembreController::class);
 
-// Routes pour le crud des sections
-Route::resource('/Section', SectController::class);
+    // Routes pour le crud des sections
+    Route::resource('/Section', SectController::class);
 
-//Routes pour le crud des grades
-Route::resource('/Grade', GradeController::class);
+    //Routes pour le crud des grades
+    Route::resource('/Grade', GradeController::class);
 
-//Routes pour le crud des Roles
-Route::resource('/Role', RoleController::class);
+    //Routes pour le crud des Roles
+    Route::resource('/Role', RoleController::class);
 
-//Routes pour le crud !!!
-Route::resource('/Inconnu', InconnuController::class);
+    //Routes pour le crud !!!
+    Route::resource('/Inconnu', InconnuController::class);
+});
+
+
+
+
+
+require __DIR__.'/auth.php';
