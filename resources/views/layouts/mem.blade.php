@@ -1,6 +1,4 @@
 @extends('master')
-@auth()
-    
 
 @section('title')
 Administrateurs
@@ -815,5 +813,3 @@ role="dialog" tabindex="-1">
 
 
 @endsection
-
-@endauth
