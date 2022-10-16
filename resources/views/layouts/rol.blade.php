@@ -5,12 +5,11 @@ Administrateurs
 @endsection
 
 @section('liens')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
 <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
-<script src="assets/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-    
-</script>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+
 @endsection
 
 
@@ -43,6 +42,7 @@ Administrateurs
                         <div class="card-header">
                             <h4 class="card-title">Role enregistrés</h4>
                         </div>
+                        <div id="successMsg"> </div>
                         <div class="card-content">
                             <div class="card-body">
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
@@ -216,26 +216,18 @@ Administrateurs
             </div>
 
             <div class="modal-body">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
+                <div class="">
+
+                    <ul id="errList">
                     </ul>
-                </div>
-                @endif
-                {{-- action="{{route('Role.store')}}" --}}
+
                 <p class="text-wrap"> 
-                <form method="POST" onsubmit="return sendData();">
-                    @csrf
                     <div class="form-body">
                         <div class="row">
-
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" id="libelle" autocomplete="off" name="libelle" class="form-control"
+                                        <input type="text" id="libelle" autocomplete="off" name="" class="libelle form-control"
                                             value="" placeholder="Nom du role !...">
                                         <div class="form-control-icon">
                                             <i class="bi bi-pencil"></i>
@@ -243,26 +235,71 @@ Administrateurs
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    </p>
+                </p>
             </div>
 
             <div class="modal-footer">
                 <div class="col-12 d-flex justify-content-end mt-3 ">
                     <div class="col-5 d-flex justify-content-center">
-                        <button type="submit" name="submit_form" class="btn btn-success me-1 mb-1">Enregistrer</button>
+                        <button class="btn btn-success me-1 mb-1 save-data">Enregistrer</button>
                         <button type="reset" data-bs-dismiss="modal"
-                            class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
+                            class="btn btn-light-secondary me-1 mb-1 m-auto reset-btn">Annuler</button>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
 <!-- End boite modale -->
+
+{{--  --}}
+
+<script>
+    $(document).ready(function(){
+        
+        $(document).on('click', '.save-data', function(e){
+            e.preventDefault();
+
+            var data ={
+                'libelle': $('.libelle').val(),
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/Role",
+                data: data,
+                dataType: "json",
+                success:function(response){
+                    // console.log(response);
+                    if (response.status == 400) { 
+                        $('#errList').html("");
+                        $('#errList').addClass('alert alert-danger');
+                        $.each(response.errors, function(key, err_values){
+                            $('#errList').append('<li>'+err_values+'</li>');
+                        })
+                    }
+                    else
+                    {
+                        $('#errList').html("");
+                        $('#successMsg').addClass('alert alert-info')
+                        $('#successMsg').text(response.message)
+                        $('#rolAdd').modal('hide');
+                        $('#rolAdd').find('input').val("");
+                    }
+                }
+            });
+
+        });
+    });
+</script>
 
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script src="assets/js/pages/simple-datatables.js"></script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
@@ -27,7 +28,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $rols = Role::latest()->get();
+        return view('layouts.rol', compact('rols'));
     }
 
     /**
@@ -38,15 +40,29 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = Validator::make($request->all(),[
            'libelle' => 'required|max:255',
         ]);
 
-        $rol = Role::create([
-           'libelle' => $request->libelle,
-        ]);
+        if ($validator->fails()) 
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        }
+        else {
 
-        return redirect()->back();
+            $rol = Role::create([
+                'libelle' => $request->libelle,
+             ]);
+
+             return response()->json([
+                'status'=>200,
+                'message'=>'Insertion bien effectuée !',
+            ]);
+        }
+         
     }
 
     /**
