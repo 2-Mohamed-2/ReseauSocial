@@ -13,8 +13,12 @@ class CreateCartesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('cartes', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+
             $table->string('n_delivrance');
             $table->date('fait_le');
             $table->string('village_de');
