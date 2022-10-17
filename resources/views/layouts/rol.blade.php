@@ -46,7 +46,8 @@ Administrateurs
                         <div class="card-content">
                             <div class="card-body">
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#rolAdd">insérer une nouvelle ligne</a></p>
+                                    data-bs-target="#rolAdd">insérer une nouvelle ligne</a>
+                                </p>
                                 <!-- Table with outer spacing -->
                                 <div class="table-responsive">
                                     <table class="table table-lg">
@@ -57,8 +58,161 @@ Administrateurs
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($rols as $rol)
-                                            <tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+
+
+<!-- Boite modale pour l'ajout d'un commissariat-->
+<div class="modal fade admin-query" id="rolAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau role</h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    x
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="">
+
+                    <ul id="errList">
+                    </ul>
+
+                <p class="text-wrap"> 
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" id="libelle" autocomplete="off" name="" class="libelle form-control"
+                                            value="" placeholder="Nom du role !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-12 d-flex justify-content-end mt-3 ">
+                    <div class="col-5 d-flex justify-content-center">
+                        <button class="btn btn-success me-1 mb-1 save-data">Enregistrer</button>
+                        <button type="reset" data-bs-dismiss="modal"
+                            class="btn btn-light-secondary me-1 mb-1 m-auto reset-btn">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End boite modale -->
+
+{{--  --}}
+
+
+<script>
+
+    
+    $(document).ready(function(){
+
+        //Pour fetcher les données sans reactualiser
+        fetchrole();
+
+        function fetchrole()
+        {
+            $.ajax({
+                type: "GET",
+                url: "/RoleFetch",
+                dataType: "json",
+                
+                success:function(response){
+                    console.log(response.roles);
+                    $('tbody').html("");
+                    $.each(response.roles, function(key, item){
+                        $('tbody').append(  '<tr>  \
+                            <td>'+item.libelle+'</td> \
+                            <td>  <button class="edit_role btn btn-primary"> Modifier </button>  </td> \
+                            <td>  <button class="edit_role btn btn-danger"> Supprimer </button>  </td> \
+                            </tr>'  );
+                    });
+                }
+            });
+        }
+
+        // Pour inserer sans reactualiser
+        $(document).on('click', '.save-data', function(e){
+            e.preventDefault();
+
+            var data ={
+                'libelle': $('.libelle').val(),
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/Role",
+                data: data,
+                dataType: "json",
+                success:function(response){
+                    // console.log(response);
+                    if (response.status == 400) { 
+                        $('#errList').html("");
+                        $('#errList').addClass('alert alert-danger');
+                        $.each(response.errors, function(key, err_values){
+                            $('#errList').append('<li>'+err_values+'</li>');
+                        })
+                    }
+                    else
+                    {
+                        $('#errList').html("");
+                        $('#successMsg').addClass('alert alert-info')
+                        $('#successMsg').text(response.message)
+                        $('#rolAdd').modal('hide');
+                        $('#rolAdd').find('input').val("");
+                        fetchrole();
+                    }
+                }
+            });
+
+        });
+
+    });
+</script>
+
+<script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+<script src="assets/js/pages/simple-datatables.js"></script>
+
+
+@endsection
+
+
+
+
+{{-- <tr>
                                                 <td class="text-bold-500">{{$rol->libelle}}</td>
                                                 <td>
                                                     <a class="btn btn-primary" data-bs-toggle="modal"
@@ -181,128 +335,4 @@ Administrateurs
                                                     </div>
                                                 </div>
                                                 <!-- End boite modale -->
-                                                @empty
-                                                Pas d'insertion pour le moment !!!
-                                            </tr>
-                                            @endforelse
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</section>
-
-
-
-
-<!-- Boite modale pour l'ajout d'un commissariat-->
-<div class="modal fade admin-query" id="rolAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
-    role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Enregistrement d'un nouveau role</h5>
-                <button type="button" class="close" data-bs-dismiss="modal">
-                    x
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="">
-
-                    <ul id="errList">
-                    </ul>
-
-                <p class="text-wrap"> 
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" id="libelle" autocomplete="off" name="" class="libelle form-control"
-                                            value="" placeholder="Nom du role !...">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-pencil"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </p>
-            </div>
-
-            <div class="modal-footer">
-                <div class="col-12 d-flex justify-content-end mt-3 ">
-                    <div class="col-5 d-flex justify-content-center">
-                        <button class="btn btn-success me-1 mb-1 save-data">Enregistrer</button>
-                        <button type="reset" data-bs-dismiss="modal"
-                            class="btn btn-light-secondary me-1 mb-1 m-auto reset-btn">Annuler</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End boite modale -->
-
-{{--  --}}
-
-<script>
-    $(document).ready(function(){
-        
-        $(document).on('click', '.save-data', function(e){
-            e.preventDefault();
-
-            var data ={
-                'libelle': $('.libelle').val(),
-            }
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "/Role",
-                data: data,
-                dataType: "json",
-                success:function(response){
-                    // console.log(response);
-                    if (response.status == 400) { 
-                        $('#errList').html("");
-                        $('#errList').addClass('alert alert-danger');
-                        $.each(response.errors, function(key, err_values){
-                            $('#errList').append('<li>'+err_values+'</li>');
-                        })
-                    }
-                    else
-                    {
-                        $('#errList').html("");
-                        $('#successMsg').addClass('alert alert-info')
-                        $('#successMsg').text(response.message)
-                        $('#rolAdd').modal('hide');
-                        $('#rolAdd').find('input').val("");
-                    }
-                }
-            });
-
-        });
-    });
-</script>
-
-<script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-<script src="assets/js/pages/simple-datatables.js"></script>
-
-
-@endsection
+                                            </tr> --}}

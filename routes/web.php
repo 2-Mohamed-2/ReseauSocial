@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/Grade', GradeController::class);
 
     //Routes pour le crud des Roles
+    Route::get('/RoleFetch', [RoleController::class, 'fetchrole']);
     Route::resource('/Role', RoleController::class);
 
     //Routes pour le crud !!!

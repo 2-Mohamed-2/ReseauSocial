@@ -15,10 +15,16 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {       
+        return view('layouts.rol');        
+    }
+
+    public function fetchrole()
     {
         $rols = Role::latest()->get();
-
-        return view('layouts.rol', compact('rols'));
+        return response()->json([
+            'roles'=>$rols,
+        ]);
     }
 
     /**
@@ -28,8 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $rols = Role::latest()->get();
-        return view('layouts.rol', compact('rols'));
+        //
     }
 
     /**
