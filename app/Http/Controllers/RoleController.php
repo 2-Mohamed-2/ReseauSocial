@@ -89,7 +89,21 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        
+        if ($role) {
+            return response()->json([
+                'status'=>200,
+                'role'=>$role,
+            ]);
+        } 
+        else {            
+            return response()->json([
+                'status'=>404,
+                'message'=>'Role non trouvé !',
+            ]);
+        }
+        
     }
 
     /**
@@ -101,12 +115,41 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $this->validate($request, [
-            'libelle' => 'required|max:255',
+        
+        $validator = Validator::make($request->all(),[
+           'libelle' => 'required|max:255',
         ]);
 
-        $rol = Role::whereId($id)->update($validateData);
-        return redirect()->back();
+        if ($validator->fails()) 
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        }
+        else {
+
+            $role = Role::find($id);
+
+            if ($role) {
+                $validateData = $this->validate($request,[
+                    'libelle' => 'required|max:255',
+                ]);
+        
+                Role::whereId($id)->update($validateData);
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Modification bien effectuée !',
+                ]);
+            } 
+            else {
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'Role non trouvé !',
+                ]);
+            }
+        }
+         
     }
 
     /**
@@ -119,7 +162,9 @@ class RoleController extends Controller
     {
         $rol = Role::findOrFail($id);
         $rol->delete();
-
-        return redirect()->back();
+        return response()->json([
+            'status'=>200,
+            'message'=>'Suppression bien effectuée !',
+        ]);
     }
 }

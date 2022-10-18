@@ -15,6 +15,105 @@ Administrateurs
 
 @section('content')
 
+<!-- Boite modale pour la modification du role-->
+<div class="modal fade" id="editRole"
+    data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-hidden="true" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Modification d'un role
+                </h5>
+                <button type="button" class="close"
+                    data-bs-dismiss="modal">
+                    x
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <ul id="updateform_errlist"></ul>
+                
+                <p class="text-wrap"> 
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="hidden" id="edit_role_id">
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <small>Libelle du role</small>
+                                    <div class="position-relative">
+                                        <input type="text" id="libelle" autocomplete="off" class="form-control">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-12 d-flex justify-content-end mt-4 ">
+                    <div class="col-5 d-flex justify-content-center">
+                        <button type="submit"
+                            class="btn btn-success me-1 mb-1 update_role">Sauvegarder</button>
+                        <button type="reset" data-bs-dismiss="modal"
+                            class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End boite modale -->
+
+<!-- Boite modale pour la suppression du role-->
+<div class="modal fade" id="deleteRole"
+    data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-hidden="true" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Suppression du role
+                </h5>
+                <button type="button" class="close"
+                    data-bs-dismiss="modal">
+                    x
+                </button>
+            </div>
+
+            <div class="modal-body">                
+                <p class="text-wrap"> 
+                    <div class="form-body">
+                        <div class="row">
+                            <input type="hidden" id="delete_role_id">
+                            <p>
+                                Êtes-vous sûr de voulir supprimer cette donnée ?
+                            </p>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-12 d-flex justify-content-end mt-4 ">
+                    <div class="col-5 d-flex justify-content-center">
+                        <button type="submit"
+                            class="btn btn-success me-1 mb-1 yes_delete_role">Oui</button>
+                        <button type="reset" data-bs-dismiss="modal"
+                            class="btn btn-light-secondary me-1 mb-1 m-auto">Non</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End boite modale -->
+
 
 <div class="page-title">
     <div class="row">
@@ -43,6 +142,7 @@ Administrateurs
                             <h4 class="card-title">Role enregistrés</h4>
                         </div>
                         <div id="successMsg"> </div>
+
                         <div class="card-content">
                             <div class="card-body">
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
@@ -74,7 +174,7 @@ Administrateurs
 
 
 
-<!-- Boite modale pour l'ajout d'un commissariat-->
+<!-- Boite modale pour l'ajout d'un role-->
 <div class="modal fade admin-query" id="rolAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
     role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
@@ -126,9 +226,6 @@ Administrateurs
 </div>
 <!-- End boite modale -->
 
-{{--  --}}
-
-
 <script>
 
     
@@ -150,18 +247,149 @@ Administrateurs
                     $.each(response.roles, function(key, item){
                         $('tbody').append(  '<tr>  \
                             <td>'+item.libelle+'</td> \
-                            <td>  <button class="edit_role btn btn-primary"> Modifier </button>  </td> \
-                            <td>  <button class="edit_role btn btn-danger"> Supprimer </button>  </td> \
+                            <td>  <button value="'+item.id+'" class="edit_role btn btn-primary"> Modifier </button>  </td> \
+                            <td>  <button value="'+item.id+'" class="delete_role btn btn-danger"> Supprimer </button>  </td> \
                             </tr>'  );
                     });
                 }
             });
         }
 
+
+        // Pur supprimer un role
+            // Affichage de la boite modale
+            $(document).on('click', '.delete_role', function(e){
+                e.preventDefault();
+
+                var rol_id = $(this).val();
+                //alert(rol_id);
+                $('#delete_role_id').val(rol_id);
+                $('#deleteRole').modal('show'); 
+            });
+
+            // Pour la suppression
+            $(document).on('click', '.yes_delete_role', function(e){
+                e.preventDefault();
+
+                $(this).text("En cours ...");
+                var rol_id = $('#delete_role_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "DELETE",
+                    url:"/Role/"+rol_id,
+                    success: function(response){
+                        //console.log(response);
+                        $('#successMsg').addClass('alert alert-info');
+                        $('#successMsg').text(response.message);
+                        
+                        $('#deleteRole').modal('hide');
+                        $('.yes_delete_role').text("Supprimer")
+                        fetchrole();
+                    }
+                }); 
+            });
+
+
+
+        // Pour récupérer les données pour la modification
+        $(document).on('click', '.edit_role', function(e){
+            e.preventDefault();
+
+            var rol_id = $(this).val();
+            //console.log(rol_id);
+            $('#editRole').modal('show');
+            $.ajax({
+                type: "GET",
+                url: "/Role/"+rol_id+"/edit",
+                success: function(response){
+                    // console.log(response);
+                    if (response.status == 404) {
+                        $('#successMsg').html("");
+                        $('#successMsg').addClass('alert alert-danger');
+                        $('#successMsg').text(response.message);
+                    } 
+                    else {
+                        $('#libelle').val(response.role.libelle);
+                        $('#edit_role_id').val(rol_id);
+                    }
+                }
+            });
+
+        });
+
+        //Modification d'une donnée
+        $(document).on('click', '.update_role', function(e){
+            e.preventDefault();
+
+            $(this).text('En cours ...');
+
+            var rol_id = $('#edit_role_id').val();
+            var data = {
+                'libelle': $('#libelle').val(),
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "PUT",
+                url:"/Role/"+rol_id,
+                data: data,
+                dataType:"json",
+                success: function(response){
+                    //console.log(response);
+                    if (response.status == 400) {
+
+                        $('#updateform_errlist').html("");
+                        $('#updateform_errlist').addClass('alert alert-danger');
+                        $.each(response.errors, function(key, err_values){
+                            $('#updateform_errlist').append('<li>'+err_values+'</li>');
+                        });
+
+                        $('.update_role').text('Sauvegarder');
+                    }
+                    else if(response.status == 404)
+                    {
+
+                        $('#updateform_errlist').html("");
+                        $('#successMsg').addClass('alert alert-danger');
+                        $('#successMsg').text(response.message);
+
+                        $('.update_role').text('Sauvegarder');
+                        
+                    }
+                    else
+                    {
+                        $('#updateform_errlist').html("");
+                        $('#updateform_errlist').removeClass('alert alert-danger');
+                        $('#successMsg').html("");
+                        $('#successMsg').addClass('alert alert-info');
+                        $('#successMsg').text(response.message);
+
+                        $('#editRole').modal('hide');
+                        $('.update_role').text('Sauvegarder');
+                        fetchrole();
+                    }
+                }
+            });
+
+
+        });
+
+
         // Pour inserer sans reactualiser
         $(document).on('click', '.save-data', function(e){
             e.preventDefault();
 
+            $(this).text("En cours ...");
             var data ={
                 'libelle': $('.libelle').val(),
             }
@@ -179,7 +407,7 @@ Administrateurs
                 dataType: "json",
                 success:function(response){
                     // console.log(response);
-                    if (response.status == 400) { 
+                    if (response.status == 404) { 
                         $('#errList').html("");
                         $('#errList').addClass('alert alert-danger');
                         $.each(response.errors, function(key, err_values){
@@ -193,6 +421,8 @@ Administrateurs
                         $('#successMsg').text(response.message)
                         $('#rolAdd').modal('hide');
                         $('#rolAdd').find('input').val("");
+
+                        $('.save-data').text("Enregistrer");
                         fetchrole();
                     }
                 }
@@ -207,132 +437,6 @@ Administrateurs
 <script src="assets/js/pages/simple-datatables.js"></script>
 
 
+
 @endsection
 
-
-
-
-{{-- <tr>
-                                                <td class="text-bold-500">{{$rol->libelle}}</td>
-                                                <td>
-                                                    <a class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#rolUpdate{{$rol->id}}" href="#">
-                                                        Modifier
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#rolDestroy{{$rol->id}}" href="#">
-                                                        Supprimer
-                                                    </a>
-                                                </td>
-
-
-                                                <!-- Boite modale pour la modification du site-->
-                                                <div class="modal fade admin-query" id="rolUpdate{{$rol->id}}"
-                                                    data-bs-backdrop="static" data-bs-keyboard="false"
-                                                    aria-hidden="true" role="dialog" tabindex="-1">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="myModalLabel">Modification
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                    data-bs-dismiss="modal">
-                                                                    x
-                                                                </button>
-                                                            </div>
-
-                                                            <div class="modal-body">
-                                                                <p class="text-wrap">
-                                                                <form action="{{route('Role.update', $rol->id)}}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <div class="form-body">
-                                                                        <div class="row">
-
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group has-icon-left">
-                                                                                    <div class="position-relative">
-                                                                                        <input type="text"
-                                                                                            autocomplete="off"
-                                                                                            name="libelle"
-                                                                                            class="form-control"
-                                                                                            value="{{$rol->libelle}}"
-                                                                                            placeholder="....">
-                                                                                        <div class="form-control-icon">
-                                                                                            <i class="bi bi-pencil"></i>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                    </p>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <div class="col-12 d-flex justify-content-end mt-4 ">
-                                                                    <div class="col-5 d-flex justify-content-center">
-                                                                        <button type="submit"
-                                                                            class="btn btn-success me-1 mb-1">Sauvegarder</button>
-                                                                        <button type="reset" data-bs-dismiss="modal"
-                                                                            class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
-                                                                    </div>
-                                                                </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End boite modale -->
-
-                                                <!-- Boite modale pour la confirmation de suppression d'un site-->
-                                                <div class="modal fade admin-query" id="rolDestroy{{$rol->id}}"
-                                                    data-bs-backdrop="static" data-bs-keyboard="false"
-                                                    aria-hidden="true" role="dialog" tabindex="-1">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="myModalLabel">Suppression
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                    data-bs-dismiss="modal">
-                                                                    x
-                                                                </button>
-                                                            </div>
-
-                                                            <div class="modal-body">
-                                                                <p class="text-wrap">
-                                                                <form action="{{route('Role.destroy', $rol->id)}}"
-                                                                    method="POST">
-                                                                    @method("DELETE")
-                                                                    @csrf
-                                                                    <div class="form-body">
-                                                                        <p>
-                                                                            Êtes-vous sur de vouloir supprimer le role
-                                                                            de : {{$rol->libelle}} ?
-                                                                        </p>
-                                                                    </div>
-
-                                                                    </p>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal"> Non </button>
-                                                                <button type="submit" name="okmodalvote"
-                                                                    class="btn btn-primary"> Oui </button>
-                                                            </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End boite modale -->
-                                            </tr> --}}

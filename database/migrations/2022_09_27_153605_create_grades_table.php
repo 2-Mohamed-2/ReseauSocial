@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Grade;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateGradesTable extends Migration
 {
@@ -18,6 +20,15 @@ class CreateGradesTable extends Migration
             $table->string('libelle');
             $table->timestamps();
         });
+
+        $data = Grade::find(1);
+
+        if (empty($data)) {
+            $grade            = new Grade();
+            $grade->libelle = 'supreme';
+            $grade->created_at = date('Y-m-d h:i:s');
+            $grade->save();
+        }
     }
 
     /**
