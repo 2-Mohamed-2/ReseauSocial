@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
+use App\Http\Controllers\CarteController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\InconnuController;
@@ -51,6 +52,10 @@ Route::middleware(['auth'])->group(function() {
 
     //Routes pour le crud !!!
     Route::resource('/Inconnu', InconnuController::class);
+
+     //Routes pour le crud des cartes
+     Route::get('/CarteFetch', [CarteController::class, 'fetchcarte']);
+     Route::resource('/Carte', CarteController::class);
 });
 
 
