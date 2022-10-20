@@ -41,7 +41,7 @@ Administrateurs
                             <input type="hidden" id="edit_carte_id">
                             <div class="col-md-6">
 
-                                <div class="form-group has-icon-left">
+                                {{-- <div class="form-group has-icon-left">
                                     <small>Inconnu_id</small>
                                     <div class="position-relative">
                                         <input type="text" id="inconnu" autocomplete="off" class="form-control">
@@ -49,7 +49,7 @@ Administrateurs
                                             <i class="bi bi-pencil"></i>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group has-icon-left">
                                     <small>n_delivrance</small>
@@ -315,7 +315,7 @@ Administrateurs
                                     <table class="table table-lg">
                                         <thead>
                                             <tr>
-                                                <th>Inconnu</th>
+                                                {{-- <th>Inconnu</th> --}}
                                                 <th>n_delivrance</th>
                                                 <th>fait_le</th>
                                                 <th>village_de</th>
@@ -375,7 +375,7 @@ Administrateurs
                     <div class="form-body">
                         <div class="row">
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="text" id="inconnu_id" autocomplete="off" name="" class="inconnu_id form-control"
@@ -385,7 +385,7 @@ Administrateurs
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
@@ -624,7 +624,6 @@ Administrateurs
                     $('tbody').html("");
                     $.each(response.roles, function(key, item){
                         $('tbody').append(  '<tr>  \
-                            <td>'+item.inconnu_id+'</td> \
                             <td>'+item.n_delivrance+'</td> \
                             <td>'+item.fait_le+'</td> \
                             <td>'+item.village_de+'</td> \
@@ -708,23 +707,23 @@ Administrateurs
                         $('#successMsg').text(response.message);
                     } 
                     else {
-                        $('#inconnu_id').val(response.carte.inconnu_id);
-                        $('#n_delivrance').val(response.carte.n_delivrance);
-                        $('#fait_le').val(response.carte.fait_le);
-                        $('#village_de').val(response.carte.village_de);
-                        $('#franction_de').val(response.carte.franction_de);
+                       // $('#inconnu_id').val(response.carte.inconnu_id);
+                        $('#n_delivrance').val(response.role.n_delivrance);
+                        $('#fait_le').val(response.role.fait_le);
+                        $('#village_de').val(response.role.village_de);
+                        $('#franction_de').val(response.role.franction_de);
                         $('#nationalite').val(response.role.nationalite);
-                        $('#nom').val(response.carte.nom);
-                        $('#prenom').val(response.carte.prenom);
-                        $('#fils_de').val(response.carte.fils_de);
-                        $('#et_de').val(response.carte.et_de);
-                        $('#profession').val(response.carte.profession);
-                        $('#domicile').val(response.carte.domicile);
-                        $('#taille').val(response.carte.taille);
-                        $('#teint').val(response.carte.teint);
-                        $('#cheveux').val(response.carte.cheveux);
+                        $('#nom').val(response.role.nom);
+                        $('#prenom').val(response.role.prenom);
+                        $('#fils_de').val(response.role.fils_de);
+                        $('#et_de').val(response.role.et_de);
+                        $('#profession').val(response.role.profession);
+                        $('#domicile').val(response.role.domicile);
+                        $('#taille').val(response.role.taille);
+                        $('#teint').val(response.role.teint);
+                        $('#cheveux').val(response.role.cheveux);
                         $('#signes').val(response.role.signes);
-                        $('#carte_n').val(response.carte.carte_n);
+                        $('#carte_n').val(response.role.carte_n);
                         $('#edit_carte_id').val(cart_id);
                     }
                 }

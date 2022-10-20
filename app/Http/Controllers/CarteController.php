@@ -45,7 +45,7 @@ class CarteController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'inconnu_id' => 'required|max:255',
+            //'inconnu_id' => 'max:255',
             'n_delivrance' => 'required|max:255',
             'fait_le' => 'required|max:255',
             'village_de' => 'required|max:255',
@@ -74,7 +74,7 @@ class CarteController extends Controller
          else {
  
              $cart = Carte::create([
-                 'inconnu_id' => $request->inconnu_id,
+                //'inconnu_id' => $request->inconnu_id,
                  'n_delivrance' => $request->n_delivrance,
                  'fait_le' => $request->fait_le,
                  'village_de' => $request->village_de,
@@ -145,7 +145,7 @@ class CarteController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'inconnu_id' => 'required|max:255',
+            'inconnu_id' => 'max:255',
             'n_delivrance' => 'required|max:255',
             'fait_le' => 'required|max:255',
             'village_de' => 'required|max:255',
@@ -177,7 +177,7 @@ class CarteController extends Controller
  
              if ($carte) {
                  $validateData = $this->validate($request,[
-                    'inconnu_id' => 'required|max:255',
+                    'inconnu_id' => 'max:255',
                     'n_delivrance' => 'required|max:255',
                     'fait_le' => 'required|max:255',
                     'village_de' => 'required|max:255',

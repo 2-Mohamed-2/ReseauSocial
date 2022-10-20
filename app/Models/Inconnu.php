@@ -12,8 +12,8 @@ class Inconnu extends Model
     
     protected $guarded=[];
 
-    public function carte()
-    {
-        return $this->belongsTo(Carte::class);
-    }
+    // public function carte()
+    // {
+    //     return $this->belongsTo(Carte::class);
+    // }
 }

@@ -11,8 +11,9 @@ class Carte extends Model
 
     protected $guarded=[];
 
-    public function Inconnus()
-    {
-        return $this->hasMany(Inconnu::class);
-    }
+    // public function Inconnus()
+    // {
+    //     return $this->hasMany(Inconnu::class);
+    // }
+  
 }
