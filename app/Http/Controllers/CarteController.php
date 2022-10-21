@@ -45,7 +45,7 @@ class CarteController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            //'inconnu_id' => 'max:255',
+            //'inconnu_id' => 'required|max:255',
             'n_delivrance' => 'required|max:255',
             'fait_le' => 'required|max:255',
             'village_de' => 'required|max:255',
