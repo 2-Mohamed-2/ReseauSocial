@@ -17,7 +17,7 @@ class CreateCartesTable extends Migration
         Schema::create('cartes', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+          //  $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('n_delivrance');
             $table->date('fait_le');
