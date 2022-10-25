@@ -20,7 +20,6 @@ class CreateCartesTable extends Migration
           //  $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('n_delivrance');
-            $table->date('fait_le');
             $table->string('village_de');
             $table->string('franction_de');
             $table->string('nationalite');
@@ -28,6 +27,7 @@ class CreateCartesTable extends Migration
             $table->string('prenom');
             $table->string('fils_de');
             $table->string('et_de');
+            $table->string('photo');
             $table->string('profession');
             $table->string('domicile');
             $table->string('taille');

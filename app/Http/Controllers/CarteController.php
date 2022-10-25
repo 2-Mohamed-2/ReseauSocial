@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Carte;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 
 class CarteController extends Controller
 {
@@ -14,16 +18,9 @@ class CarteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('layouts.cart');
-    }
-
-    public function fetchcarte()
-    {
-        $carts = Carte::latest()->get();
-        return response()->json([
-            'roles'=>$carts,
-        ]);
+    {   
+        $carts = Carte::all();
+        return view('layouts.cart', compact('carts'));
     }
 
     /**
@@ -44,10 +41,9 @@ class CarteController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+       $this->validate($request,[
             //'inconnu_id' => 'required|max:255',
             'n_delivrance' => 'required|max:255',
-            'fait_le' => 'required|max:255',
             'village_de' => 'required|max:255',
             'franction_de' => 'required|max:255',
             'nationalite' => 'required|max:255',
@@ -55,6 +51,7 @@ class CarteController extends Controller
             'prenom' => 'required|max:255',
             'fils_de' => 'required|max:255',
             'et_de' =>'required|max:255',
+            'photo' => 'required|image|mimes:jpg,png,jpeg,png',
             'profession' => 'required|max:255',
             'domicile' => 'required|max:255',
             'taille' => 'required|max:255',
@@ -63,20 +60,12 @@ class CarteController extends Controller
             'signes' => 'required|max:255',
             'carte_n' => 'required|max:255',
          ]);
- 
-         if ($validator->fails()) 
-         {
-             return response()->json([
-                 'status'=>400,
-                 'errors'=>$validator->messages(),
-             ]);
-         }
-         else {
+
+          $image = $request->photo->store("image");
  
              $cart = Carte::create([
                 //'inconnu_id' => $request->inconnu_id,
                  'n_delivrance' => $request->n_delivrance,
-                 'fait_le' => $request->fait_le,
                  'village_de' => $request->village_de,
                  'franction_de' => $request->franction_de,
                  'nationalite' => $request->nationalite,
@@ -84,6 +73,7 @@ class CarteController extends Controller
                  'prenom' => $request->prenom,
                  'fils_de' => $request->fils_de,
                  'et_de' => $request->et_de,
+                 'photo' => $image,
                  'profession' => $request->profession,
                  'domicile' => $request->domicile,
                  'taille' => $request->taille,
@@ -93,11 +83,8 @@ class CarteController extends Controller
                  'carte_n' => $request->carte_n,
               ]);
  
-              return response()->json([
-                 'status'=>200,
-                 'message'=>'Insertion bien effectuée !',
-             ]);
-         }
+              return redirect()->back();
+           
     }
 
     /**
@@ -119,20 +106,7 @@ class CarteController extends Controller
      */
     public function edit($id)
     {
-        $carte = Carte::find($id);
-        
-        if ($carte) {
-            return response()->json([
-                'status'=>200,
-                'role'=>$carte,
-            ]);
-        } 
-        else {            
-            return response()->json([
-                'status'=>404,
-                'message'=>'Carte non trouvé !',
-            ]);
-        }
+        //
     }
 
     /**
@@ -145,9 +119,8 @@ class CarteController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'inconnu_id' => 'max:255',
+           // 'inconnu_id' => 'max:255',
             'n_delivrance' => 'required|max:255',
-            'fait_le' => 'required|max:255',
             'village_de' => 'required|max:255',
             'franction_de' => 'required|max:255',
             'nationalite' => 'required|max:255',
@@ -164,51 +137,28 @@ class CarteController extends Controller
             'carte_n' => 'required|max:255',
          ]);
  
-         if ($validator->fails()) 
-         {
-             return response()->json([
-                 'status'=>400,
-                 'errors'=>$validator->messages(),
-             ]);
-         }
-         else {
  
-             $carte = Carte::find($id);
- 
-             if ($carte) {
-                 $validateData = $this->validate($request,[
-                    'inconnu_id' => 'max:255',
-                    'n_delivrance' => 'required|max:255',
-                    'fait_le' => 'required|max:255',
-                    'village_de' => 'required|max:255',
-                    'franction_de' => 'required|max:255',
-                    'nationalite' => 'required|max:255',
-                    'nom' => 'required|max:255',
-                    'prenom' => 'required|max:255',
-                    'fils_de' => 'required|max:255',
-                    'et_de' =>'required|max:255',
-                    'profession' => 'required|max:255',
-                    'domicile' => 'required|max:255',
-                    'taille' => 'required|max:255',
-                    'teint' => 'required|max:255',
-                    'cheveux' => 'required|max:255',
-                    'signes' => 'required|max:255',
-                    'carte_n' => 'required|max:255',
-                 ]);
-         
-                 Carte::whereId($id)->update($validateData);
-                 return response()->json([
-                     'status'=>200,
-                     'message'=>'Modification bien effectuée !',
-                 ]);
-             } 
-             else {
-                 return response()->json([
-                     'status'=>404,
-                     'message'=>'Carte non trouvé !',
-                 ]);
-             }
-         }
+         if ($request->has('photo')) {
+
+            $carte = Carte::findOrFail($id);
+
+            Storage::delete($carte->photo);
+
+            // $photo = $request->file('photo');
+            // $destination = 'image/';
+            // $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+            // $photo->move($destination, $profilImage);
+
+            // $request->photo = $profilImage;
+    
+            // $validateData['photo'] = $request->photo;
+
+            $image = $request->photo->store("image");
+            $validateData['photo'] = $image;
+        }
+      
+        Carte::whereId($id)->update($validateData);
+        return redirect()->back();
     }
 
     /**
@@ -220,10 +170,18 @@ class CarteController extends Controller
     public function destroy($id)
     {
         $cart = Carte::findOrFail($id);
+        
+        Storage::delete($cart->photo);
         $cart->delete();
-        return response()->json([
-            'status'=>200,
-            'message'=>'Suppression bien effectuée !',
-        ]);
+        return redirect()->back();
     }
+
+    public function downloadPDF() {
+        $carts = Carte::all();
+        $pdf = App::make('dompdf.wrapper');
+       $pdf->loadView('layouts.carte', compact('carts'));
+        
+        return $pdf->stream();
+    }
+  
 }

@@ -9,7 +9,8 @@ class Carte extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
+    protected $table = 'cartes';
 
     // public function Inconnus()
     // {

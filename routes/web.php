@@ -54,8 +54,11 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/Inconnu', InconnuController::class);
 
      //Routes pour le crud des cartes
-     Route::get('/CarteFetch', [CarteController::class, 'fetchcarte']);
      Route::resource('/Carte', CarteController::class);
+
+     Route::get('carte/list', [App\Http\Controllers\CarteController::class, 'index'])->name('carte.index');
+
+     Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
 });
 
 
