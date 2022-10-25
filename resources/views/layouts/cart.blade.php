@@ -610,207 +610,207 @@ Administrateurs
     $(document).ready(function(){
 
         //Pour fetcher les données sans reactualiser
-        fetchcarte();
+        // fetchcarte();
 
-        function  fetchcarte()
-        {
-            $.ajax({
-                type: "GET",
-                url: "/CarteFetch",
-                dataType: "json",
+        // function  fetchcarte()
+        // {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "/CarteFetch",
+        //         dataType: "json",
                 
-                success:function(response){
-                    console.log(response.roles);
-                    $('tbody').html("");
-                    $.each(response.roles, function(key, item){
-                        $('tbody').append(  '<tr>  \
-                            <td>'+item.inconnu_id+'</td> \
-                            <td>'+item.n_delivrance+'</td> \
-                            <td>'+item.fait_le+'</td> \
-                            <td>'+item.village_de+'</td> \
-                            <td>'+item.franction_de+'</td> \
-                            <td>'+item.nationalite+'</td> \
-                            <td>'+item.nom+'</td> \
-                            <td>'+item.prenom+'</td> \
-                            <td>'+item.fils_de+'</td> \
-                            <td>'+item.et_de+'</td> \
-                            <td>'+item.profession+'</td> \
-                            <td>'+item.domicile+'</td> \
-                            <td>'+item.taille+'</td> \
-                            <td>'+item.teint+'</td> \
-                            <td>'+item.cheveux+'</td> \
-                            <td>'+item.signes+'</td> \
-                            <td>'+item.carte_n+'</td> \
-                            <td>  <button value="'+item.id+'" class="edit_carte btn btn-primary"> Modifier </button>  </td> \
-                            <td>  <button value="'+item.id+'" class="delete_carte btn btn-danger"> Supprimer </button>  </td> \
-                            </tr>'  );
-                    });
-                }
-            });
-        }
+        //         success:function(response){
+        //             console.log(response.roles);
+        //             $('tbody').html("");
+        //             $.each(response.roles, function(key, item){
+        //                 $('tbody').append(  '<tr>  \
+        //                     <td>'+item.inconnu_id+'</td> \
+        //                     <td>'+item.n_delivrance+'</td> \
+        //                     <td>'+item.fait_le+'</td> \
+        //                     <td>'+item.village_de+'</td> \
+        //                     <td>'+item.franction_de+'</td> \
+        //                     <td>'+item.nationalite+'</td> \
+        //                     <td>'+item.nom+'</td> \
+        //                     <td>'+item.prenom+'</td> \
+        //                     <td>'+item.fils_de+'</td> \
+        //                     <td>'+item.et_de+'</td> \
+        //                     <td>'+item.profession+'</td> \
+        //                     <td>'+item.domicile+'</td> \
+        //                     <td>'+item.taille+'</td> \
+        //                     <td>'+item.teint+'</td> \
+        //                     <td>'+item.cheveux+'</td> \
+        //                     <td>'+item.signes+'</td> \
+        //                     <td>'+item.carte_n+'</td> \
+        //                     <td>  <button value="'+item.id+'" class="edit_carte btn btn-primary"> Modifier </button>  </td> \
+        //                     <td>  <button value="'+item.id+'" class="delete_carte btn btn-danger"> Supprimer </button>  </td> \
+        //                     </tr>'  );
+        //             });
+        //         }
+        //     });
+        // }
 
 
-        // Pur supprimer une carte
-            // Affichage de la boite modale
-            $(document).on('click', '.delete_carte', function(e){
-                e.preventDefault();
+        // // Pur supprimer une carte
+        //     // Affichage de la boite modale
+        //     $(document).on('click', '.delete_carte', function(e){
+        //         e.preventDefault();
 
-                var cart_id = $(this).val();
-                //alert(rol_id);
-                $('#delete_carte_id').val(cart_id);
-                $('#deleteCarte').modal('show'); 
-            });
+        //         var cart_id = $(this).val();
+        //         //alert(rol_id);
+        //         $('#delete_carte_id').val(cart_id);
+        //         $('#deleteCarte').modal('show'); 
+        //     });
 
-            // Pour la suppression
-            $(document).on('click', '.yes_delete_carte', function(e){
-                e.preventDefault();
+        //     // Pour la suppression
+        //     $(document).on('click', '.yes_delete_carte', function(e){
+        //         e.preventDefault();
 
-                $(this).text("En cours ...");
-                var cart_id = $('#delete_carte_id').val();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+        //         $(this).text("En cours ...");
+        //         var cart_id = $('#delete_carte_id').val();
+        //         $.ajaxSetup({
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             }
+        //         });
 
-                $.ajax({
-                    type: "DELETE",
-                    url:"/Carte/"+cart_id,
-                    success: function(response){
-                        //console.log(response);
-                        $('#successMsg').addClass('alert alert-info');
-                        $('#successMsg').text(response.message);
+        //         $.ajax({
+        //             type: "DELETE",
+        //             url:"/Carte/"+cart_id,
+        //             success: function(response){
+        //                 //console.log(response);
+        //                 $('#successMsg').addClass('alert alert-info');
+        //                 $('#successMsg').text(response.message);
                         
-                        $('#deleteCarte').modal('hide');
-                        $('.yes_delete_carte').text("Supprimer")
-                        fetchcarte();
-                    }
-                }); 
-            });
+        //                 $('#deleteCarte').modal('hide');
+        //                 $('.yes_delete_carte').text("Supprimer")
+        //                 fetchcarte();
+        //             }
+        //         }); 
+        //     });
 
 
 
-        // Pour récupérer les données pour la modification
-        $(document).on('click', '.edit_carte', function(e){
-            e.preventDefault();
+        // // Pour récupérer les données pour la modification
+        // $(document).on('click', '.edit_carte', function(e){
+        //     e.preventDefault();
 
-            var cart_id = $(this).val();
-            //console.log(rol_id);
-            $('#editCarte').modal('show');
-            $.ajax({
-                type: "GET",
-                url: "/Carte/"+cart_id+"/edit",
-                success: function(response){
-                    // console.log(response);
-                    if (response.status == 404) {
-                        $('#successMsg').html("");
-                        $('#successMsg').addClass('alert alert-danger');
-                        $('#successMsg').text(response.message);
-                    } 
-                    else {
-                        $('#inconnu_id').val(response.carte.inconnu_id);
-                        $('#n_delivrance').val(response.carte.n_delivrance);
-                        $('#fait_le').val(response.carte.fait_le);
-                        $('#village_de').val(response.carte.village_de);
-                        $('#franction_de').val(response.carte.franction_de);
-                        $('#nationalite').val(response.role.nationalite);
-                        $('#nom').val(response.carte.nom);
-                        $('#prenom').val(response.carte.prenom);
-                        $('#fils_de').val(response.carte.fils_de);
-                        $('#et_de').val(response.carte.et_de);
-                        $('#profession').val(response.carte.profession);
-                        $('#domicile').val(response.carte.domicile);
-                        $('#taille').val(response.carte.taille);
-                        $('#teint').val(response.carte.teint);
-                        $('#cheveux').val(response.carte.cheveux);
-                        $('#signes').val(response.role.signes);
-                        $('#carte_n').val(response.carte.carte_n);
-                        $('#edit_carte_id').val(cart_id);
-                    }
-                }
-            });
+        //     var cart_id = $(this).val();
+        //     //console.log(rol_id);
+        //     $('#editCarte').modal('show');
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "/Carte/"+cart_id+"/edit",
+        //         success: function(response){
+        //             // console.log(response);
+        //             if (response.status == 404) {
+        //                 $('#successMsg').html("");
+        //                 $('#successMsg').addClass('alert alert-danger');
+        //                 $('#successMsg').text(response.message);
+        //             } 
+        //             else {
+        //                 $('#inconnu_id').val(response.carte.inconnu_id);
+        //                 $('#n_delivrance').val(response.carte.n_delivrance);
+        //                 $('#fait_le').val(response.carte.fait_le);
+        //                 $('#village_de').val(response.carte.village_de);
+        //                 $('#franction_de').val(response.carte.franction_de);
+        //                 $('#nationalite').val(response.role.nationalite);
+        //                 $('#nom').val(response.carte.nom);
+        //                 $('#prenom').val(response.carte.prenom);
+        //                 $('#fils_de').val(response.carte.fils_de);
+        //                 $('#et_de').val(response.carte.et_de);
+        //                 $('#profession').val(response.carte.profession);
+        //                 $('#domicile').val(response.carte.domicile);
+        //                 $('#taille').val(response.carte.taille);
+        //                 $('#teint').val(response.carte.teint);
+        //                 $('#cheveux').val(response.carte.cheveux);
+        //                 $('#signes').val(response.role.signes);
+        //                 $('#carte_n').val(response.carte.carte_n);
+        //                 $('#edit_carte_id').val(cart_id);
+        //             }
+        //         }
+        //     });
 
-        });
+        // });
 
-        //Modification d'une donnée
-        $(document).on('click', '.update_carte', function(e){
-            e.preventDefault();
+        // //Modification d'une donnée
+        // $(document).on('click', '.update_carte', function(e){
+        //     e.preventDefault();
 
-            $(this).text('En cours ...');
+        //     $(this).text('En cours ...');
 
-            var cart_id = $('#edit_carte_id').val();
-            var data = {
-                'inconnu_id': $('#inconnu_id').val(),
-                'n_delivrance': $('#n_delivrance').val(),
-                'fait_le': $('#fait_le').val(),
-                'village_de': $('#village_de').val(),
-                'franction_de': $('#franction_de').val(),
-                'nationalite': $('#nationalite').val(),
-                'nom': $('#nom').val(),
-                'prenom': $('#prenom').val(),
-                'fils_de': $('#fils_de').val(),
-                'et_de': $('#et_de').val(),
-                'profession': $('#profession').val(),
-                'domicile': $('#domicile').val(),
-                'taille': $('#taille').val(),
-                'teint': $('#teint').val(),
-                'cheveux': $('#cheveux').val(),
-                'signes': $('#signes').val(),
-                'carte_n': $('#carte_n').val(),
+        //     var cart_id = $('#edit_carte_id').val();
+        //     var data = {
+        //         'inconnu_id': $('#inconnu_id').val(),
+        //         'n_delivrance': $('#n_delivrance').val(),
+        //         'fait_le': $('#fait_le').val(),
+        //         'village_de': $('#village_de').val(),
+        //         'franction_de': $('#franction_de').val(),
+        //         'nationalite': $('#nationalite').val(),
+        //         'nom': $('#nom').val(),
+        //         'prenom': $('#prenom').val(),
+        //         'fils_de': $('#fils_de').val(),
+        //         'et_de': $('#et_de').val(),
+        //         'profession': $('#profession').val(),
+        //         'domicile': $('#domicile').val(),
+        //         'taille': $('#taille').val(),
+        //         'teint': $('#teint').val(),
+        //         'cheveux': $('#cheveux').val(),
+        //         'signes': $('#signes').val(),
+        //         'carte_n': $('#carte_n').val(),
                 
 
-            }
+        //     }
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
 
-            $.ajax({
-                type: "PUT",
-                url:"/Carte/"+cart_id,
-                data: data,
-                dataType:"json",
-                success: function(response){
-                    //console.log(response);
-                    if (response.status == 400) {
+        //     $.ajax({
+        //         type: "PUT",
+        //         url:"/Carte/"+cart_id,
+        //         data: data,
+        //         dataType:"json",
+        //         success: function(response){
+        //             //console.log(response);
+        //             if (response.status == 400) {
 
-                        $('#updateform_errlist').html("");
-                        $('#updateform_errlist').addClass('alert alert-danger');
-                        $.each(response.errors, function(key, err_values){
-                            $('#updateform_errlist').append('<li>'+err_values+'</li>');
-                        });
+        //                 $('#updateform_errlist').html("");
+        //                 $('#updateform_errlist').addClass('alert alert-danger');
+        //                 $.each(response.errors, function(key, err_values){
+        //                     $('#updateform_errlist').append('<li>'+err_values+'</li>');
+        //                 });
 
-                        $('.update_carte').text('Sauvegarder');
-                    }
-                    else if(response.status == 404)
-                    {
+        //                 $('.update_carte').text('Sauvegarder');
+        //             }
+        //             else if(response.status == 404)
+        //             {
 
-                        $('#updateform_errlist').html("");
-                        $('#successMsg').addClass('alert alert-danger');
-                        $('#successMsg').text(response.message);
+        //                 $('#updateform_errlist').html("");
+        //                 $('#successMsg').addClass('alert alert-danger');
+        //                 $('#successMsg').text(response.message);
 
-                        $('.update_carte').text('Sauvegarder');
+        //                 $('.update_carte').text('Sauvegarder');
                         
-                    }
-                    else
-                    {
-                        $('#updateform_errlist').html("");
-                        $('#updateform_errlist').removeClass('alert alert-danger');
-                        $('#successMsg').html("");
-                        $('#successMsg').addClass('alert alert-info');
-                        $('#successMsg').text(response.message);
+        //             }
+        //             else
+        //             {
+        //                 $('#updateform_errlist').html("");
+        //                 $('#updateform_errlist').removeClass('alert alert-danger');
+        //                 $('#successMsg').html("");
+        //                 $('#successMsg').addClass('alert alert-info');
+        //                 $('#successMsg').text(response.message);
 
-                        $('#editCarte').modal('hide');
-                        $('.update_Carte').text('Sauvegarder');
-                        fetchcarte();
-                    }
-                }
-            });
+        //                 $('#editCarte').modal('hide');
+        //                 $('.update_Carte').text('Sauvegarder');
+        //                 fetchcarte();
+        //             }
+        //         }
+        //     });
 
 
-        });
+        // });
 
 
         // Pour inserer sans reactualiser
@@ -837,6 +837,7 @@ Administrateurs
                 'signes': $('.signes').val(),
                 'carte_n': $('.carte_n').val(),
             }
+            //console.log(data);
 
             $.ajaxSetup({
                 headers: {
@@ -850,13 +851,14 @@ Administrateurs
                 data: data,
                 dataType: "json",
                 success:function(response){
-                    // console.log(response);
-                    if (response.status == 404) { 
+                   // console.log(response);
+                    if (response.status == 400) { 
                         $('#errList').html("");
                         $('#errList').addClass('alert alert-danger');
                         $.each(response.errors, function(key, err_values){
                             $('#errList').append('<li>'+err_values+'</li>');
                         })
+                        $('.save-data').text("Réessayer !..");
                     }
                     else
                     {
@@ -867,7 +869,7 @@ Administrateurs
                         $('#cartAdd').find('input').val("");
 
                         $('.save-data').text("Enregistrer");
-                        fetchcarte();
+                        //fetchcarte();
                     }
                 }
             });

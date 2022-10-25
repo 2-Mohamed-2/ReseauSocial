@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 
@@ -24,12 +24,12 @@ use App\Http\Controllers\InconnuController;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
 Route::get('/', function () {
+    return view('home');
+});
+
+
+Route::get('/dashboard', function () {
     return view('layouts.index'); 
 })->middleware(['auth'])->name('index');
 
@@ -47,7 +47,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/Grade', GradeController::class);
 
     //Routes pour le crud des Roles
-    Route::get('/RoleFetch', [RoleController::class, 'fetchrole']);
     Route::resource('/Role', RoleController::class);
 
     //Routes pour le crud !!!
