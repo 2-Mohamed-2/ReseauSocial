@@ -199,7 +199,7 @@ Administrateurs
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" id="libelle" autocomplete="off" name="" class="libelle form-control"
+                                        <input type="text" autocomplete="off" name="" class="libelle form-control"
                                             value="" placeholder="Nom du role !...">
                                         <div class="form-control-icon">
                                             <i class="bi bi-pencil"></i>
@@ -217,7 +217,7 @@ Administrateurs
                     <div class="col-5 d-flex justify-content-center">
                         <button class="btn btn-success me-1 mb-1 save-data">Enregistrer</button>
                         <button type="reset" data-bs-dismiss="modal"
-                            class="btn btn-light-secondary me-1 mb-1 m-auto reset-btn">Annuler</button>
+                        class="btn btn-light-secondary me-1 mb-1 m-auto reset-btn">Annuler</button>
                     </div>
                 </div>
             </div>
@@ -227,7 +227,6 @@ Administrateurs
 <!-- End boite modale -->
 
 <script>
-
     
     $(document).ready(function(){
 
@@ -393,6 +392,7 @@ Administrateurs
             var data ={
                 'libelle': $('.libelle').val(),
             }
+            // console.log(data);
 
             $.ajaxSetup({
                 headers: {
@@ -407,7 +407,7 @@ Administrateurs
                 dataType: "json",
                 success:function(response){
                     // console.log(response);
-                    if (response.status == 404) { 
+                    if (response.status == 400) { 
                         $('#errList').html("");
                         $('#errList').addClass('alert alert-danger');
                         $.each(response.errors, function(key, err_values){
@@ -423,7 +423,7 @@ Administrateurs
                         $('#rolAdd').find('input').val("");
 
                         $('.save-data').text("Enregistrer");
-                        fetchrole();
+                        // fetchrole();
                     }
                 }
             });
@@ -431,6 +431,7 @@ Administrateurs
         });
 
     });
+    
 </script>
 
 <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>

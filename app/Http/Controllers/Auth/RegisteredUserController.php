@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'datedepart' => ['required', 'date'],
             'genre' => ['required', 'string', 'max:20'],
             'photo' => 'required|image|mimes:jpg,png,jpeg,png',
-        ]);
+        ]); 
 
         $image = $request->photo->store("image");
 
@@ -77,11 +77,12 @@ class RegisteredUserController extends Controller
 
         $med->roles()->attach($rolesId);
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
 
-        // return redirect(RouteServiceProvider::HOME);
+        //return redirect(RouteServiceProvider::HOME);
         return redirect()->back();
+
     }
 }
