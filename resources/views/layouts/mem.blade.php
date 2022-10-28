@@ -58,8 +58,8 @@ Administrateurs
                                             @forelse ($mems as $mem)
                                             <tr>
                                                 @php
-                                                $k = $mem->id;
-                                                $us = App\Models\User::find($k)->grade;
+                                                $k = $mem->grade_id;
+                                                $us = App\Models\Grade::find(1);
                                                 @endphp
 
                                                 <td class="text-bold-500">{{$mem->matricule}}</td>
@@ -214,11 +214,10 @@ Administrateurs
                                                                                         name="grade_id">
                                                                                         @php
                                                                                         $daou = $mem->grade_id;
-                                                                                        $us =
-                                                                                        App\Models\Grade::find($daou);
+                                                                                        $us = App\Models\Grade::find($daou);
                                                                                         @endphp
-                                                                                        <option value="{{ $us->id }}">
-                                                                                            {{ $us->libelle }} (Par
+                                                                                        <option value="{{ $us->id ?? "" }}">
+                                                                                            {{ $us->libelle ?? ""}} (Par
                                                                                             défaut) </option>
 
                                                                                         <option value="">-- Liste des
@@ -500,7 +499,7 @@ Administrateurs
 
                 <p class="text-wrap">
 
-                <form method="POST" action="{{ route('Membre.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{route('Membre.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body">
                         <div class="row">

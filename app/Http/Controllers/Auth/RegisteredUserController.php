@@ -39,6 +39,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        dd('Bonjour');
         $request->validate([
             'grade_id' => 'required',
             'matricule' => ['required', 'string', 'max:50', 'unique:users'],
@@ -54,8 +55,9 @@ class RegisteredUserController extends Controller
         ]); 
 
         $image = $request->photo->store("image");
-
+        $id = 1;
         $user = User::create([
+            'commissariat_id'=> $id,
             'grade_id'=> $request->grade_id,
             'matricule' => $request->matricule,
             'numeroci' => $request->numeroci,
@@ -77,9 +79,9 @@ class RegisteredUserController extends Controller
 
         $med->roles()->attach($rolesId);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
         //return redirect(RouteServiceProvider::HOME);
         return redirect()->back();

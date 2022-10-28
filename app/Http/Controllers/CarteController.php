@@ -51,6 +51,8 @@ class CarteController extends Controller
             'prenom' => 'required|max:255',
             'fils_de' => 'required|max:255',
             'et_de' =>'required|max:255',
+            'ne_le' =>'required|max:255',
+            'a' =>'required|max:255',
             'photo' => 'required|image|mimes:jpg,png,jpeg,png',
             'profession' => 'required|max:255',
             'domicile' => 'required|max:255',
@@ -73,6 +75,8 @@ class CarteController extends Controller
                  'prenom' => $request->prenom,
                  'fils_de' => $request->fils_de,
                  'et_de' => $request->et_de,
+                 'ne_le' => $request->ne_le,
+                 'a' => $request->a,
                  'photo' => $image,
                  'profession' => $request->profession,
                  'domicile' => $request->domicile,
@@ -128,6 +132,8 @@ class CarteController extends Controller
             'prenom' => 'required|max:255',
             'fils_de' => 'required|max:255',
             'et_de' =>'required|max:255',
+            'ne_le' =>'required|max:255',
+            'a' =>'required|max:255',
             'profession' => 'required|max:255',
             'domicile' => 'required|max:255',
             'taille' => 'required|max:255',
@@ -176,10 +182,10 @@ class CarteController extends Controller
         return redirect()->back();
     }
 
-    public function downloadPDF() {
-        $carts = Carte::all();
+    public function downloadPDF(Request $request) {
+        $cart = Carte::find($request->id);
         $pdf = App::make('dompdf.wrapper');
-       $pdf->loadView('layouts.carte', compact('carts'));
+       $pdf->loadView('layouts.lex', compact('cart'));
         
         return $pdf->stream();
     }

@@ -27,6 +27,8 @@ class CreateCartesTable extends Migration
             $table->string('prenom');
             $table->string('fils_de');
             $table->string('et_de');
+            $table->string('ne_le');
+            $table->string('a');
             $table->string('photo');
             $table->string('profession');
             $table->string('domicile');

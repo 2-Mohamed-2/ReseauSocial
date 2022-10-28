@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
-use App\Http\Controllers\CarteController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\InconnuController;
@@ -24,12 +23,12 @@ use App\Http\Controllers\InconnuController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('home');
-});
-
-
 Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+Route::get('/', function () {
     return view('layouts.index'); 
 })->middleware(['auth'])->name('index');
 
@@ -47,17 +46,11 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/Grade', GradeController::class);
 
     //Routes pour le crud des Roles
+    Route::get('/RoleFetch', [RoleController::class, 'fetchrole']);
     Route::resource('/Role', RoleController::class);
 
     //Routes pour le crud !!!
     Route::resource('/Inconnu', InconnuController::class);
-
-     //Routes pour le crud des cartes
-     Route::resource('/Carte', CarteController::class);
-
-     Route::get('carte/list', [App\Http\Controllers\CarteController::class, 'index'])->name('carte.index');
-
-     Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
 });
 
 
