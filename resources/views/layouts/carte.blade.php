@@ -24,12 +24,21 @@
             </h4>
            </div>
 
+<<<<<<< HEAD
              <div class="">
                  <span  ><img style="margin-right:80px; margin-top:5px; height:30px; width:100px" class="photo" src="{{ asset('storage/'.$cart->photo) }}" alt="" ></span> 
 
                 <div style=" margin-left:245px;">
                     <span>NOM</span><br>
                     <div style="margin-bottom: 12px; font-size:15px;"></div>
+=======
+            <div class="membre">
+                <span  ><img style="margin-right:80px; margin-top:5px; height:30px; width:100px" class="photo" src="" alt="" ></span>
+
+                <div style=" margin-left:245px;">
+                    <span>NOM</span><br>
+                    <div style="margin-bottom: 12px; font-size:15px;">{{$cart->nom }}</div>
+>>>>>>> f5a1b8b020c87997c6cf1cee0b0b41e6b94cc525
                 </div>
     
                 <div style=" margin-left:245px;">
@@ -49,6 +58,11 @@
                 </div>
             </div> 
 
+<<<<<<< HEAD
+=======
+           
+
+>>>>>>> f5a1b8b020c87997c6cf1cee0b0b41e6b94cc525
         </div>
     </div>
     <script src="assets/js/bootstrap.js"></script>

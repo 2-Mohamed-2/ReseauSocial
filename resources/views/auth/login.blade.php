@@ -71,6 +71,30 @@
                                         @endforeach
                                     </div>
                                 @endif
+
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <select class="form-control form-control-xl" name="commissariat_id">
+                                <option value="0"> -- Commissariat -- </option>
+                            
+                                @foreach($commissariats as $commissariat)
+                                <option value="{{ $commissariat->id }}">{{ $commissariat->libelle }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <div class="form-control-icon">
+                                <i class="bi bi-pencil"></i>
+                            </div>
+                        </div> 
+                                @if ($errors->has('commissariat_id'))
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->get('commissariat_id') as $message)
+                                        <span role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                @endif 
+
                         <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" name="remember" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label text-gray-600" for="flexCheckDefault">

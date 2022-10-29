@@ -20,15 +20,6 @@ class CreateGradesTable extends Migration
             $table->string('libelle');
             $table->timestamps();
         });
-
-        $data = Grade::find(1);
-
-        if (empty($data)) {
-            $grade            = new Grade();
-            $grade->libelle = 'supreme';
-            $grade->created_at = date('Y-m-d h:i:s');
-            $grade->save();
-        }
     }
 
     /**

@@ -45,7 +45,7 @@ class GradeController extends Controller
         'libelle' => $request->libelle,
        ]);
 
-       return redirect()->back();
+       return redirect()->back()->with('status', 'Insertion bien effectuée !');
     }
 
     /**

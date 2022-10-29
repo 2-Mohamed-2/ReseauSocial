@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
 
             $table->foreignId('grade_id')->constrained()
                     ->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignId('commissariat_id')->constrained()
+                    ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('matricule')->unique();
             $table->string('numeroci')->unique()->nullable();
@@ -43,7 +45,8 @@ class CreateUsersTable extends Migration
 
         if (empty($data)) {
             $user            = new User();
-            $user->grade_id = '1';
+            $user->grade_id = '0';
+            $user->commissariat_id = '0';
             $user->matricule = '1478';
             $user->email     = 'madou@mohamed.com';
             $user->password  = Hash::make('123456');
