@@ -185,7 +185,7 @@ class CarteController extends Controller
     public function downloadPDF(Request $request) {
         $cart = Carte::find($request->id);
         $pdf = App::make('dompdf.wrapper');
-       $pdf->loadView('layouts.lex', compact('cart'));
+       $pdf->loadView('layouts.carte', compact('cart'));
         
         return $pdf->stream();
     }
