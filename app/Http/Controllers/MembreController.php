@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commissariat;
 use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Membre;
@@ -22,9 +23,10 @@ class MembreController extends Controller
         $mems = User::latest()->where('id', '!=', '1')->get();
        // $sects = Section::latest()->get();
         $grades = Grade::latest()->get();
-        $roles = Role::latest()->get();
+        $commissariats = Commissariat::latest()->get();
+        $roles = Role::latest()->where('id', '!=', '1')->get();
         
-        return view('layouts.mem', compact('mems', 'grades', 'roles'));
+        return view('layouts.mem', compact('mems', 'grades', 'roles', 'commissariats'));
     }
 
     /**
@@ -46,6 +48,7 @@ class MembreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'commissariat_id' => 'required',
             'grade_id' => 'required',
             'matricule' => ['required', 'string', 'max:50', 'unique:users'],
             'email' => ['email', 'unique:users'],
@@ -60,9 +63,9 @@ class MembreController extends Controller
         ]); 
 
         $image = $request->photo->store("image");
-        $id = 1;
+        
         $user = User::create([
-            'commissariat_id'=> $id,
+            'commissariat_id'=> $request->commissariat_id,
             'grade_id'=> $request->grade_id,
             'matricule' => $request->matricule,
             'numeroci' => $request->numeroci,
@@ -89,7 +92,8 @@ class MembreController extends Controller
         // Auth::login($user);
 
         //return redirect(RouteServiceProvider::HOME);
-        return redirect()->back();
+
+        return redirect()->back()->with('status', 'Insertion bien effectuée !');
 
     }
 

@@ -44,6 +44,12 @@ Administrateurs
                             <div class="card-body">
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
                                         data-bs-target="#memAdd">insérer une nouvelle ligne</a></p>
+
+                                @if(session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                                @endif
                                 <!-- Table with outer spacing -->
                                 <div class="table-responsive">
                                     <table class="table table-lg">
@@ -507,6 +513,32 @@ Administrateurs
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
+                                        <select class="form-control" name="commissariat_id">
+                                            <option value=""> -- Commissariat -- </option>                            
+                                            @foreach($commissariats as $commissariat)
+                                            <option value="{{ $commissariat->id }}">{{ $commissariat->libelle }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+
+                                    @if ($errors->has('commissariat_id'))
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->get('commissariat_id') as $message)
+                                        <span role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
                                         <select class="form-control" name="grade_id">
                                             <option selected disabled>-- Le grade --</option>
                                             @foreach ($grades as $grade )
@@ -552,6 +584,29 @@ Administrateurs
                                 </div>
                             </div>
 
+                            
+                            <div class="col-md-6">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" autocomplete="off" name="numeroci" class="form-control"
+                                            value="{{ old('numeroci') }}" placeholder="Numero CI !...">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-pencil"></i>
+                                        </div>
+                                    </div>
+
+                                    @if ($errors->has('numeroci'))
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->get('numeroci') as $message)
+                                        <span role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
@@ -573,7 +628,7 @@ Administrateurs
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="text" autocomplete="off" name="adresse" class="form-control"
@@ -608,28 +663,6 @@ Administrateurs
                                     @if ($errors->has('telephone'))
                                     <div class="alert alert-danger">
                                         @foreach ($errors->get('telephone') as $message)
-                                        <span role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @endforeach
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" autocomplete="off" name="numeroci" class="form-control"
-                                            value="{{ old('numeroci') }}" placeholder="Numero CI !...">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-pencil"></i>
-                                        </div>
-                                    </div>
-
-                                    @if ($errors->has('numeroci'))
-                                    <div class="alert alert-danger">
-                                        @foreach ($errors->get('numeroci') as $message)
                                         <span role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

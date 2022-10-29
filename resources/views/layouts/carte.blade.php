@@ -24,29 +24,32 @@
             </h4>
            </div>
 
-             <div class="">
-              
+            <div class="">
+                <span  ><img style="margin-right:80px; margin-top:5px; height:30px; width:100px" class="photo" src="" alt="" ></span>
+
+                <div style=" margin-left:245px;">
+                    <span>NOM</span><br>
+                    <div style="margin-bottom: 12px; font-size:15px;">{{$cart->nom }}</div>
+                </div>
+    
+                <div style=" margin-left:245px;">
+                    <span>Prenom</span>
+                </div>
+    
+                <div style=" margin-left:245px;">
+                    <span>SEXE</span>  <span style=" margin-left:50px;">NATIONALITE</span> <span style=" margin-left:50px;">DATE DE NAISS</span>
+                </div>
+    
+                <div style=" margin-left:245px;">
+                    <span>LIEU DE NAISSANCE</span>
+                </div>
+    
+                <div style=" margin-left:245px;">
+                    <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
+                </div>
             </div> 
 
-            <div style=" margin-left:245px;">
-                <span>NOM</span><br>
-                <div style="margin-bottom: 12px; font-size:15px;">{{$cart->nom }}</div>
-            </div>
-
-            <div style=" margin-left:245px;">
-                <span>Prenom</span>
-            </div>
-
-            <div style=" margin-left:245px;">
-                <span>SEXE</span>  <span style=" margin-left:50px;">NATIONALITE</span> <span style=" margin-left:50px;">DATE DE NAISS</span>
-            </div>
-
-            <div style=" margin-left:245px;">
-                <span>LIEU DE NAISSANCE</span>
-            </div>
-
-            <div style=" margin-left:245px;">
-                <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
+           
 
         </div>
     </div>

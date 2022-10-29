@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRoleUsers extends Migration
 {
@@ -21,6 +23,12 @@ class CreateRoleUsers extends Migration
 
             $table->timestamps();
         });
+
+        $med = User:: find(1);
+
+        $roleId = 1;
+
+        $med->roles()->attach($roleId);
     }
 
     /**

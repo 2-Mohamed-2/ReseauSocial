@@ -42,7 +42,13 @@ Administrateurs
                         <div class="card-content">
                             <div class="card-body">
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#graAdd">insérer une nouvelle ligne</a></p>
+                                    data-bs-target="#graAdd">insérer une nouvelle ligne</a>
+                                </p>
+                                @if(session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
                                 <!-- Table with outer spacing -->
                                 <div class="table-responsive">
                                     <table class="table table-lg">

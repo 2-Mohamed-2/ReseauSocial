@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Session;
+use App\Models\Commissariat;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -41,6 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function commissariat()
+    {
+        return $this->belongsToToMany(Commissariat::class);
+    }
 
     public function section()
     {

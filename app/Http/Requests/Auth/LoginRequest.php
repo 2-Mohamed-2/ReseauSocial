@@ -31,6 +31,7 @@ class LoginRequest extends FormRequest
         return [
             'matricule' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'commissariat_id' => ['required'],
         ];
     }
 
@@ -45,7 +46,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('matricule', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('matricule', 'password', 'commissariat_id'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
