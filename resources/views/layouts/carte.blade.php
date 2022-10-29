@@ -16,7 +16,7 @@
         <div class="row ">
            <div>
             <h4 style="font-family:Arial, sans-serif; text-align:center; font-size:large;">
-                <span  ><img style="margin-right:120px; margin-top:5px; height:40px; width:100px" class="photo" src="assets/images/mali1.png" alt="" ></span>
+                <span  ><img style="margin-right:80px; margin-top:5px; height:30px; width:100px" class="photo" src="assets/images/mali1.png" alt="" ></span>
 
                 <span style="margin-right:140px; font-size:x-large; font-family:Verdana, Geneva, Tahoma, sans-serif;">REPUBLIQUE DU MALI</span>  <br>
 
@@ -30,7 +30,7 @@
 
             <div style=" margin-left:245px;">
                 <span>NOM</span><br>
-                <div style="margin-bottom: 12px; font-size:15px;">MADOU</div>
+                <div style="margin-bottom: 12px; font-size:15px;">{{$cart->nom }}</div>
             </div>
 
             <div style=" margin-left:245px;">
