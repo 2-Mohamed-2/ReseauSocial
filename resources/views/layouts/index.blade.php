@@ -15,7 +15,7 @@
 </header>
 
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>Page d'Acceuil Régionale</h3>
 </div>
 
 <div class="page-content">
@@ -32,8 +32,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Commissariat</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $com }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -49,8 +49,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Membres</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $mem }}</h6>
                                 </div>
                             </div>
                         </div>

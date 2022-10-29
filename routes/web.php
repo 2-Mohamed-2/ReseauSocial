@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\InconnuController;
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +24,17 @@ use App\Http\Controllers\InconnuController;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/', function () {
+    return ("Bonjour svous êtes sur l'interface d'acueil !!");
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/', function () {
-    return view('layouts.index'); 
-})->middleware(['auth'])->name('index');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth', 'role:supreme'])->group(function() {
+
+    // Vue index
+    Route::get('/Accueil', [AccueilController::class, 'index'])->name('index');
+
     // Routes pour le crud du commissariat  
     Route::resource('/Commissariat', ComController::class);
 

@@ -20,19 +20,12 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            <div style="margin-left: 30px">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">
-                        Se déconnecter
-                    </button>
-                </form>
-            </div> 
+            
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
                 
                 <li
-                    class="sidebar-item {{ Request::is('/') ? 'active':''}}">
+                    class="sidebar-item {{ Request::is('Accueil') ? 'active':''}}">
                     <a href="{{route('index')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Accueil</span>
@@ -230,6 +223,20 @@
                 </li>
                 
             </ul>  
+        </div>
+
+        <div class="position-relative bg-black align-items-center justify-content-around">
+            <div class="">
+                <div class="justify-content-around p-5 flex-wrap">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger space-between">
+                            Se déconnecter
+                        </button>
+                    </form>
+                </div> 
+            </div>
+            
         </div>
         
         
