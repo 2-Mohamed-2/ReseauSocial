@@ -607,7 +607,7 @@ Administrateurs
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="text" autocomplete="off" name="nomcomplet" class="form-control"
@@ -628,7 +628,7 @@ Administrateurs
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="text" autocomplete="off" name="adresse" class="form-control"

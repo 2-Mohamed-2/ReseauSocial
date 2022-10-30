@@ -19,14 +19,14 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('grade_id')->constrained()
-                    ->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->foreignId('commissariat_id')->constrained()
+                  ->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+            $table->foreignId('grade_id')->constrained()
                     ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('matricule')->unique();
             $table->string('numeroci')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
             $table->string('nomcomplet')->nullable();
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable(); 
             $table->string('genre')->nullable(); 
             $table->date('datedepart')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken()->nullable();

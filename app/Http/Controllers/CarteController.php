@@ -184,10 +184,15 @@ class CarteController extends Controller
 
     public function downloadPDF(Request $request) {
         $cart = Carte::find($request->id);
-        $pdf = App::make('dompdf.wrapper');
-       $pdf->loadView('layouts.carte', compact('cart'));
+        $pdf = PDF::loadView('layouts.carte', compact('cart'));
+       //$pdf->loadView('layouts.carte', compact('cart'));
         
         return $pdf->stream();
     }
   
+    // public function downloadPDF($id) {
+    //     $show = Disneyplus::find($id);
+    //     $pdf = PDF::loadView('pdf', compact('show'));
+        
+    //     return $pdf->download('disney.pdf');
 }
