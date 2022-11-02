@@ -15,7 +15,7 @@
     <table class="contenaire-fluid bg-danger">
         <thead>
             <th>
-                <img style="margin-left:90px; width: 90px; height:40px;" src="assets/images/mali1.png" alt="" >
+                <img style="margin-left:90px; width: 60px; height:30px;" src="assets/images/mali1.png" alt="" >
             </th>
             <th>
                 <pre>
@@ -26,15 +26,17 @@
         </thead>
         <tr>
             <td>
-                <img style="margin-left:10px; width: 130px; height:100px;" src="assets/images/mali1.png" alt="" >
+                <img style="margin-left:10px; width: 130px; height:100px;" src="assets/images/{{ $cart->photo  }}" alt="Non trouve" >
             </td>
-            <pre>
-               <span>NOM {{ $cart->nom }}</span>
-               <span>Prenom {{ $cart->nom }}</span>
-               <span>SEXE</span> <span style="margin-left: 50px;">NATIONALITE</span>  <span style="margin-left: 50px;">DATE DE NAISS</span>
-               <span>LIEU DE NAISS {{ $cart->nom }}</span> <span style="margin-left: 130px;">DATE DE NAISS</span>
-               <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
-            </pre>
+            <td>
+                <pre>
+                <span>NOM {{ $cart->nom }}</span>
+                <span>Prenom {{ $cart->nom }}</span>
+                <span>SEXE</span> <span style="margin-left: 50px;">NATIONALITE</span>  <span style="margin-left: 50px;">DATE DE NAISS</span>
+                <span>LIEU DE NAISSANCE {{ $cart->nom }}</span> <span style="margin-left: 90px;">DATE DE NAISS</span>
+                <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
+                </pre>
+            </td>
         </tr>
     </table>
    

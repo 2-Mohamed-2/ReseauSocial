@@ -41,7 +41,7 @@ class CarteController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request,[
+       $validateData = $this->validate($request,[
             //'inconnu_id' => 'required|max:255',
             'n_delivrance' => 'required|max:255',
             'village_de' => 'required|max:255',
@@ -63,7 +63,13 @@ class CarteController extends Controller
             'carte_n' => 'required|max:255',
          ]);
 
-          $image = $request->photo->store("image");
+            $photo = $request->file('photo');
+            $destination = 'assets/images/';
+            $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+            $photo->move($destination, $profilImage);
+
+            $request->photo = $profilImage;
+
  
              $cart = Carte::create([
                 //'inconnu_id' => $request->inconnu_id,
@@ -77,7 +83,7 @@ class CarteController extends Controller
                  'et_de' => $request->et_de,
                  'ne_le' => $request->ne_le,
                  'a' => $request->a,
-                 'photo' => $image,
+                 'photo' => $profilImage,
                  'profession' => $request->profession,
                  'domicile' => $request->domicile,
                  'taille' => $request->taille,
@@ -148,19 +154,19 @@ class CarteController extends Controller
 
             $carte = Carte::findOrFail($id);
 
-            Storage::delete($carte->photo);
+            // Storage::delete($carte->photo);
 
-            // $photo = $request->file('photo');
-            // $destination = 'image/';
-            // $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
-            // $photo->move($destination, $profilImage);
+            $photo = $request->file('photo');
+            $destination = 'assets/images/';
+            $profilImage = date('YmdHis').".".$photo->getClientOriginalExtension();
+            $photo->move($destination, $profilImage);
 
-            // $request->photo = $profilImage;
+            $request->photo = $profilImage;
     
-            // $validateData['photo'] = $request->photo;
+            $validateData['photo'] = $request->photo;
 
-            $image = $request->photo->store("image");
-            $validateData['photo'] = $image;
+            // $image = $request->photo->store("image");
+            // $validateData['photo'] = $image;
         }
       
         Carte::whereId($id)->update($validateData);
