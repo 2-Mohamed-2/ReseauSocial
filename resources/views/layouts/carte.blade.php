@@ -12,7 +12,40 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container-fluid bg-danger">
+    <table class="contenaire-fluid bg-danger">
+        <thead>
+            <th>
+                <img style="margin-left:90px; width: 60px; height:30px;" src="assets/images/mali1.png" alt="" >
+            </th>
+            <th>
+                <pre>
+                    REPUBLIQUE DU MALI
+                    <small>CARTE NATIONALE D'IDENTITE</small> 
+                </pre>
+            </th>
+        </thead>
+        <tr>
+            <td>
+                <img style="margin-left:10px; width: 130px; height:100px;" src="assets/images/{{ $cart->photo  }}" alt="Non trouve" >
+            </td>
+            <td>
+                <pre>
+                <span>NOM {{ $cart->nom }}</span>
+                <span>Prenom {{ $cart->nom }}</span>
+                <span>SEXE</span> <span style="margin-left: 50px;">NATIONALITE</span>  <span style="margin-left: 50px;">DATE DE NAISS</span>
+                <span>LIEU DE NAISSANCE {{ $cart->nom }}</span> <span style="margin-left: 90px;">DATE DE NAISS</span>
+                <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
+                </pre>
+            </td>
+        </tr>
+    </table>
+   
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
+
+ {{-- <div class="container-fluid bg-danger">
         <div class="row ">
            <div>
             <h4 style="font-family:Arial, sans-serif; text-align:center; font-size:large;">
@@ -24,38 +57,19 @@
             </h4>
            </div>
 
-            <div class="">
-                <span  ><img style="margin-right:80px; margin-top:5px; height:30px; width:100px" class="photo" src="" alt="" ></span>
 
-                <div style=" margin-left:245px;">
-                    <span>NOM</span><br>
-                    <div style="margin-bottom: 12px; font-size:15px;">{{$cart->nom }}</div>
-                </div>
-    
-                <div style=" margin-left:245px;">
-                    <span>Prenom</span>
-                </div>
-    
-                <div style=" margin-left:245px;">
-                    <span>SEXE</span>  <span style=" margin-left:50px;">NATIONALITE</span> <span style=" margin-left:50px;">DATE DE NAISS</span>
-                </div>
-    
-                <div style=" margin-left:245px;">
+             
+                 
+
+            <pre class="">
+                <span  ><img style="height:120px; width:100px" class="photo" src="assets/images/mali1.png" alt="" ></span> <span>NOM</span> <span>Prenom</span>
+                    
+                    
+                    <span>SEXE</span>  <span>NATIONALITE</span> <span >DATE DE NAISS</span>
                     <span>LIEU DE NAISSANCE</span>
-                </div>
-    
-                <div style=" margin-left:245px;">
                     <span>N° DOCUMENT</span> <span style=" margin-left:140px;">DATE EXPIR</span>
-                </div>
-            </div> 
-
-           
-
+            </pre> 
         </div>
-    </div>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/app.js"></script>
-</body>
-</html>
+    </div> --}}
 
 
