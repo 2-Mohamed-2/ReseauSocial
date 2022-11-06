@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->date('datedepart')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('isActive')->default(false); //Pour recuperer la premiere connexion
             $table->rememberToken()->nullable();
             $table->timestamps();
             

@@ -45,12 +45,12 @@ class User extends Authenticatable
 
     public function commissariat()
     {
-        return $this->belongsToToMany(Commissariat::class);
+        return $this->belongsTo(Commissariat::class);
     }
 
     public function section()
     {
-        return $this->belongsToToMany(Section::class);
+        return $this->belongsToMany(Section::class);
     }
 
     public function grade()

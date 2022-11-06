@@ -33,10 +33,10 @@
                 </li>
 
                 <li
-                    class="sidebar-item {{ Request::is('form-insert') ? 'active':''}}">
-                    <a href="{{route('index')}}" class='sidebar-link'>
+                    class="sidebar-item {{ Request::is('Profil') ? 'active':''}}">
+                    <a href="{{route('profilvue')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Forms d'insertion</span>
+                        <span>Profil</span>
                     </a>
                 </li>
                                 
@@ -51,7 +51,7 @@
                                 
                 <li
                     class="sidebar-item {{ Request::is('Etudiants') ? 'active':''}} ">
-                    <a href="{{route('index')}}" class='sidebar-link'>
+                    <a href="" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>Tableau etu</span>
                     </a>

@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\InconnuController;
+use App\Http\Controllers\passchangeController;
+use App\Http\Controllers\ProfilController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,17 +25,27 @@ use App\Http\Controllers\InconnuController;
 |
 */
 
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return ("Bonjour svous êtes sur l'interface d'acueil !!");
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/', function () {
+//     //dd(Auth::user()->isActive == false);
+//     return ("Bonjour svous êtes sur l'interface d'acueil !!");    
+// })->middleware(['auth'])->name('dashboard');
 
 
 
 Route::middleware(['auth', 'role:supreme'])->group(function() {
+
+    // Route::get('/Med', function () {
+    // return ("Bonjour svous êtes sur l'interface de test !!");
+    // })->name('test');
+
+    // Mdp Change
+    // Route::get('/Med', [passchangeController::class, 'index'])->name('test');
 
     // Vue index
     Route::get('/Accueil', [AccueilController::class, 'index'])->name('index');
@@ -57,8 +71,10 @@ Route::middleware(['auth', 'role:supreme'])->group(function() {
    
     //Routes pour Carte !!!
     Route::resource('/Carte', CarteController::class);
+    Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
 
-     Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
+    //Pour le profil
+    Route::get('/Profil', [ProfilController::class, 'index'])->name('profilvue');
 });
 
 
