@@ -43,13 +43,6 @@
                      <span>Pour Constitution de </span>  <span>**********</span>
                      <span>Dossier:___</span>    <span>P/LE Commissiare de Police P/O</span>
                   </pre>
-                  <tr>
-                    <td>
-                       <pre>
-                         
-                       </pre>
-                    </td>
-                  </tr>
                 </td>
             </tr>
         </table>
