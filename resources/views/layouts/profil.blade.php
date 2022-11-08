@@ -29,7 +29,7 @@
                 <button data-bs-toggle="modal" data-bs-target="#pwdUpdate{{Auth::user()->id}}"
                   class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center">
                   <i class="ni ni-app"></i>
-                  <span class="ms-2">Modifier mot de passe</span>
+                  <span class="ms-2">Modifier le mot de passe</span>
                 </button>
               </li>
               <li class="nav-item">
