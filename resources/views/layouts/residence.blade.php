@@ -21,7 +21,7 @@
                       <span style="margin-right:180px;">COMMISSARIAT DE POLICE  </span>     <span style="font-size:15px; letter-spacing: 2px;">REPUBLIQUE DU MALI</span>
                       <span style="margin-left:15px;">DU*****************</span>  <span style="margin-left:250px; font-size:11px; ">  <small><em>UN PEUPLE - UN BUT - UNE FOI </em></small> </span>
                         <span style="margin-left:20px;">***********</span>
-                        <span>N°__________/CP</span>    <span style="margin-left:26px; font-family:'Times New Roman', Times, serif; font-size:2em;">Certificat de Résidence</span>
+                        <span>N°............../CP</span>    <span style="margin-left:26px; font-family:'Times New Roman', Times, serif; font-size:2em;">Certificat de Résidence</span>
                     </pre>
                 </th>
             </thead>
@@ -31,17 +31,18 @@
                   {{-- <span style="margin-left:67px;">Nous Commissaire Divionnaire de Police</span> --}}
                   <pre style="margin-bottom:150px;" >
                     <span style="font-family:'Times New Roman', Times, serif; font-size:1em;">Nous Soussigné, Commissaire de Police de la Ville(NOM DE LA VILLE) cerifions que</span>
-                    <span>Mr:________________</span>
-                    <span>Né_le:____________________a:________________</span>
-                    <span>Fils_de:__________________Et_de:____________</span>
-                    <span>Profession:_________________________________</span>
-                    <span>Resulte_de:_________________________________</span>
-                    <span>Domicile:___________________________________</span>
-                    <span>Depuis plus de trois(3) Mois</span>
-                     <span>En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span>
 
-                     <span>Pour Constitution de </span>  <span>**********</span>
-                     <span>Dossier:___</span>    <span>P/LE Commissiare de Police P/O</span>
+                    <span>Mr :......................................................................................................................................................................</span>
+                    <span>Né_le :........................................................a :......................................................................................................</span>
+                    <span>Fils_de :......................................................Et_de :..............................................................................................</span>
+                    <span>Profession :..........................................................................................................................................................</span>
+                    <span>Resulte_de :.........................................................................................................................................................</span>
+                    <span>Domicile :.............................................................................................................................................................</span>
+                    <span>Depuis plus de trois(3) Mois</span>
+                                                          <span>En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span>
+
+                     <span>Pour Constitution de </span>                                                                                       <span>**********</span>
+                     <span>Dossier:...................</span>                                                                                                 <span>P/LE Commissiare de Police P/O</span>
                   </pre>
                 </td>
             </tr>
