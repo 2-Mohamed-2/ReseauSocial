@@ -3,9 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Hamcrest\Type\IsBoolean;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class Routage
+class Routage 
 {
     /**
      * Handle an incoming request.
@@ -15,9 +17,24 @@ class Routage
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next, String $role)
-    {
-        if($request->user()->roles()->where('libelle', $role)->exists()) return $next($request);
+    {         
 
+        if (Auth::user()->roles()->where('libelle', $role)->exists()) {
+            // dd(Auth::user()->isActive);
+            return $next($request);
+            // if(Auth::user()->isActive == false)
+            // {
+            //     echo "Bonjour !!!";
+            // } 
+            // else {
+            //     return $next($request);
+            // }
+                     
+        } 
         abort(403);
+        // else {
+        //     //                           
+        // }
+        
     }
 }
