@@ -12,7 +12,7 @@
     <title>Certificat Residence</title>
 </head>
 <body>
-    <div class="container-fluid bg-danger">
+    <div class="">
         <table>
             <thead>
 
