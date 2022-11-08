@@ -1,0 +1,16 @@
+[2022-11-08 00:45:42] local.ERROR: Uncaught Symfony\Component\Finder\Exception\DirectoryNotFoundException: The "C:\laragon\www\Soutenance\resources\views" directory does not exist. in /opt/lampp/htdocs/Soutenance/vendor/symfony/finder/Finder.php:592
+Stack trace:
+#0 /opt/lampp/htdocs/Soutenance/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(535): Symfony\Component\Finder\Finder->in()
+#1 Command line code(1): Illuminate\Filesystem\Filesystem->files()
+#2 Command line code(1): getViews()
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Symfony\\Component\\Finder\\Exception\\DirectoryNotFoundException: The \"C:\\laragon\\www\\Soutenance\\resources\\views\" directory does not exist. in /opt/lampp/htdocs/Soutenance/vendor/symfony/finder/Finder.php:592
+Stack trace:
+#0 /opt/lampp/htdocs/Soutenance/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(535): Symfony\\Component\\Finder\\Finder->in()
+#1 Command line code(1): Illuminate\\Filesystem\\Filesystem->files()
+#2 Command line code(1): getViews()
+#3 {main}
+  thrown at /opt/lampp/htdocs/Soutenance/vendor/symfony/finder/Finder.php:592)
+[stacktrace]
+#0 {main}
+"} 
