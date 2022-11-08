@@ -8,6 +8,6 @@ class ProfilController extends Controller
 {
     public function index()
     {
-        return "Bonjour !";
+        return view('layouts.profil');
     }
 }

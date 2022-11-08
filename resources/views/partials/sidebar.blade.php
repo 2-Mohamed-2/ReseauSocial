@@ -35,7 +35,7 @@
                 <li
                     class="sidebar-item {{ Request::is('Profil') ? 'active':''}}">
                     <a href="{{route('profilvue')}}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="bi bi-person"></i>
                         <span>Profil</span>
                     </a>
                 </li>

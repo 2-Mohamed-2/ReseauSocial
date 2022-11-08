@@ -38,7 +38,7 @@ use App\Http\Controllers\ProfilController;
 
 
 
-Route::middleware(['auth', 'role:supreme'])->group(function() {
+Route::middleware(['auth', 'role:Adj'])->group(function() {
 
     // Route::get('/Med', function () {
     // return ("Bonjour svous êtes sur l'interface de test !!");

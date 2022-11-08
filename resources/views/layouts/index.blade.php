@@ -1,10 +1,6 @@
 
 @extends('master')
 
-@section('active')
-    sidebar-item active
-@endsection
-
 @section('content')
 
 
@@ -254,10 +250,22 @@
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
                             <img src="{{ asset('storage/'.Auth::user()->photo) }}" alt="Face 1">
-                        </div>
+                        </div>                        
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ Auth::user()->nomcomplet }}</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Voir plus</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="{{ route('profilvue') }}" class="dropdown-item">Voir profil</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">
+                                            Se déconnecter
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
