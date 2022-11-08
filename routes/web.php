@@ -10,6 +10,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\InconnuController;
+use App\Http\Controllers\ResidenceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +59,12 @@ Route::middleware(['auth', 'role:supreme'])->group(function() {
     //Routes pour Carte !!!
     Route::resource('/Carte', CarteController::class);
 
-     Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
+    Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
+
+      //Routes pour Certifica!!!
+    Route::resource('/Residence', ResidenceController::class);
+
+    Route::get('/downloadPDF/{id}',[App\Http\Controllers\ResidenceController::class, 'downloadPDF'])->name('downloadPDF');
 });
 
 
