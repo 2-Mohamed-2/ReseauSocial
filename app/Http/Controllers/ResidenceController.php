@@ -28,7 +28,7 @@ class ResidenceController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -40,7 +40,7 @@ class ResidenceController extends Controller
     public function store(Request $request)
     {
         $validateData = $this->validate($request, [
-             
+
             'inconnu_id' => ['required'],
             'numero' => ['required', 'integer'],
             'certifions' => ['required', 'string', 'max:255'],
@@ -142,9 +142,9 @@ class ResidenceController extends Controller
 
     public function downloadPDF(Request $request) {
         $resi = Residence::find($request->id);
-        $pdf = PDF::loadView('layouts.residence', compact('resi'));
+        $pdf = PDF::loadView('layouts.residence', compact('resi'))->setPaper('a4','landscape');
        //$pdf->loadView('layouts.carte', compact('cart'));
-        
+
         return $pdf->stream();
     }
 }

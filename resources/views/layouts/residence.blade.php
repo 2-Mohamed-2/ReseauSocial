@@ -12,7 +12,7 @@
     <title>Certificat Residence</title>
 </head>
 <body>
-    <div class="">
+    <div>
         <table>
             <thead>
 
@@ -42,7 +42,7 @@
                                                           <span>En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span>
 
                      <span>Pour Constitution de </span>                                                                                       <span>**********</span>
-                     <span>Dossier:...................</span>                                                                                                 <span>P/LE Commissiare de Police P/O</span>
+                     <span>Dossier:...................</span>                                                                                        <span>P/LE Commissiare de Police P/O</span>
                   </pre>
                 </td>
             </tr>
