@@ -15,9 +15,9 @@
     <table class="contenaire-fluid bg-danger">
         <thead>
             <th>
-                <img style="margin-left:90px; width: 60px; height:30px;" src="assets/images/mali1.png" alt="" >
+                <img style="margin-left:120px; width: 60px; height:50px;" src="assets/images/197429.png" alt="" >
             </th>
-            <th>
+            <th style="margin-left:-120px">
                 <pre>
                     REPUBLIQUE DU MALI
                     <small>CARTE NATIONALE D'IDENTITE</small> 
@@ -26,7 +26,7 @@
         </thead>
         <tr>
             <td>
-                <img style="margin-left:10px; width: 130px; height:100px;" src="assets/images/{{ $cart->photo  }}" alt="Non trouve" >
+                <img style="margin-left:10px;  width: 130px; height:100px;" src="assets/images/{{ $cart->photo  }}" alt="Non trouve" >
             </td>
             <td>
                 <pre>
