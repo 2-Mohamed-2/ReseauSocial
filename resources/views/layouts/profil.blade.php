@@ -2,7 +2,65 @@
 
 @extends('master')
 
+@section('liens')
+
+<style>
+
+  #message{
+    display: none;
+    animation: anime 1s ease-out;
+  }
+
+  @keyframes anime {
+    from{
+      transform: translateY(1000px);
+    }
+  }
+
+  .invalid{
+    color: red;
+    font-size: 18px;
+  }
+  .invalid:before
+  {
+    position: relative;
+    left: -7px;
+    content: "✗";
+  }
+
+  .valid{
+    color: green;
+    font-size: 18px;
+  }
+  .valid:before
+  {
+    position: relative;
+    left: -7px;
+    content: "✓";
+  }
+
+</style>
+
+@endsection
+
 @section('content')
+
+<div class="page-title">
+  <div class="row">
+      <div class="col-12 col-md-6 order-md-1 order-last">
+          <h3>Profil</h3>
+          <p class="text-subtitle text-muted">Ici, toutes les infos vous concernant</p>
+      </div>
+      <div class="col-12 col-md-6 order-md-2 order-first">
+          <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route('index')}}">Accueil</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Profil</li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</div>
 
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -120,22 +178,38 @@
           <div class="modal-body">
               <p class="text-wrap">
               <form action="" method="POST">
-                @method('PUT')
-                @csrf
+                {{-- @method('PUT')
+                @csrf --}}
                 <div class="form-body">
-                  <div class="row">                
+                  <div class="row">  
+
                     <div class="col-md-12">
                       <div class="form-group has-icon-left">
-                        <small class="text-muted"><i>Nouveau mot de passe</i></small>
+                        <small class="text-muted"><i>Ancien mot de passe</i></small>
                         <div class="position-relative">
                           <input type="password" autocomplete="off" name="password" class="form-control" value=""
-                            placeholder="Nouveau mot de passe ...">
+                            placeholder="Ancien mot de passe ...">
                           <div class="form-control-icon">
                             <i class="bi bi-file-lock"></i>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group has-icon-right">
+                        <small class="text-muted"><i>Nouveau mot de passe</i></small>
+                        <div class="position-relative">
+                          <input type="password" autocomplete="off" name="password1" id="pwd" class="form-control" value=""
+                            placeholder="Nouveau mot de passe ...">
+                          <div class="form-control-icon">
+                            <i data-feather="eye"></i>
+                            <i style="display: none" data-feather="eye-off"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="col-md-12">
                       <div class="form-group has-icon-left">
                         <small class="text-muted"><i>Confirmation du mot de passe</i></small>
@@ -149,14 +223,27 @@
                       </div>
                     </div> 
                   </div>
+
+                  <div id="message" class="col-12 bg-white">
+                    <div class="col-12 d-flex justify-content-center mt-2">
+                      <div class="form-group has-icon-left">
+                        <h4 class="text-black">Le mot de passe doit contenir :</h4>
+                        <span class="invalid" id="letter">Une lettre minuscule</span><br>
+                        <span class="invalid" id="capital">Une lettre majuscule</span><br>
+                        <span class="invalid" id="number">Un chiffre</span><br>
+                        <span class="invalid" id="lenght">06 caractères minimum</span><br>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
                 </p>
           </div>
 
           <div class="modal-footer">
               <div class="col-12 d-flex justify-content-end mt-4 ">
-                  <div class="col-5 d-flex justify-content-center">
-                      <button type="submit"
+                  <div class="d-flex justify-content-center">
+                      <button type="submit" id="sauv"
                           class="btn btn-success me-1 mb-1">Sauvegarder</button>
                       <button type="reset" data-bs-dismiss="modal"
                           class="btn btn-light-secondary me-1 mb-1 m-auto">Annuler</button>
@@ -168,5 +255,112 @@
   </div>
 </div>
 <!-- End boite modale -->
+
+<script>
+
+  var pwd = document.getElementById('pwd');
+  var letter = document.getElementById('letter');
+  var capital = document.getElementById('capital');
+  var number = document.getElementById('number');
+  var lenght = document.getElementById('lenght');
+
+  // Afficher les critères au click sur le input
+  pwd.onfocus = function(){
+    document.getElementById("message").style.display = "block"
+  }
+
+  // faire disparaitre les critères au click sur un autre point
+  pwd.onblur = function(){
+    document.getElementById("message").style.display = "none"
+  }
+
+  // Quand on commence à taper dans le pwd
+  pwd.onkeyup = function(){
+
+    
+
+    // Validation des minuscules
+    var minuscule = /[a-z]/g
+    if(pwd.value.match(minuscule)){
+      letter.classList.remove('invalid');
+      letter.classList.add('valid');
+    }
+    else{
+      letter.classList.remove('valid');
+      letter.classList.add('invalid');
+    }
+
+
+    // Validation des majuscules
+    var majuscule = /[A-Z]/g
+    if(pwd.value.match(majuscule)){
+      capital.classList.remove('invalid');
+      capital.classList.add('valid');
+    }
+    else{
+      capital.classList.remove('valid');
+      capital.classList.add('invalid');
+    }
+
+
+    // Validation des nombre
+    var nbre = /[0-9]/g
+    if(pwd.value.match(nbre)){
+      number.classList.remove('invalid');
+      number.classList.add('valid');
+    }
+    else{
+      number.classList.remove('valid');
+      number.classList.add('invalid');
+    }
+
+
+
+    // Validation de la longueur
+    if(pwd.value.length >= 6){
+      lenght.classList.remove('invalid');
+      lenght.classList.add('valid');
+    }
+    else{
+      lenght.classList.remove('valid');
+      lenght.classList.add('invalid');
+    }
+
+    
+    const button = document.getElementById('sauv');
+
+    if ((pwd.value.length >= 6) && (pwd.value.match(nbre)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {      
+      button.disabled = false;
+    } 
+    else {
+      button.disabled = true;
+    }
+
+  }
+
+
+</script>
+
+<script src="assets/js/eyes.js"></script>
+<script>
+  feather.replace();
+
+  const eye = document.querySelector(".feather-eye");
+  const eyeoff = document.querySelector(".feather-eye-off");
+  var pwd = document.getElementById('pwd');
+
+  eye.addEventListener("click", () => {
+    eye.style.display = "none";
+    eyeoff.style.display = "block";
+    pwd.type = "text";
+  });
+
+  eyeoff.addEventListener("click", () => {
+    eyeoff.style.display = "none";
+    eye.style.display = "block";
+    pwd.type = "password";
+  });
+
+</script>
 
 @endsection
