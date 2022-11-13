@@ -29,10 +29,23 @@
   }
 
   .valid{
+    text-decoration: line-through;
     color: green;
     font-size: 18px;
   }
   .valid:before
+  {
+    position: relative;
+    left: -7px;
+    content: "✓";
+  }
+
+  .ok{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+  }
+  .ok:before
   {
     position: relative;
     left: -7px;
@@ -184,13 +197,14 @@
                   <div class="row">  
 
                     <div class="col-md-12">
-                      <div class="form-group has-icon-left">
+                      <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Ancien mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" name="password" class="form-control" value=""
-                            placeholder="Ancien mot de passe ...">
+                          <input type="password" id="apwd" autocomplete="off" name="password" class="form-control" 
+                            required value="" placeholder="Ancien mot de passe ...">
                           <div class="form-control-icon">
-                            <i class="bi bi-file-lock"></i>
+                            <i id="apwd1" class="bi bi-eye"></i>
+                            <i id="apwd2" style="display: none" class="bi bi-eye-slash"></i>
                           </div>
                         </div>
                       </div>
@@ -200,41 +214,53 @@
                       <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Nouveau mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" name="password1" id="pwd" class="form-control" value=""
+                          <input type="password" autocomplete="off" name="password1" id="pwd" 
+                            class="form-control" value="" required
                             placeholder="Nouveau mot de passe ...">
                           <div class="form-control-icon">
                             <i data-feather="eye"></i>
                             <i style="display: none" data-feather="eye-off"></i>
                           </div>
                         </div>
+
+                        <div id="message" class="col-12 alert alert-danger">
+                          <div class="col-12 d-flex justify-content-center mt-2">
+                            <div class="form-group has-icon-left">
+                              <h4 class="">Le mot de passe doit contenir :</h4>
+                              <span class="invalid" id="letter">Une lettre minuscule</span><br>
+                              <span class="invalid" id="capital">Une lettre majuscule</span><br>
+                              <span class="invalid" id="number">Un chiffre</span><br>
+                              <span class="invalid" id="lenght">06 caractères minimum</span><br>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
 
                     <div class="col-md-12">
-                      <div class="form-group has-icon-left">
+                      <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Confirmation du mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" name="password2" class="form-control" value=""
-                            placeholder="Confirmation du mot de passe ...">
-                          <div class="form-control-icon">
-                            <i class="bi bi-file-lock"></i>
-                          </div>
+                          <input type="password" autocomplete="off" id="pwd2" class="form-control" value=""
+                            required placeholder="Confirmation du mot de passe ...">
+
+                            {{-- <div class="form-control-icon">
+                              <i data-feather="eye"></i>
+                              <i style="display: none" data-feather="eye-off"></i>
+                            </div> --}}
                         </div>
+
+                        <br>
+                        <div id="pwd2msg" class="alert " style="display: none">
+                          <span role="alert">
+                              <strong> </strong>
+                          </span>
+                        </div>
+
                       </div>
                     </div> 
-                  </div>
-
-                  <div id="message" class="col-12 bg-white">
-                    <div class="col-12 d-flex justify-content-center mt-2">
-                      <div class="form-group has-icon-left">
-                        <h4 class="text-black">Le mot de passe doit contenir :</h4>
-                        <span class="invalid" id="letter">Une lettre minuscule</span><br>
-                        <span class="invalid" id="capital">Une lettre majuscule</span><br>
-                        <span class="invalid" id="number">Un chiffre</span><br>
-                        <span class="invalid" id="lenght">06 caractères minimum</span><br>
-                      </div>
-                    </div>
-                  </div>
+                  </div>                 
 
                 </div>
                 </p>
@@ -256,6 +282,62 @@
 </div>
 <!-- End boite modale -->
 
+
+
+{{-- Script pour l'apercu du mdp pour le 1er input --}}
+<script>
+  const apwd = document.getElementById('apwd');
+
+  const apwd1 = document.querySelector(".bi-eye");
+  var apwd2 = document.querySelector(".bi-eye-slash");
+
+  apwd1.addEventListener("click", () => {
+    apwd1.style.display = "none";
+    apwd2.style.display = "block";
+    apwd.type = "text";
+  });
+
+  apwd2.addEventListener("click", () => {
+    apwd2.style.display = "none";
+    apwd1.style.display = "block";
+    apwd.type = "password";
+  });
+
+</script> 
+{{-- Fin --}}
+
+
+{{-- Script pour l'apercu du mdp pour le 2è input --}}
+<script src="assets/js/eyes.js"></script>
+<script>
+  feather.replace();
+
+  const eye = document.querySelector(".feather-eye");
+  const eyeoff = document.querySelector(".feather-eye-off");
+  var pwd = document.getElementById('pwd');
+  var pwd2 = document.getElementById('pwd2');
+
+  eye.addEventListener("click", () => {
+    eye.style.display = "none";
+    eyeoff.style.display = "block";
+    pwd.type = "text";
+    pwd2.type = "text";
+  });
+
+  eyeoff.addEventListener("click", () => {
+    eyeoff.style.display = "none";
+    eye.style.display = "block";
+    pwd.type = "password";
+    pwd2.type = "password";
+  });
+
+</script> 
+{{-- Fin  --}}
+
+
+{{-- Pour l'apercu du mdp pour le 3è input, ca se fera simultanement avec le 2è input --}}
+
+{{-- Script pour les critère de validation du mdp (2è input) --}}
 <script>
 
   var pwd = document.getElementById('pwd');
@@ -328,39 +410,96 @@
 
     
     const button = document.getElementById('sauv');
+    const npwd = document.getElementById('pwd2');
 
     if ((pwd.value.length >= 6) && (pwd.value.match(nbre)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {      
       button.disabled = false;
+      npwd.disabled = false;
+
+      document.getElementById("message").classList.remove('alert-danger');
+      document.getElementById("message").classList.add('alert-success');
+
+      lenght.classList.remove('valid');
+      lenght.classList.add('ok');
+
+      number.classList.remove('valid');
+      number.classList.add('ok');
+
+      capital.classList.remove('valid');
+      capital.classList.add('ok');
+
+      letter.classList.remove('valid');
+      letter.classList.add('ok');
     } 
     else {
       button.disabled = true;
+      npwd.disabled = true;
+
+      document.getElementById("message").classList.remove('alert-succes');
+      document.getElementById("message").classList.add('alert-danger');
+
+      lenght.classList.remove('ok');
+      lenght.classList.add('invalid');
+
+      capital.classList.remove('ok');
+      capital.classList.add('invalid');
+
+      letter.classList.remove('ok');
+      letter.classList.add('invalid');
+
+      number.classList.remove('ok');
+      number.classList.add('invalid');
     }
 
   }
 
 
 </script>
+{{-- Fin --}}
 
-<script src="assets/js/eyes.js"></script>
+
+{{-- Script pour la vérification des deux mots de passe (2è et 3è input)--}}
 <script>
-  feather.replace();
 
-  const eye = document.querySelector(".feather-eye");
-  const eyeoff = document.querySelector(".feather-eye-off");
-  var pwd = document.getElementById('pwd');
+  var pwd2 = document.getElementById("pwd2");
+  var pwd2msg = document.getElementById("pwd2msg");
 
-  eye.addEventListener("click", () => {
-    eye.style.display = "none";
-    eyeoff.style.display = "block";
-    pwd.type = "text";
-  });
+  pwd2.onfocus = function(){
+    document.getElementById("pwd2msg").style.display = "block"
+  }
 
-  eyeoff.addEventListener("click", () => {
-    eyeoff.style.display = "none";
-    eye.style.display = "block";
-    pwd.type = "password";
-  });
+  // faire disparaitre les critères au click sur un autre point
+  pwd2.onblur = function(){
+    document.getElementById("pwd2msg").style.display = "none"
+  }
 
+    pwd2.onkeyup = function()
+    {     
+      const button = document.getElementById('sauv');
+      var pwd = document.getElementById("pwd"); 
+
+      if (pwd.value != pwd2.value) {
+        // alert("Pas Ok");              
+        
+        button.disabled = true;
+        pwd2msg.classList.add('alert-danger');
+        pwd2msg.innerHTML = "Attention, les deux mots de passe sont differents";
+        
+      } 
+      else {
+        // alert("Ok");
+        
+        button.disabled = false;
+        pwd2msg.classList.remove('alert-danger');
+        pwd2msg.classList.add('alert-success');
+        pwd2msg.innerHTML = "Les deux mots de passe sont identiques";
+      }
+
+    }
 </script>
+{{-- Fin --}}
+
+
+
 
 @endsection
