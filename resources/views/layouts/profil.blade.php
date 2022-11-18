@@ -74,6 +74,7 @@
       </div>
   </div>
 </div>
+@include('flash-message')
 
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -89,7 +90,7 @@
               {{ Auth::user()->nomcomplet }}
             </h5>
             <p class="mb-0 font-weight-bold text-sm">
-              {{ Auth::user()->grade->libelle }}
+              {{ Auth::user()->grade->libelle ?? ''}}
             </p>
           </div>
         </div>
@@ -190,9 +191,10 @@
 
           <div class="modal-body">
               <p class="text-wrap">
-              <form action="" method="POST">
-                {{-- @method('PUT')
-                @csrf --}}
+              <form action="{{ route('profilupdate', encrypt(Auth::user()->id) ) }}"
+                method="POST" >
+                @method('PUT')
+                @csrf
                 <div class="form-body">
                   <div class="row">  
 
@@ -201,7 +203,7 @@
                         <small class="text-muted"><i>Ancien mot de passe</i></small>
                         <div class="position-relative">
                           <input type="password" id="apwd" autocomplete="off" name="password" class="form-control" 
-                            required value="" placeholder="Ancien mot de passe ...">
+                            required value="{{ old('password') }}" placeholder="Ancien mot de passe ...">
                           <div class="form-control-icon">
                             <i id="apwd1" class="bi bi-eye"></i>
                             <i id="apwd2" style="display: none" class="bi bi-eye-slash"></i>
@@ -215,7 +217,7 @@
                         <small class="text-muted"><i>Nouveau mot de passe</i></small>
                         <div class="position-relative">
                           <input type="password" autocomplete="off" name="password1" id="pwd" 
-                            class="form-control" value="" required
+                            class="form-control" value="{{ old('password1') }}" required
                             placeholder="Nouveau mot de passe ...">
                           <div class="form-control-icon">
                             <i data-feather="eye"></i>
@@ -242,13 +244,9 @@
                       <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Confirmation du mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" id="pwd2" class="form-control" value=""
-                            required placeholder="Confirmation du mot de passe ...">
-
-                            {{-- <div class="form-control-icon">
-                              <i data-feather="eye"></i>
-                              <i style="display: none" data-feather="eye-off"></i>
-                            </div> --}}
+                          <input type="password" autocomplete="off" id="pwd2" class="form-control" 
+                            value="{{ old('password2') }}"
+                            required disabled placeholder="Confirmation du mot de passe ...">
                         </div>
 
                         <br>

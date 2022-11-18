@@ -83,6 +83,7 @@ Route::middleware(['auth', 'role:supreme'])->group(function() {
 
     //Pour le profil
     Route::get('/Profil', [ProfilController::class, 'index'])->name('profilvue');
+    Route::put('/Profil/{id}', [ProfilController::class, 'update'])->name('profilupdate');
 });
 
 

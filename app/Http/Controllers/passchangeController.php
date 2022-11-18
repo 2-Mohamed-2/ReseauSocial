@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class passchangeController extends Controller
 {
-    public function index(Request $request)
-    { 
-        dd($request->all());
-        return view('auth.changepwd');
-    }
+    // public function index(Request $request)
+    // { 
+    //     dd($request->all());
+    //     return view('auth.changepwd');
+    // }
     
     public function update(Request $request, $id)
     {
