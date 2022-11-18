@@ -38,7 +38,7 @@ use App\Http\Controllers\ProfilController;
 
 
 
-Route::middleware(['auth', 'role:Adj'])->group(function() {
+Route::middleware(['auth', 'role:supreme'])->group(function() {
 
     // Route::get('/Med', function () {
     // return ("Bonjour svous êtes sur l'interface de test !!");
@@ -83,6 +83,7 @@ Route::middleware(['auth', 'role:Adj'])->group(function() {
 
     //Pour le profil
     Route::get('/Profil', [ProfilController::class, 'index'])->name('profilvue');
+    Route::put('/Profil/{id}', [ProfilController::class, 'update'])->name('profilupdate');
 });
 
 
