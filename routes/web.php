@@ -40,46 +40,48 @@ use App\Http\Controllers\ProfilController;
 
 Route::middleware(['auth', 'role:supreme'])->group(function() {
 
-    // Route::get('/Med', function () {
-    // return ("Bonjour svous êtes sur l'interface de test !!");
-    // })->name('test');
+    Route::middleware(['auth', 'statut:1'])->group(function() {
 
-    // Mdp Change
-    // Route::get('/Med', [passchangeController::class, 'index'])->name('test');
+        // Vue index
+        Route::get('/Accueil', [AccueilController::class, 'index'])->name('index');
 
-    // Vue index
-    Route::get('/Accueil', [AccueilController::class, 'index'])->name('index');
+        // Routes pour le crud du commissariat
+        Route::resource('/Commissariat', ComController::class);
 
-    // Routes pour le crud du commissariat
-    Route::resource('/Commissariat', ComController::class);
+        // Routes pour le crud des Membres
+        Route::resource('/Membre', MembreController::class);
 
-    // Routes pour le crud des Membres
-    Route::resource('/Membre', MembreController::class);
+        // Routes pour le crud des sections
+        Route::resource('/Section', SectController::class);
 
-    // Routes pour le crud des sections
-    Route::resource('/Section', SectController::class);
+        //Routes pour le crud des grades
+        Route::resource('/Grade', GradeController::class);
 
-    //Routes pour le crud des grades
-    Route::resource('/Grade', GradeController::class);
+        //Routes pour le crud des Roles
+        Route::get('/RoleFetch', [RoleController::class, 'fetchrole']);
+        Route::resource('/Role', RoleController::class);
 
-    //Routes pour le crud des Roles
-    Route::get('/RoleFetch', [RoleController::class, 'fetchrole']);
-    Route::resource('/Role', RoleController::class);
+        //Routes pour le crud !!!
+        Route::resource('/Inconnu', InconnuController::class);
 
-    //Routes pour le crud !!!
-    Route::resource('/Inconnu', InconnuController::class);
-
-    //Routes pour Carte !!!
-    Route::resource('/Carte', CarteController::class);
-    Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
+        //Routes pour Carte !!!
+        Route::resource('/Carte', CarteController::class);
+        Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
 
 
-    Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
+        Route::get('/downloadPDF/{id}',[App\Http\Controllers\CarteController::class, 'downloadPDF'])->name('downloadPDF');
 
-      //Routes pour Certifica!!!
-    Route::resource('/Residence', ResidenceController::class);
+        //Routes pour Certifica!!!
+        Route::resource('/Residence', ResidenceController::class);
 
-    Route::get('/downloadPDF/{id}',[App\Http\Controllers\ResidenceController::class, 'downloadPDF'])->name('downloadPDF');
+        Route::get('/downloadPDF/{id}',[App\Http\Controllers\ResidenceController::class, 'downloadPDF'])->name('downloadPDF');
+
+        //Pour le profil
+        Route::get('/Profil', [ProfilController::class, 'index'])->name('profilvue');
+        Route::put('/Profil/{id}', [ProfilController::class, 'update'])->name('profilupdate');
+    });
+
+
 
     //Pour le profil
     Route::get('/Profil', [ProfilController::class, 'index'])->name('profilvue');

@@ -15,7 +15,7 @@ class GradeController extends Controller
     public function index()
     {
         $gras = Grade::latest()->get();
-        
+
         return view('layouts.gra', compact('gras'));
     }
 
@@ -39,7 +39,7 @@ class GradeController extends Controller
     {
        $this->validate($request, [
         'libelle' => 'required | max:255',
-       ]); 
+       ]);
 
        $gra = Grade::create([
         'libelle' => $request->libelle,

@@ -17,7 +17,7 @@
     @else
         <h3>Page d'accueil régionale</h3>
     @endif
-    
+
 </div>
 
 <div class="page-content">
@@ -26,7 +26,7 @@
             <div class="row">
 
                 @if(Auth::user()->commissariat()->exists())
-                
+
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
                 @else
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
@@ -82,7 +82,7 @@
                 </div>
 
                 @endif
-                
+
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
@@ -250,7 +250,7 @@
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
                             <img src="{{ asset('storage/'.Auth::user()->photo) }}" alt="Face 1">
-                        </div>                        
+                        </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ Auth::user()->nomcomplet }}</h5>
                             <div class="nav-item dropdown">
@@ -263,7 +263,7 @@
                                             Se déconnecter
                                         </button>
                                     </form>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -319,5 +319,5 @@
     </section>
 </div>
 
-    
+
 @endsection

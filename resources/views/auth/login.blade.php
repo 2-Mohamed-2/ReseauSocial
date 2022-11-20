@@ -16,9 +16,9 @@
         <div class="row">
             <div class="col-lg-7 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
+                    {{-- <div class="auth-logo">
                         <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo"></a>
-                    </div>
+                    </div> --}}
                     <h1 class="auth-title">Connexion</h1>
                     <p class="auth-subtitle mb-5">Veuillez renseigner les champs suivants.</p>
                     @if ($errors->has('failed'))
@@ -40,7 +40,7 @@
                     </div>
                     @endif
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf                                
+                        @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" autocomplete="off" name="matricule" class="form-control form-control-xl" placeholder="Matricule">
                             <div class="form-control-icon">
@@ -75,7 +75,7 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <select class="form-control form-control-xl" name="commissariat_id">
                                 <option value="0"> -- Commissariat -- </option>
-                            
+
                                 @foreach($commissariats as $commissariat)
                                 <option value="{{ $commissariat->id }}">{{ $commissariat->libelle }}
                                 </option>
@@ -84,7 +84,7 @@
                             <div class="form-control-icon">
                                 <i class="bi bi-pencil"></i>
                             </div>
-                        </div> 
+                        </div>
                                 @if ($errors->has('commissariat_id'))
                                     <div class="alert alert-danger">
                                         @foreach ($errors->get('commissariat_id') as $message)
@@ -93,7 +93,7 @@
                                         </span>
                                         @endforeach
                                     </div>
-                                @endif 
+                                @endif
 
                         <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" name="remember" type="checkbox" value="" id="flexCheckDefault">
@@ -106,12 +106,12 @@
                     <div class="text-center mt-5 text-lg fs-4">
                         @if (Route::has('password.request'))
                         <p>
-                            <a class="font-bold" href="{{ route('password.request') }}"> 
+                            <a class="font-bold" href="{{ route('password.request') }}">
                                 Mot de passe oublié ?
                             </a>
                         </p>
                         @endif
-                        
+
                     </div>
                 </div>
             </div>

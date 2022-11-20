@@ -74,7 +74,8 @@
       </div>
   </div>
 </div>
-@include('flash-message')
+
+{{--  @include('flash-message')  --}}
 
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -148,13 +149,13 @@
                   <label for="example-text-input" class="form-control-label">Telephone</label>
                   <input class="form-control" readonly type="text" value="{{ Auth::user()->telephone }}">
                 </div>
-              </div>     
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="example-text-input" class="form-control-label">Numero d'identité</label>
                   <input class="form-control" readonly type="text" value="{{ Auth::user()->numeroci }}">
                 </div>
-              </div>         
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="example-text-input" class="form-control-label">Email</label>
@@ -167,7 +168,7 @@
                   <input class="form-control" readonly type="text" value="{{ Auth::user()->adresse }}">
                 </div>
               </div>
-            </div>                       
+            </div>
           </div>
         </div>
       </div>
@@ -175,7 +176,7 @@
 </div>
 
 
-<!-- Boite modale pour la modification d'une section-->
+{{--  <!-- Boite modale pour la modification d'une section -->   --}}
 <div class="modal fade admin-query" id="pwdUpdate{{Auth::user()->id}}"
   data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
   role="dialog" tabindex="-1">
@@ -196,13 +197,13 @@
                 @method('PUT')
                 @csrf
                 <div class="form-body">
-                  <div class="row">  
+                  <div class="row">
 
                     <div class="col-md-12">
                       <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Ancien mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" id="apwd" autocomplete="off" name="password" class="form-control" 
+                          <input type="password" id="apwd" autocomplete="off" name="password" class="form-control"
                             required value="{{ old('password') }}" placeholder="Ancien mot de passe ...">
                           <div class="form-control-icon">
                             <i id="apwd1" class="bi bi-eye"></i>
@@ -216,7 +217,7 @@
                       <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Nouveau mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" name="password1" id="pwd" 
+                          <input type="password" autocomplete="off" name="password1" id="pwd"
                             class="form-control" value="{{ old('password1') }}" required
                             placeholder="Nouveau mot de passe ...">
                           <div class="form-control-icon">
@@ -244,7 +245,7 @@
                       <div class="form-group has-icon-right">
                         <small class="text-muted"><i>Confirmation du mot de passe</i></small>
                         <div class="position-relative">
-                          <input type="password" autocomplete="off" id="pwd2" class="form-control" 
+                          <input type="password" autocomplete="off" id="pwd2" class="form-control"
                             value="{{ old('password2') }}"
                             required disabled placeholder="Confirmation du mot de passe ...">
                         </div>
@@ -257,8 +258,8 @@
                         </div>
 
                       </div>
-                    </div> 
-                  </div>                 
+                    </div>
+                  </div>
 
                 </div>
                 </p>
@@ -301,7 +302,7 @@
     apwd.type = "password";
   });
 
-</script> 
+</script>
 {{-- Fin --}}
 
 
@@ -329,7 +330,7 @@
     pwd2.type = "password";
   });
 
-</script> 
+</script>
 {{-- Fin  --}}
 
 
@@ -357,7 +358,7 @@
   // Quand on commence à taper dans le pwd
   pwd.onkeyup = function(){
 
-    
+
 
     // Validation des minuscules
     var minuscule = /[a-z]/g
@@ -406,11 +407,11 @@
       lenght.classList.add('invalid');
     }
 
-    
+
     const button = document.getElementById('sauv');
     const npwd = document.getElementById('pwd2');
 
-    if ((pwd.value.length >= 6) && (pwd.value.match(nbre)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {      
+    if ((pwd.value.length >= 6) && (pwd.value.match(nbre)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {
       button.disabled = false;
       npwd.disabled = false;
 
@@ -428,7 +429,7 @@
 
       letter.classList.remove('valid');
       letter.classList.add('ok');
-    } 
+    }
     else {
       button.disabled = true;
       npwd.disabled = true;
@@ -472,21 +473,21 @@
   }
 
     pwd2.onkeyup = function()
-    {     
+    {
       const button = document.getElementById('sauv');
-      var pwd = document.getElementById("pwd"); 
+      var pwd = document.getElementById("pwd");
 
       if (pwd.value != pwd2.value) {
-        // alert("Pas Ok");              
-        
+        // alert("Pas Ok");
+
         button.disabled = true;
         pwd2msg.classList.add('alert-danger');
         pwd2msg.innerHTML = "Attention, les deux mots de passe sont differents";
-        
-      } 
+
+      }
       else {
         // alert("Ok");
-        
+
         button.disabled = false;
         pwd2msg.classList.remove('alert-danger');
         pwd2msg.classList.add('alert-success');

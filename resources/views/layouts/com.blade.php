@@ -42,7 +42,7 @@ Administrateurs
 </div>
 <div class="card-content">
 <div class="card-body">
-    <p class="card-text">Pour <a href="" data-bs-toggle="modal" data-bs-target="#comAdd"><h3>insérer une nouvelle ligne</h3></a></p>
+    <p class="card-text">Pour <a href="" data-bs-toggle="modal" data-bs-target="#comAdd">insérer une nouvelle ligne</a></p>
     <!-- Table with outer spacing -->
     <div class="table-responsive">
         <table class="table table-lg">
@@ -73,19 +73,19 @@ Administrateurs
                         </a>
                     </td>
                 </tr>
-                
+
                 <!-- Boite modale pour la modification du site-->
                 <div class="modal fade admin-query" id="comUpdate{{$com->id}}" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"  role="dialog" tabindex="-1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            
+
                             <div class="modal-header">
                                 <h5 class="modal-title" id="myModalLabel">Modification</h5>
                                 <button type="button" class="close" data-bs-dismiss="modal">
                                     x
                                 </button>
                             </div>
-                            
+
                             <div class="modal-body">
                                 <p class="text-wrap">
                                     <form action="{{route('Commissariat.update', $com->id)}}" method="POST">
@@ -93,7 +93,7 @@ Administrateurs
                                         @csrf
                                         <div class="form-body">
                                             <div class="row">
-                                                
+
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
@@ -105,7 +105,7 @@ Administrateurs
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-6">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
@@ -117,7 +117,7 @@ Administrateurs
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-12">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
@@ -129,12 +129,12 @@ Administrateurs
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </p>
                                 </div>
-                                
+
                                 <div class="modal-footer">
                                     <div class="col-12 d-flex justify-content-end mt-4 ">
                                         <div class="col-5 d-flex justify-content-center">
@@ -148,19 +148,19 @@ Administrateurs
                     </div>
                 </div>
                 <!-- End boite modale -->
-                
+
                 <!-- Boite modale pour la confirmation de suppression d'un site-->
                 <div class="modal fade admin-query" id="comDestroy{{$com->id}}" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"  role="dialog" tabindex="-1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            
+
                             <div class="modal-header">
                                 <h5 class="modal-title" id="myModalLabel">Suppression</h5>
                                 <button type="button" class="close" data-bs-dismiss="modal">
                                     x
                                 </button>
                             </div>
-                            
+
                             <div class="modal-body">
                                 <p class="text-wrap">
                                     <form action="{{route('Commissariat.destroy', $com->id)}}" method="POST">
@@ -171,10 +171,10 @@ Administrateurs
                                                 Êtes-vous sur de vouloir supprimé le commissariat du : {{$com->libelle}} ?
                                             </p>
                                         </div>
-                                        
+
                                     </p>
                                 </div>
-                                
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Non </button>
                                     <button type="submit" name="okmodalvote" class="btn btn-primary"> Oui </button>
@@ -187,7 +187,7 @@ Administrateurs
                 @empty
                 Pas d'insertion pour le moment !!!
                 @endforelse
-                
+
             </tbody>
         </table>
     </div>
@@ -230,7 +230,7 @@ x
 @csrf
 <div class="form-body">
 <div class="row">
-    
+
     <div class="col-md-6">
         <div class="form-group has-icon-left">
             <div class="position-relative">

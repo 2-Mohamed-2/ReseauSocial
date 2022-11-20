@@ -33,8 +33,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        if (Auth::user()->isActive == false) {
+            return redirect('/Profil')->with('info', "Veuillez s'il vous plait changer de mot de passe avant de continuer !");
+        }
+        else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

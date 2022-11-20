@@ -1,4 +1,68 @@
-<x-guest-layout>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changement de mot de passe</title>
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/pages/auth.css">
+    <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
+</head>
+
+<body>
+    <div id="auth">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-7 col-12">
+                <div id="auth-left">
+                    <h1 class="auth-title">Réinitialisation du mot de passe </h1>
+                    <p class="auth-subtitle mb-5">Veuillez renseigner le champs suivant.</p>
+
+                    @if (session('status'))
+                        <div class="alert alert-info">
+                                <span role="alert">
+                                    <strong>{{ session('status') }}</strong>
+                                </span>
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="text" autocomplete="off" name="email" class="form-control form-control-xl"
+                                    value="{{ old('email') }}" placeholder="Votre email ...">
+                            <div class="form-control-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </div>
+                                @if ($errors->has('email'))
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->get('email') as $message)
+                                        <span role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+                            Valider
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+{{--  <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -45,4 +109,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-guest-layout>  --}}

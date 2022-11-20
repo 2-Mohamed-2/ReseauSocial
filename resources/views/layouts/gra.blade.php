@@ -44,7 +44,7 @@ Administrateurs
                                 <p class="card-text">Pour <a href="" data-bs-toggle="modal"
                                     data-bs-target="#graAdd">insérer une nouvelle ligne</a>
                                 </p>
-                                    @include('flash-message')
+                                    
                                 <!-- Table with outer spacing -->
                                 <div class="table-responsive">
                                     <table class="table table-lg">

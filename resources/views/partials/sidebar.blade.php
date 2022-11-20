@@ -20,26 +20,91 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            
+
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-                
-                <li
-                    class="sidebar-item {{ Request::is('Accueil') ? 'active':''}}">
-                    <a href="{{route('index')}}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Accueil</span>
-                    </a>
-                </li>
 
-                <li
-                    class="sidebar-item {{ Request::is('Profil') ? 'active':''}}">
-                    <a href="{{route('profilvue')}}" class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-                                
+                {{-- On vérifie si l'utilisateur a le mdp par défaut --}}
+                @if (Auth::user()->isActive == false)
+                    <li
+                        class="sidebar-item {{ Request::is('Profil') ? 'active':''}}">
+                        <a href="{{route('profilvue')}}" class='sidebar-link'>
+                            <i class="bi bi-person"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                @else
+
+                    <li
+                        class="sidebar-item {{ Request::is('Accueil') ? 'active':''}}">
+                        <a href="{{route('index')}}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="sidebar-item {{ Request::is('Membre') ? 'active':''}}">
+                        <a href="{{ route('Membre.index') }}" class='sidebar-link'>
+                            <i class="bi bi-people-fill"></i>
+                            <span>Membre</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="sidebar-item {{ Request::is('Commissariat') ? 'active':''}}">
+                        <a href="{{ route('Commissariat.index') }}" class='sidebar-link'>
+                            <i class="bi bi-house-fill"></i>
+                            <span>Commissariat</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="sidebar-item {{ Request::is('Grade') ? 'active':''}}">
+                        <a href="{{ route('Grade.index') }}" class='sidebar-link'>
+                            <i class="bi bi-diagram-2-fill"></i>
+                            <span>Grade</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="sidebar-item {{ Request::is('Profil') ? 'active':''}}">
+                        <a href="{{route('profilvue')}}" class='sidebar-link'>
+                            <i class="bi bi-person"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+
+
+                @endif
+
+
+
+            </ul>
+        </div>
+
+        <div class="position-relative align-items-center justify-content-around">
+            <div class="">
+                <div class="justify-content-around p-5 flex-wrap">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger space-between">
+                            Se déconnecter
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+{{--
                 <li
                     class="sidebar-item {{ Request::is('form-layout') ? 'active':''}}">
                     <a href="{{route('index')}}" class='sidebar-link'>
@@ -47,8 +112,8 @@
                         <span>Form Layout</span>
                     </a>
                 </li>
-                
-                                
+
+
                 <li
                     class="sidebar-item {{ Request::is('Etudiants') ? 'active':''}} ">
                     <a href="" class='sidebar-link'>
@@ -56,7 +121,7 @@
                         <span>Tableau etu</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item sidebar-item {{ Request::is('Sessions') ? 'active':''}}">
                     <a href="{{route('index')}}" class='sidebar-link'>
@@ -64,7 +129,7 @@
                         <span>Info connexion tableau</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item sidebar-item {{ Request::is('Administrateurs') ? 'active':''}}">
                     <a href="{{route('index')}}" class='sidebar-link'>
@@ -80,7 +145,7 @@
                         <span>tableau election</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -98,8 +163,8 @@
                             <a href="ui-icons-dripicons.html">Dripicons</a>
                         </li>
                     </ul>
-                </li>               
-                                
+                </li>
+
                 <li
                     class="sidebar-item  ">
                     <a href="ui-file-uploader.html" class='sidebar-link'>
@@ -107,7 +172,7 @@
                         <span>File Uploader</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -123,9 +188,9 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="sidebar-title">Pages</li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="application-email.html" class='sidebar-link'>
@@ -133,7 +198,7 @@
                         <span>Email Application</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="application-chat.html" class='sidebar-link'>
@@ -141,7 +206,7 @@
                         <span>Chat Application</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="application-gallery.html" class='sidebar-link'>
@@ -149,7 +214,7 @@
                         <span>Photo Gallery</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="application-checkout.html" class='sidebar-link'>
@@ -157,7 +222,7 @@
                         <span>Checkout Page</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -176,7 +241,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -195,9 +260,9 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="sidebar-title">Raise Support</li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
@@ -205,7 +270,7 @@
                         <span>Documentation</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
@@ -213,7 +278,7 @@
                         <span>Contribute</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item  ">
                     <a href="https://github.com/zuramai/mazer#donation" class='sidebar-link'>
@@ -221,25 +286,4 @@
                         <span>Donate</span>
                     </a>
                 </li>
-                
-            </ul>  
-        </div>
-
-        <div class="position-relative bg-black align-items-center justify-content-around">
-            <div class="">
-                <div class="justify-content-around p-5 flex-wrap">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-danger space-between">
-                            Se déconnecter
-                        </button>
-                    </form>
-                </div> 
-            </div>
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
+--}}
