@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Inconnu;
 use PDF;
 use App\Models\Residence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ResidenceController extends Controller
 {
@@ -142,7 +142,9 @@ class ResidenceController extends Controller
 
     public function downloadPDF(Request $request) {
         $resi = Residence::find($request->id);
-        $pdf = PDF::loadView('layouts.residence', compact('resi'))->setPaper('a4','landscape');
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('layouts.residence', compact('resi'));
+        $pdf->setPaper('A4', 'landscape');
        //$pdf->loadView('layouts.carte', compact('cart'));
 
         return $pdf->stream();

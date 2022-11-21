@@ -6,75 +6,57 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-
-    </style>
     <title>Certificat Residence</title>
+    <Style>
+        *{
+            justify-content: center;
+            height: 150px;
+            align-items:center;
+            text-align: center;
+            font-size: 19px;
+
+        }
+        .corps{
+            letter-spacing:13ch;
+            margin-right:170px;
+            font-family:'Times New Roman', Times, serif;
+        }
+
+    </Style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-          <div class="col">
-            1 of 2
-          </div>
-          <div class="col">
-            2 of 2
-          </div>
+    <div container>
+
+
+            <span style="margin-right: 380px;">COMMISSARIAT DE POLICE  </span>     <span style="margin-left: 150px;">REPUBLIQUE DU MALI</span><br>
+            <span style="margin-right: 530px;">DU*****************</span>   <span style="margin-left:50px; font-size:12px; font-style:italic;">UN PEUPLE - UN BUT - UNE FOI</span><br>
+            <span style="margin-right: 760px;">***********</span><br>
+            <span style="margin-right: 858px;">N°............../CP</span><br>
+            <span style="text-align:center; margin-top:50px font-family'Times New Roman'; font-size: 3em;">Certificat de Résidence</span> <br>
+
+        <div class="corps">
+            <span style="margin-right: 150px;">Nous Soussigné, Commissaire de Police de la Ville(NOM DE LA VILLE) cerifions que</span>
+            <span>Mr/Mme:________________________________________________________________________________________</span>
+            <span>Né_le:........................................................a:......................................................................................................</span>
+            <span>Fils_de:......................................................Et_de:..............................................................................................</span>
+            <span>Profession:..........................................................................................................................................................</span>
+            <span>Resulte_de:.........................................................................................................................................................</span>
+            <span>Domicile:.............................................................................................................................................................</span><br>
+            <span style="margin-right: 610px;">Depuis plus de trois(3)Mois</span>
+            <span style="margin-left:200px;">En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span><br>
+            <span style="margin-right: 656px;">Pour Constitution de</span>     <span style="margin-left:200px;">**********</span><br>
+            <span>Dossier:...................</span> <span style="margin-left:410px;">P/LE Commissiare de Police P/O</span>
+
         </div>
-        <div class="row">
-          <div class="col">
-            1 of 3
-          </div>
-          <div class="col">
-            2 of 3
-          </div>
-          <div class="col">
-            3 of 3
-          </div>
-        </div>
-    </div>   
+
+    </div>
+
 
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
 
-{{-- <table class="table bg-info">
-            <thead class="bg-danger">
-                <tr>
-                    <th>
-                        <div class="col-4 bg-success">
-                        <span style="margin-right:180px;">COMMISSARIAT DE POLICE  </span>     <span style="font-size:15px; letter-spacing: 2px;">REPUBLIQUE DU MALI</span>
-                        <span style="margin-left:15px;">DU*****************</span>  <span style="margin-left:250px; font-size:11px; ">  <small><em>UN PEUPLE - UN BUT - UNE FOI </em></small> </span>
-                            <span style="margin-left:20px;">***********</span>
-                            <span>N°............../CP</span>    <span style="margin-left:26px; font-family:'Times New Roman', Times, serif; font-size:2em;">Certificat de Résidence</span>
-                        </div> 
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-
-                    <pre style="margin-bottom:150px;" >
-                        <span style="font-family:'Times New Roman', Times, serif; font-size:1em;">Nous Soussigné, Commissaire de Police de la Ville(NOM DE LA VILLE) cerifions que</span>
-
-                        <span>Mr :......................................................................................................................................................................</span>
-                        <span>Né_le :........................................................a :......................................................................................................</span>
-                        <span>Fils_de :......................................................Et_de :..............................................................................................</span>
-                        <span>Profession :..........................................................................................................................................................</span>
-                        <span>Resulte_de :.........................................................................................................................................................</span>
-                        <span>Domicile :.............................................................................................................................................................</span>
-                        <span>Depuis plus de trois(3) Mois</span>
-                                                            <span>En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span>
-
-                        <span>Pour Constitution de </span>                                                                                       <span>**********</span>
-                        <span>Dossier:...................</span>                                                                                        <span>P/LE Commissiare de Police P/O</span>
-                    </pre>
-                    </td>
-                </tr>
-            </tbody>
-        </table> --}}
  {{-- <div class="container-fluid bg-danger">
         <div class="row ">
            <div>
