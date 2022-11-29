@@ -17,6 +17,8 @@
     @else
         <h3>Page d'accueil régionale</h3>
     @endif
+{{-- {{dd(Auth::user()->sessions->user_id);}} --}}
+
 
 </div>
 

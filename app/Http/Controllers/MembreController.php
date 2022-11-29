@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Membre;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,7 @@ class MembreController extends Controller
         $grades = Grade::latest()->get();
         $commissariats = Commissariat::latest()->get();
         $roles = Role::latest()->where('id', '!=', '1')->get();
-        
+
         return view('layouts.mem', compact('mems', 'grades', 'roles', 'commissariats'));
     }
 
@@ -47,6 +48,7 @@ class MembreController extends Controller
      */
     public function store(Request $request)
     {
+        // Carbon::now();
         $request->validate([
             'commissariat_id' => 'required',
             'grade_id' => 'required',
@@ -60,10 +62,10 @@ class MembreController extends Controller
             'datedepart' => ['required', 'date'],
             'genre' => ['required', 'string', 'max:20'],
             'photo' => 'required|image|mimes:jpg,png,jpeg,png',
-        ]); 
+        ]);
 
         $image = $request->photo->store("image");
-        
+
         $user = User::create([
             'commissariat_id'=> $request->commissariat_id,
             'grade_id'=> $request->grade_id,
@@ -142,7 +144,7 @@ class MembreController extends Controller
             'datedepart' => 'required',
             'pwd' => 'max:255',
         ]);
-                 
+
         if ($request->has('photo')) {
 
             $membre = User::findOrFail($id);
@@ -155,13 +157,13 @@ class MembreController extends Controller
             // $photo->move($destination, $profilImage);
 
             // $request->photo = $profilImage;
-    
+
             // $validateData['photo'] = $request->photo;
 
             $image = $request->photo->store("image");
             $validateData['photo'] = $image;
         }
-      
+
         User::whereId($id)->update($validateData);
         return redirect()->back();
     }
@@ -175,7 +177,7 @@ class MembreController extends Controller
     public function destroy($id)
     {
         $mem = User::findOrFail($id);
-        
+
         Storage::delete($mem->photo);
         $mem->delete();
         return redirect()->back();

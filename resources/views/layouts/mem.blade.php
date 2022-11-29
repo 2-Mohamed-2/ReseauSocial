@@ -514,7 +514,7 @@ Administrateurs
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <select class="form-control" name="commissariat_id">
-                                            <option value=""> -- Commissariat -- </option>                            
+                                            <option value=""> -- Commissariat -- </option>
                                             @foreach($commissariats as $commissariat)
                                             <option value="{{ $commissariat->id }}">{{ $commissariat->libelle }}
                                             </option>
@@ -535,7 +535,7 @@ Administrateurs
                                     </div>
                                     @endif
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
@@ -584,7 +584,7 @@ Administrateurs
                                 </div>
                             </div>
 
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
@@ -771,7 +771,6 @@ Administrateurs
                                     <small class="text-muted"><i>Selection de rôles</i></small>
                                     <div class="position-relative">
                                         <select class="choices form-select" name="roles[]" multiple="multiple">
-                                            <option disabled> Selectionnez ses rôles</option>
                                             @forelse ($roles as $role)
                                             <option name="roles[]" value="{{ $role->id }}">{{ $role->libelle }}</option>
                                             @empty

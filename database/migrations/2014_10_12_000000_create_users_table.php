@@ -31,16 +31,17 @@ class CreateUsersTable extends Migration
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
             $table->date('datearrive')->nullable();
-            $table->string('photo')->nullable(); 
-            $table->string('genre')->nullable(); 
+            $table->string('photo')->nullable();
+            $table->string('genre')->nullable();
             $table->date('datedepart')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isActive')->default(false); //Pour recuperer la premiere connexion
             $table->rememberToken()->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
-            
+
         });
 
         $data = User::find(1);

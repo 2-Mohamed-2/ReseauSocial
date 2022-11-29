@@ -32,7 +32,6 @@ use App\Http\Controllers\ProfilController;
 // });
 
 // Route::get('/', function () {
-//     //dd(Auth::user()->isActive == false);
 //     return ("Bonjour svous êtes sur l'interface d'acueil !!");
 // })->middleware(['auth'])->name('dashboard');
 

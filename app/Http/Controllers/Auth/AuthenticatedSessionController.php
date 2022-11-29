@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Commissariat;
+use App\Models\Session;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +35,14 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // dd($request->ip());
+
+        Session::create([
+            'user_id'=> Auth::user()->id,
+            'debut'=> Carbon::now()->toDateTimeString(),
+            'ip_address'=> $request->ip(),
+        ]);
+
         $request->session()->regenerate();
         if (Auth::user()->isActive == false) {
             return redirect('/Profil')->with('info', "Veuillez s'il vous plait changer de mot de passe avant de continuer !");
@@ -50,6 +61,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        $test = Auth::user()->sessions->last();
+        $test->fin = Carbon::now()->toDateTimeString();
+        $test->save();
+        
+        // dd($test->debut);
+        // $id = User::findOrFail(Auth::user()->id);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

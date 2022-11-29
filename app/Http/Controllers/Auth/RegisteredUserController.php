@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
         $mems = User::latest()->get();
         $grades = Grade::latest()->get();
         $roles = Role::latest()->get();
-        
+
         return view('auth.register', compact('mems', 'grades', 'roles'));
     }
 
@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'datedepart' => ['required', 'date'],
             'genre' => ['required', 'string', 'max:20'],
             'photo' => 'required|image|mimes:jpg,png,jpeg,png',
-        ]); 
+        ]);
 
         $image = $request->photo->store("image");
         $id = 1;
@@ -70,6 +70,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'datedepart' => $request->datedepart,
             'password' => Hash::make(123456),
+            'created_by' => Auth::user()->nomcomplet,
         ]);
 
         $moh = $user->id;

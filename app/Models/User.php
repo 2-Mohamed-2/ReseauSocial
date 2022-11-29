@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Grade;
 use App\Models\Section;
-use App\Models\Session;
 use App\Models\Commissariat;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\ResetPassNotif;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
 
 class User extends Authenticatable
 {
@@ -65,7 +66,18 @@ class User extends Authenticatable
 
     public function sessions()
     {
-        return $this->hasMany(Session::class);        
+        return $this->hasMany(Session::class);
     }
 
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassNotif($token));
+    }
 }

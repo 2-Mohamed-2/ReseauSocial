@@ -56,11 +56,12 @@
                                         @endforeach
                                     </div>
                                 @endif
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" autocomplete="off" name="password" class="form-control form-control-xl" placeholder="Mot de passe">
+                        <div class="form-group position-relative has-icon-right mb-4">
+                            <input type="password" autocomplete="off" name="password" id="pwd" class="form-control form-control-xl" placeholder="Mot de passe">
                             <div class="form-control-icon">
-                                <i class="bi bi-shield-lock"></i>
-                            </div>
+                                <i data-feather="eye"></i>
+                                <i style="display: none" data-feather="eye-off"></i>
+                              </div>
                         </div>
                                 @if ($errors->has('password'))
                                     <div class="alert alert-danger">
@@ -121,6 +122,33 @@
             </div>
         </div>
     </div>
+
+
+
+{{-- Script pour l'apercu du mdp pour le 2è input --}}
+<script src="assets/js/eyes.js"></script>
+
+<script>
+  feather.replace();
+
+  const eye = document.querySelector(".feather-eye");
+  const eyeoff = document.querySelector(".feather-eye-off");
+  var pwd = document.getElementById('pwd');
+
+  eye.addEventListener("click", () => {
+    eye.style.display = "none";
+    eyeoff.style.display = "block";
+    pwd.type = "text";
+  });
+
+  eyeoff.addEventListener("click", () => {
+    eyeoff.style.display = "none";
+    eye.style.display = "block";
+    pwd.type = "password";
+  });
+
+</script>
+{{-- Fin  --}}
 </body>
 
 </html>

@@ -20,13 +20,13 @@ class CreateRolesTable extends Migration
             $table->timestamps();
         });
 
-        $data = Role::find(1);
+        // $data = Role::find(1);
 
-        if (empty($data)) {
-            $user            = new Role();
-            $user->libelle = 'supreme';
-            $user->save();
-        }
+        // if (empty($data)) {
+        //     $user            = new Role();
+        //     $user->libelle = 'supreme';
+        //     $user->save();
+        // }
     }
 
     /**

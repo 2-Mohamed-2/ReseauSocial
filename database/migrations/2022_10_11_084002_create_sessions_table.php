@@ -17,10 +17,14 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('membre_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
             $table->dateTime('debut');
-            $table->dateTime('fin');
+            $table->dateTime('fin')->nullable();
+
+            $table->timestamps();
         });
     }
 
